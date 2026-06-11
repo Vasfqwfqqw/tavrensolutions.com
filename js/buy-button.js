@@ -14,6 +14,9 @@
   function enable(btn, on) {
     if (on) {
       btn.classList.add('lemonsqueezy-button', 'is-enabled');
+      if (typeof LemonSqueezy !== 'undefined') {
+        LemonSqueezy.Setup({});
+      }
       btn.setAttribute('aria-disabled', 'false');
       btn.setAttribute('tabindex', '0');
     } else {
