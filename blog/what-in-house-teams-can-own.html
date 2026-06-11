@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>What in-house teams can own in an S/4HANA programme</title>
+    <meta name="description" content="Not every part of an upgrade needs a consultant's day rate. Here is a clear-eyed split of the work your own Finance, Sales, Supply Chain and HR teams can genuinely carry." />
+    <link rel="canonical" href="https://tavrensolutions.com/blog/what-in-house-teams-can-own" />
+    <meta name="theme-color" content="#0F3D73" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:site_name" content="Tavren Solutions" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="What in-house teams can own in an S/4HANA programme" />
+    <meta property="og:description" content="Not every part of an upgrade needs a consultant's day rate. Here is a clear-eyed split of the work your own Finance, Sales, Supply Chain and HR teams can genuinely carry." />
+    <meta property="og:url" content="https://tavrensolutions.com/blog/what-in-house-teams-can-own" />
+    <meta property="og:image" content="https://tavrensolutions.com/assets/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="What in-house teams can own in an S/4HANA programme" />
+    <meta name="twitter:description" content="Not every part of an upgrade needs a consultant's day rate. Here is a clear-eyed split of the work your own Finance, Sales, Supply Chain and HR teams can genuinely carry." />
+    <meta name="twitter:image" content="https://tavrensolutions.com/assets/og.png" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/favicons/site.webmanifest" />
+
+    <!-- Fonts: preload the variable files actually used above the fold -->
+    <link rel="preload" href="/assets/fonts/RedHatDisplay-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/RedHatText-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- Mark JS as active before paint so reveal animations only hide content
+         when JS can bring it back. No-JS visits show everything immediately. -->
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+
+    <!-- Organization JSON-LD (site-wide) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Tavren",
+        "url": "https://tavrensolutions.com/",
+        "logo": "https://tavrensolutions.com/assets/favicons/icon-512.png",
+        "description": "Tavren publishes structured AI toolkits that help in-house SAP teams prepare for the ECC-to-S/4HANA upgrade.",
+        "email": "contact@tavrensolutions.com"
+      }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What in-house teams can own in an S/4HANA programme","description":"Not every part of an upgrade needs a consultant's day rate. Here is a clear-eyed split of the work your own Finance, Sales, Supply Chain and HR teams can genuinely carry.","datePublished":"2026-06-09","dateModified":"2026-06-09","author":{"@type":"Organization","name":"Tavren"},"publisher":{"@type":"Organization","name":"Tavren","logo":{"@type":"ImageObject","url":"https://tavrensolutions.com/assets/favicons/icon-512.png"}},"mainEntityOfPage":"https://tavrensolutions.com/blog/what-in-house-teams-can-own","image":"https://tavrensolutions.com/assets/og.png"}</script>
+
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script async src="https://plausible.io/js/pa-NiZL7aynO2bECkd1a4bMU.js"></script>
+    <script>
+      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+      plausible.init()
+    </script>
+
+    <!-- LemonSqueezy overlay -->
+    <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+  </head>
+  <body class="flex min-h-screen flex-col ">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-navy focus:shadow-card">Skip to content</a>
+    <header class="sticky top-0 z-40 border-b border-navy/10 bg-cloud/85 backdrop-blur supports-[backdrop-filter]:bg-cloud/70">
+  <div class="container-tavren flex h-16 items-center justify-between gap-4">
+    <a href="/" class="flex items-center" aria-label="Tavren — home">
+      <img src="/assets/Tavern Logos with Text/tavren-lockup-horizontal-navy.svg" alt="Tavren" class="h-7 w-auto" width="140" height="28" />
+    </a>
+
+    <nav class="hidden items-center gap-7 md:flex" aria-label="Primary">
+      <a href="/toolkits" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">Toolkits</a>
+      <a href="/how-it-works" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">How it works</a>
+      <a href="/blog" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">Blog</a>
+      <a href="/about" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">About</a>
+      <a href="/contact" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="/toolkits" class="btn-primary hidden px-4 py-2 text-sm sm:inline-flex">Browse toolkits</a>
+      <button
+        type="button"
+        id="menu-toggle"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-navy md:hidden"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden border-t border-navy/10 bg-cloud md:hidden">
+    <nav class="container-tavren flex flex-col py-3" aria-label="Mobile">
+      <a href="/toolkits" class="nav-link py-2.5 font-medium text-navy">Toolkits</a>
+      <a href="/how-it-works" class="nav-link py-2.5 font-medium text-navy">How it works</a>
+      <a href="/blog" class="nav-link py-2.5 font-medium text-navy">Blog</a>
+      <a href="/about" class="nav-link py-2.5 font-medium text-navy">About</a>
+      <a href="/contact" class="nav-link py-2.5 font-medium text-navy">Contact</a>
+      <a href="/toolkits" class="btn-primary mt-3">Browse toolkits</a>
+    </nav>
+  </div>
+</header>
+
+    <main id="main" class="flex-grow">
+      
+        <article class="container-tavren py-14 sm:py-20">
+          <nav class="mb-6 text-sm text-slate" aria-label="Breadcrumb"><a href="/blog" class="hover:text-azure">Blog</a> <span aria-hidden="true">/</span> <span>Cost &amp; consultancy</span></nav>
+          <header class="max-w-prose">
+            <p class="eyebrow">Cost &amp; consultancy</p>
+            <h1 class="mt-3 text-3xl font-bold leading-tight sm:text-4xl">What in-house teams can own in an S/4HANA programme</h1>
+            <p class="mt-4 text-lg text-navy/80">Not every part of an upgrade needs a consultant's day rate. Here is a clear-eyed split of the work your own Finance, Sales, Supply Chain and HR teams can genuinely carry.</p>
+            <p class="mt-4 text-sm text-slate"><time datetime="2026-06-09">9 June 2026</time> · 7 min read</p>
+          </header>
+          <div class="prose-tavren mt-10">
+            <p>&quot;Should we do this ourselves, or bring someone in?&quot; is the most expensive question on an SAP programme, because it is usually answered by default rather than on the merits. The default is to outsource the lot — which is safe, and costly, and often unnecessary.</p>
+<p>A more useful approach is to split the work honestly. Some of it genuinely needs specialist, current SAP expertise. A surprising amount of it does not — it needs structure, ownership and a head start, all of which your own people already have or can acquire cheaply.</p>
+<p>Here is a clear-eyed view of what sits on the in-house side of that line.</p>
+<h2>Readiness assessment</h2>
+<p>Before anything is built, someone has to establish where you actually stand: which processes are affected, where the gaps are, what decisions need making and by whom. This is business knowledge work — and the people who understand your processes best already work for you. Structured properly, a readiness assessment is one of the most ownable pieces of the whole programme, and one of the highest-value, because it shapes everything that follows.</p>
+<h2>Data quality and master-data preparation</h2>
+<p>As SAP&#39;s own guidance makes plain, data readiness is the single biggest predictor of a smooth migration — and getting data clean is structured, methodical work, not specialist build. Profiling for duplicates, gaps and inconsistencies; agreeing what &quot;complete&quot; looks like; fixing at source before cutover. Your team knows your data. Owning this early is both cheaper and safer than discovering it under deadline pressure.</p>
+<h2>Business testing</h2>
+<p>Test scenarios are most valuable when they are written by the people who actually run the process — they know the edge cases a generic script will miss. Designing business-led test cases and acceptance criteria is exactly the kind of work an in-house function should own, with structure rather than a consultant&#39;s template.</p>
+<h2>Change, communications and adoption</h2>
+<p>A new system that nobody adopts is a failed project regardless of how well it was built. Communications, training material, stakeholder engagement and change planning are firmly business activities. They benefit enormously from structure and consistency — and not at all from being outsourced to people who don&#39;t know your organisation.</p>
+<h2>Where the specialists earn their fee</h2>
+<p>To be clear, this is not an argument for doing it all yourself. The technical build and configuration, the deep release-specific expertise, the genuinely hard integration work — that is where external specialists earn their fee, and trying to cut corners there is a false economy.</p>
+<p>The point is narrower: the <em>surrounding</em> work — readiness, data, testing, change — is structured knowledge work, and McKinsey&#39;s analysis is clear that structured knowledge work is precisely where AI is now delivering real value. With the right method, your team can carry that work to a standard that holds up, without paying specialist rates for it.</p>
+<h2>Drawing your own line</h2>
+<p>A practical exercise: list every workstream in your programme and mark each one <em>specialist build</em> or <em>structured knowledge work</em>. The second column is your in-house opportunity — and it is usually larger than anyone expects.</p>
+<p>Our toolkits map directly onto that second column: readiness, data, testing, cutover and change, structured for the functions that own them. They are how an in-house team takes back the work that never needed a day rate in the first place.</p>
+
+          </div>
+          <section class="mt-12 max-w-prose border-t border-navy/10 pt-6"><h2 class="text-lg font-bold">Sources &amp; further reading</h2><ul class="mt-3 space-y-2 text-sm text-azure"><li><a href="https://www.mckinsey.com/capabilities/tech-and-ai/our-insights/the-economic-potential-of-generative-ai-the-next-productivity-frontier" rel="noopener" target="_blank">McKinsey — The economic potential of generative AI</a></li>
+<li><a href="https://community.sap.com/t5/business-transformation-blog-posts/why-data-readiness-is-the-biggest-success-factor-in-sap-s-4hana-migrations/ba-p/14355173" rel="noopener" target="_blank">SAP Community — Why data readiness is the biggest success factor in S/4HANA migrations</a></li></ul></section>
+          <div class="mt-12 max-w-prose rounded-2xl bg-navy p-8 text-white">
+            <h2 class="text-xl font-bold text-white">Start with the free toolkit</h2>
+            <p class="mt-2 text-white/85">See the format for yourself before you buy — the S/4HANA Readiness Starter Kit is free.</p>
+            <a class="btn btn-onnavy mt-5" href="/free-kit">Get the free starter toolkit</a>
+          </div>
+        </article>
+    </main>
+    <footer class="mt-20 border-t border-navy/10 bg-white">
+  <div class="container-tavren py-12">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:col-span-1">
+        <img src="/assets/Tavern Logos with Text/tavren-lockup-horizontal-navy.svg" alt="Tavren" class="h-7 w-auto" width="140" height="28" />
+        <p class="mt-4 max-w-xs text-sm text-slate">Structured AI toolkits that help in-house SAP teams prepare for the move from ECC to S/4HANA.</p>
+      </div>
+
+      <div>
+        <h2 class="label-muted mb-3">Explore</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/toolkits" class="text-navy/80 hover:text-azure">Toolkits</a></li>
+          <li><a href="/how-it-works" class="text-navy/80 hover:text-azure">How it works</a></li>
+          <li><a href="/free-kit" class="text-navy/80 hover:text-azure">Free starter toolkit</a></li>
+          <li><a href="/blog" class="text-navy/80 hover:text-azure">Blog</a></li>
+          <li><a href="/about" class="text-navy/80 hover:text-azure">About</a></li>
+          <li><a href="/contact" class="text-navy/80 hover:text-azure">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="label-muted mb-3">Legal</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/legal/terms-of-sale" class="text-navy/80 hover:text-azure">Terms of Sale</a></li>
+          <li><a href="/legal/terms-and-conditions" class="text-navy/80 hover:text-azure">Terms &amp; Conditions</a></li>
+          <li><a href="/legal/privacy-policy" class="text-navy/80 hover:text-azure">Privacy Policy</a></li>
+          <li><a href="/legal/cookie-policy" class="text-navy/80 hover:text-azure">Cookie Policy</a></li>
+          <li><a href="/legal/disclaimer" class="text-navy/80 hover:text-azure">Disclaimer</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="label-muted mb-3">Connect</h2>
+        <div class="flex items-center gap-3">
+          <!-- Placeholder until a LinkedIn handle exists. -->
+          <a href="#" aria-label="Tavren on LinkedIn (coming soon)" class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-navy/15 text-slate transition hover:border-azure/40 hover:text-azure" rel="noopener" data-social-placeholder>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 0 0 2.5 6 2.5 2.5 0 0 0 5 8.5 2.5 2.5 0 0 0 7.5 6 2.5 2.5 0 0 0 4.98 3.5ZM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.96 1.83-1.97 3.77-1.97 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.1c0-1.22-.02-2.8-1.9-2.8-1.9 0-2.2 1.34-2.2 2.71V21h-4z"/></svg>
+          </a>
+          <a href="mailto:contact@tavrensolutions.com" class="text-sm text-navy/80 hover:text-azure">contact@tavrensolutions.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 border-t border-navy/10 pt-6 text-xs text-slate">
+      <p>&copy; 2026 Tavren. All rights reserved.</p>
+      <p class="mt-1">Tavren is a trading name of VBCJ Solutions Ltd, registered in England &amp; Wales. Prices in USD. Payments are processed by Lemon Squeezy, our Merchant of Record.</p>
+      <p class="mt-1">VBCJ Solutions Ltd (trading as Tavren) · Registered in England and Wales · Company No. 07598797 · Registered office: 5 Martinshaw Close, Leicester, Leicestershire, LE3 9SQ, United Kingdom</p>
+    </div>
+  </div>
+</footer>
+
+    <script src="/js/main.js" defer></script>
+    
+  </body>
+</html>

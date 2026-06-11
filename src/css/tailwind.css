@@ -1,0 +1,200 @@
+/* ==========================================================================
+   Tavren Solutions — Tailwind source
+   Compiled to /css/styles.css (committed) via:  npm run build:css
+   Brand source of truth: tavren-brand skill. Palette and fonts are locked.
+   ========================================================================== */
+
+/* --- Self-hosted fonts (Latin-subset woff2; see build/fonts.mjs) ---------- */
+/* Display + Text are variable (one file = all weights). Mono is static 400. */
+@font-face {
+  font-family: 'Red Hat Display';
+  src: url('/assets/fonts/RedHatDisplay-latin.woff2') format('woff2');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Red Hat Text';
+  src: url('/assets/fonts/RedHatText-latin.woff2') format('woff2');
+  font-weight: 300 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Red Hat Mono';
+  src: url('/assets/fonts/RedHatMono-Regular-latin.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   Base
+   ========================================================================== */
+@layer base {
+  :root {
+    scroll-behavior: smooth;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    :root {
+      scroll-behavior: auto;
+    }
+  }
+
+  body {
+    @apply bg-cloud font-sans text-navy antialiased;
+    /* Body text is navy (#0F3D73) per brand — never slate. */
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    @apply font-display font-bold text-navy;
+    text-wrap: balance;
+  }
+
+  /* Accessible focus ring — visible on keyboard navigation. */
+  :focus-visible {
+    @apply outline-none ring-2 ring-azure ring-offset-2 ring-offset-cloud;
+    border-radius: 2px;
+  }
+
+  /* Skip-link target offset so anchored sections clear the sticky header. */
+  [id] {
+    scroll-margin-top: 6rem;
+  }
+}
+
+/* ==========================================================================
+   Components
+   ========================================================================== */
+@layer components {
+  .container-tavren {
+    @apply mx-auto w-full max-w-6xl px-5 sm:px-6 lg:px-8;
+  }
+
+  /* --- Buttons ----------------------------------------------------------- */
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-lg px-5 py-3 text-base font-semibold
+           transition duration-200 ease-out focus-visible:outline-none;
+  }
+  .btn-primary {
+    @apply btn bg-azure text-white shadow-sm hover:bg-[#1A5BB0] hover:shadow-md active:translate-y-px;
+  }
+  .btn-secondary {
+    @apply btn border border-navy/15 bg-white text-navy hover:border-azure/40 hover:text-azure active:translate-y-px;
+  }
+  .btn-onnavy {
+    @apply btn bg-white text-navy hover:bg-white/90 active:translate-y-px;
+  }
+  .btn-ghost {
+    @apply btn px-0 text-azure hover:text-[#1A5BB0];
+  }
+  .btn-block {
+    @apply w-full;
+  }
+  /* Disabled buy button (gated until Terms accepted). */
+  .btn[aria-disabled='true'] {
+    @apply cursor-not-allowed bg-slate/40 text-white/80 shadow-none hover:bg-slate/40 active:translate-y-0;
+  }
+
+  /* --- Links ------------------------------------------------------------- */
+  .link {
+    @apply font-medium text-azure underline-offset-2 hover:underline;
+  }
+
+  /* --- Cards ------------------------------------------------------------- */
+  .card {
+    @apply rounded-2xl border border-navy/10 bg-white p-6 shadow-card transition duration-200;
+  }
+  .card-hover {
+    @apply hover:-translate-y-0.5 hover:border-azure/30 hover:shadow-card-hover;
+  }
+
+  /* --- Eyebrow / section label ------------------------------------------ */
+  .eyebrow {
+    @apply text-sm font-semibold uppercase tracking-[0.14em] text-azure;
+  }
+  /* Slate is permitted for secondary UI labels (never body text). */
+  .label-muted {
+    @apply text-sm font-medium text-slate;
+  }
+
+  /* --- Callouts (mirror the brand md-to-pdf callout system) -------------- */
+  .callout {
+    @apply rounded-r-lg border-l-4 px-5 py-4;
+  }
+  .callout-label {
+    @apply mb-1 block text-xs font-semibold uppercase tracking-[0.12em];
+  }
+  .callout-purpose,
+  .callout-key {
+    @apply callout border-azure bg-[#E8F1FC];
+  }
+  .callout-why {
+    @apply callout border-navy bg-[#EEF3F8];
+  }
+  .callout-warning {
+    @apply callout border-[#DC2626] bg-[#FEF2F2];
+  }
+
+  /* --- Prose (blog + legal body copy) ------------------------------------ */
+  .prose-tavren {
+    @apply max-w-prose text-[1.0625rem] leading-relaxed text-navy;
+  }
+  .prose-tavren h2 {
+    @apply mt-10 mb-3 text-2xl;
+  }
+  .prose-tavren h3 {
+    @apply mt-8 mb-2 text-xl;
+  }
+  .prose-tavren p {
+    @apply mb-4;
+  }
+  .prose-tavren ul {
+    @apply mb-4 list-disc space-y-1 pl-6;
+  }
+  .prose-tavren ol {
+    @apply mb-4 list-decimal space-y-1 pl-6;
+  }
+  .prose-tavren a {
+    @apply link;
+  }
+  .prose-tavren blockquote {
+    @apply my-6 border-l-4 border-azure bg-white/60 px-5 py-3 italic;
+  }
+  .prose-tavren code {
+    @apply rounded bg-navy/5 px-1.5 py-0.5 font-mono text-[0.9em];
+  }
+  .prose-tavren strong {
+    @apply font-semibold;
+  }
+
+  /* --- Scroll & entrance reveal (progressive enhancement; see js/main.js) -
+     Hidden state is scoped to `.js`, so a no-JS visit — or a script failure —
+     still shows all content. Transform/opacity only, so no layout shift (CLS). */
+  .js .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.85s cubic-bezier(0.16, 0.84, 0.44, 1),
+      transform 0.85s cubic-bezier(0.16, 0.84, 0.44, 1);
+  }
+  .js .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .js .reveal,
+    .js .reveal.is-visible {
+      opacity: 1 !important;
+      transform: none !important;
+      transition: none !important;
+    }
+  }
+}

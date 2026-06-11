@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{{title}}</title>
+    <meta name="description" content="{{description}}" />
+    <link rel="canonical" href="{{canonical}}" />
+    <meta name="theme-color" content="#0F3D73" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:site_name" content="Tavren Solutions" />
+    <meta property="og:type" content="{{ogType}}" />
+    <meta property="og:title" content="{{title}}" />
+    <meta property="og:description" content="{{description}}" />
+    <meta property="og:url" content="{{canonical}}" />
+    <meta property="og:image" content="{{ogImage}}" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="{{title}}" />
+    <meta name="twitter:description" content="{{description}}" />
+    <meta name="twitter:image" content="{{ogImage}}" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/favicons/site.webmanifest" />
+
+    <!-- Fonts: preload the variable files actually used above the fold -->
+    <link rel="preload" href="/assets/fonts/RedHatDisplay-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/RedHatText-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- Mark JS as active before paint so reveal animations only hide content
+         when JS can bring it back. No-JS visits show everything immediately. -->
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+
+    <!-- Organization JSON-LD (site-wide) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Tavren",
+        "url": "https://tavrensolutions.com/",
+        "logo": "https://tavrensolutions.com/assets/favicons/icon-512.png",
+        "description": "Tavren publishes structured AI toolkits that help in-house SAP teams prepare for the ECC-to-S/4HANA upgrade.",
+        "email": "contact@tavrensolutions.com"
+      }
+    </script>
+    {{{extraHead}}}
+
+    <!-- Privacy-friendly analytics by Plausible -->
+    <script async src="https://plausible.io/js/pa-NiZL7aynO2bECkd1a4bMU.js"></script>
+    <script>
+      window.plausible=window.plausible||function(){(plausible.q=plausible.q||[]).push(arguments)},plausible.init=plausible.init||function(i){plausible.o=i||{}};
+      plausible.init()
+    </script>
+
+    <!-- LemonSqueezy overlay -->
+    <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+  </head>
+  <body class="flex min-h-screen flex-col {{bodyClass}}">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-navy focus:shadow-card">Skip to content</a>
+    {{> header }}
+    <main id="main" class="flex-grow">
+      {{{body}}}
+    </main>
+    {{> footer }}
+    <script src="/js/main.js" defer></script>
+    {{{extraScripts}}}
+  </body>
+</html>

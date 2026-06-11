@@ -1,0 +1,23 @@
+{
+  "name": "Tavren Solutions",
+  "short_name": "Tavren",
+  "description": "AI toolkits for SAP S/4HANA upgrade readiness.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F3D73",
+  "theme_color": "#0F3D73",
+  "icons": [
+    {
+      "src": "/assets/favicons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/favicons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}

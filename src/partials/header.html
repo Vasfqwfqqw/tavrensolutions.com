@@ -1,0 +1,43 @@
+<header class="sticky top-0 z-40 border-b border-navy/10 bg-cloud/85 backdrop-blur supports-[backdrop-filter]:bg-cloud/70">
+  <div class="container-tavren flex h-16 items-center justify-between gap-4">
+    <a href="/" class="flex items-center" aria-label="Tavren — home">
+      <img src="/assets/Tavern Logos with Text/tavren-lockup-horizontal-navy.svg" alt="Tavren" class="h-7 w-auto" width="140" height="28" />
+    </a>
+
+    <nav class="hidden items-center gap-7 md:flex" aria-label="Primary">
+      <a href="/toolkits" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">Toolkits</a>
+      <a href="/how-it-works" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">How it works</a>
+      <a href="/blog" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">Blog</a>
+      <a href="/about" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">About</a>
+      <a href="/contact" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="/toolkits" class="btn-primary hidden px-4 py-2 text-sm sm:inline-flex">Browse toolkits</a>
+      <button
+        type="button"
+        id="menu-toggle"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-navy md:hidden"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden border-t border-navy/10 bg-cloud md:hidden">
+    <nav class="container-tavren flex flex-col py-3" aria-label="Mobile">
+      <a href="/toolkits" class="nav-link py-2.5 font-medium text-navy">Toolkits</a>
+      <a href="/how-it-works" class="nav-link py-2.5 font-medium text-navy">How it works</a>
+      <a href="/blog" class="nav-link py-2.5 font-medium text-navy">Blog</a>
+      <a href="/about" class="nav-link py-2.5 font-medium text-navy">About</a>
+      <a href="/contact" class="nav-link py-2.5 font-medium text-navy">Contact</a>
+      <a href="/toolkits" class="btn-primary mt-3">Browse toolkits</a>
+    </nav>
+  </div>
+</header>
