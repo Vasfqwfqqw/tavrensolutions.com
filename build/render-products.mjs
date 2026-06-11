@@ -19,8 +19,8 @@ function esc(s) {
 function gatedBuy(url, label, idx) {
   const id = `terms-${idx}`;
   return `
-        <div class="buy-gate mt-5" data-buy-gate>
-          <label class="flex items-start gap-2.5 text-sm text-navy/90" for="${id}">
+        <div class="buy-gate mt-6" data-buy-gate>
+          <label class="flex items-center gap-2.5 text-sm text-navy/90" for="${id}">
             <input type="checkbox" id="${id}" data-terms-check
                    class="mt-0.5 h-4 w-4 shrink-0 cursor-pointer rounded border-navy/30 text-azure accent-[#2F80ED] focus-visible:ring-2 focus-visible:ring-azure" />
             <span>I have read and accept the <a href="/legal/terms-of-sale" class="link">Terms of Sale</a>.</span>
@@ -69,7 +69,7 @@ export function renderSeriesNav(data) {
     .map((s) => `<a href="#${s.id}" class="series-nav-link whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-navy/70 transition hover:bg-white hover:text-azure" data-series-link="${s.id}">${esc(s.audience)}</a>`)
     .join('\n        ');
   return `
-    <div class="sticky top-16 z-30 -mx-5 mb-10 border-y border-navy/10 bg-cloud/90 px-5 py-2 backdrop-blur sm:-mx-6 sm:px-6">
+    <div class="sticky top-16 z-30 -mx-5 mb-10 bg-cloud/90 px-5 py-2 backdrop-blur sm:-mx-6 sm:px-6">
       <nav class="container-tavren flex gap-2 overflow-x-auto" aria-label="Toolkit series">
         ${links}
       </nav>
@@ -83,7 +83,7 @@ export function renderToolkitSections(data) {
       const packs = s.packs.map((p) => packCard(p, counter++)).join('\n');
       const bundle = bundleCard(s, data.packPrice, data.bundlePrice, counter++);
       return `
-    <section id="${s.id}" class="scroll-mt-32 py-10" aria-labelledby="${s.id}-h">
+    <section id="${s.id}" class="scroll-mt-32 pt-16 pb-10" aria-labelledby="${s.id}-h">
       <div class="max-w-2xl reveal">
         <span class="eyebrow">${esc(s.audience)}</span>
         <h2 id="${s.id}-h" class="mt-2 text-2xl font-bold sm:text-3xl">${esc(s.name)}</h2>

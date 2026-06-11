@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   // Scan the editable source AND the JS that injects product-card markup at runtime.
-  content: ['./src/**/*.{html,md}', './js/**/*.js'],
+  content: ['./src/**/*.{html,md}', './js/**/*.js', './build/**/*.mjs'],
   // Classes added dynamically by products.js / buy-button.js are listed here so the
   // purge step never strips them (they don't appear literally in scanned files).
   safelist: [

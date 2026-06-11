@@ -10,6 +10,22 @@
   var keyField = form.querySelector('[name="access_key"]');
   var ACCESS_KEY = keyField ? keyField.value : '';
 
+  // Replace the browser's generic "Please match the format requested" message on
+  // the email field with one that states the expected format. Cleared on input
+  // so other states (e.g. empty/required) keep their default messages.
+  var email = form.querySelector('#email');
+  if (email) {
+    var EMAIL_MSG = 'Please enter a valid email address in the format name@company.com';
+    email.addEventListener('invalid', function () {
+      if (email.validity.patternMismatch || email.validity.typeMismatch) {
+        email.setCustomValidity(EMAIL_MSG);
+      }
+    });
+    email.addEventListener('input', function () {
+      email.setCustomValidity('');
+    });
+  }
+
   function setStatus(msg, kind) {
     status.textContent = msg;
     status.classList.remove('is-error', 'is-success', 'hidden');
