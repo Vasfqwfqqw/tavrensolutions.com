@@ -14,8 +14,13 @@
   function enable(btn, on) {
     if (on) {
       btn.classList.add('lemonsqueezy-button', 'is-enabled');
-      if (typeof LemonSqueezy !== 'undefined') {
-        LemonSqueezy.Setup({});
+      // lemon.js binds click handlers only to .lemonsqueezy-button elements that
+      // exist when it initialises (on window load). This button gains the class
+      // dynamically, so re-run lemon.js's binding pass; createLemonSqueezy() calls
+      // its Refresh() (re-scan + bind) when already initialised. Guarded so a
+      // failed/blocked lemon.js still leaves the href fallback intact.
+      if (typeof window.createLemonSqueezy === 'function') {
+        window.createLemonSqueezy();
       }
       btn.setAttribute('aria-disabled', 'false');
       btn.setAttribute('tabindex', '0');
