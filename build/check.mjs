@@ -5,7 +5,7 @@ import { mkdirSync } from 'node:fs';
 
 const CHROME = '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome';
 const BASE = 'http://localhost:4321';
-const PAGES = ['/', '/toolkits', '/how-it-works', '/about', '/free-kit', '/contact', '/blog', '/legal/terms-of-sale'];
+const PAGES = ['/', '/toolkits', '/how-it-works', '/about', '/faq', '/free-kit', '/contact', '/blog', '/legal/terms-of-sale'];
 mkdirSync('/tmp/shots', { recursive: true });
 
 const browser = await puppeteer.launch({ executablePath: CHROME, args: ['--no-sandbox'] });

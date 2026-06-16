@@ -25,14 +25,15 @@ You **edit `src/`**; the build regenerates the files Pages serves at the repo ro
 ```
 src/
   pages/*.html        Page content + YAML front-matter (index, toolkits, how-it-works,
-                      about, free-kit, contact, 404)
+                      about, faq, free-kit, contact, 404)
   legal/*.html        The 5 legal documents
+  data/faq.json       SINGLE SOURCE OF TRUTH for the FAQ (drives the page + FAQPage JSON-LD)
   blog/posts/*.md     Blog posts (markdown + front-matter)
   blog/index.html     Blog listing template ({{{postList}}} token)
   partials/           layout.html (full <head>+skeleton), header.html, footer.html, trust-strip.html
   css/tailwind.css    Tailwind source (@font-face, @layer base/components)
 build/
-  build.mjs           Main build: partials + blog + sitemap. Output → repo root.
+  build.mjs           Main build: partials + blog + sitemap + llms.txt + FAQPage JSON-LD. Output → repo root.
   render-products.mjs Server-renders the catalogue from products.json.
   fonts.mjs           Subsets the supplied .ttf to Latin woff2 (needs Python fonttools+brotli).
   images.mjs          Generates favicon set + og.png from the brand logos (sharp).
@@ -41,14 +42,14 @@ build/
   test-gating.mjs     Dev QA: verifies the Terms-of-Sale buy-button gating.
 
   ── generated + committed (served by Pages) ──
-index.html, toolkits.html, how-it-works.html, about.html, free-kit.html, contact.html, 404.html
+index.html, toolkits.html, how-it-works.html, about.html, faq.html, free-kit.html, contact.html, 404.html
 blog/index.html + blog/<slug>.html
 legal/*.html
 css/styles.css        compiled Tailwind (committed)
 js/                   main.js, hero-canvas.js, buy-button.js, contact-form.js
 assets/               logos, fonts/, favicons/, audio/, og.png
 products.json         SINGLE SOURCE OF TRUTH for the catalogue
-sitemap.xml (generated), robots.txt, CNAME, .nojekyll, favicon.ico
+sitemap.xml (generated), llms.txt (generated — curated site map for AI assistants), robots.txt, CNAME, .nojekyll, favicon.ico
 ```
 
 **Front-matter** (top of each `src/pages` + `src/legal` + blog post): `title`, `description`, `canonical` (path), optional `ogType`, `ogImage`, `bodyClass`, `extraScripts`. Blog posts also take `date`, `category`, `readingTime`, and a `sources:` list of `{title, url}`.

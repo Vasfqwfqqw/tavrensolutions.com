@@ -1,0 +1,46 @@
+[
+  {
+    "q": "What is Tavren?",
+    "a": "Tavren publishes structured AI toolkits that help in-house SAP teams prepare for the move from ECC to S/4HANA. Each toolkit is a professional playbook of structured prompts you run in your own AI tool to produce repeatable, decision-ready outputs for a specific business function — Finance, Sales, Supply Chain or HR. Tavren is a trading name of VBCJ Solutions Ltd, registered in England and Wales."
+  },
+  {
+    "q": "What exactly is in a toolkit?",
+    "a": "A toolkit is a set of carefully structured prompts — not software, and not a vague list of tips. Each prompt sets the role, context, inputs and output format so your team gets a consistent, decision-ready result every time: readiness assessments, checklists, test scenarios, data-quality reviews, cutover plans and more."
+  },
+  {
+    "q": "Why does structured prompting matter?",
+    "a": "AI tools are only as good as what you ask them. A handcrafted, context-rich prompt consistently outperforms an ad-hoc question, which tends to produce inconsistent or misleading output. Tavren toolkits are that prompting expertise, packaged — so you get the same quality of result every time, without each person having to learn prompt design from scratch. <a href=\"/how-it-works\" class=\"font-semibold text-azure hover:underline\">More on how it works</a>."
+  },
+  {
+    "q": "Which AI tools do I run the prompts in?",
+    "a": "Any capable AI assistant you already use — for example ChatGPT, Claude, Microsoft Copilot or Google Gemini. The prompts are tool-agnostic: you paste them into your chosen assistant and run them in order, adding your own context where the toolkit guides you to."
+  },
+  {
+    "q": "Does Tavren see my company data?",
+    "a": "No. You run the prompts in your own AI tool, and you stay in full control of what you choose to share. Tavren never sees, stores or receives your company data."
+  },
+  {
+    "q": "What can in-house SAP teams do before hiring consultants?",
+    "a": "A great deal of the readiness work — assessing where each function stands, cleaning master data, building business-led test scenarios, and planning cutover and change — can be done in-house with the right structure. Tavren toolkits give your team that structure, so far less of the work ever reaches a consultant's invoice. <a href=\"/blog/what-in-house-teams-can-own\" class=\"font-semibold text-azure hover:underline\">See what in-house teams can own</a>."
+  },
+  {
+    "q": "How much do the toolkits cost?",
+    "a": "Individual packs are $779. A full series bundle — all five packs for one function — is $3,099, a saving versus buying the packs separately. Prices are in USD. There are no tiers, subscriptions or upsells, and the S/4HANA Readiness Starter Kit is free."
+  },
+  {
+    "q": "What's the difference between a pack and a series bundle?",
+    "a": "A pack is a single toolkit covering one stage of the work — for example, data cleanse, or business testing. A series bundle is all five packs for one function (Finance, Sales, Supply Chain or HR) bought together at a lower combined price."
+  },
+  {
+    "q": "Do I need technical SAP skills to use the toolkits?",
+    "a": "No. The toolkits are written for senior business people and process owners — the Finance, Sales, Supply Chain and HR leads who own the work — not for technical SAP consultants. They are plain-English and require no SAP configuration knowledge."
+  },
+  {
+    "q": "What's in the free starter kit?",
+    "a": "The S/4HANA Readiness Starter Kit is a free, structured set of prompts that begins assessing your readiness for the move from ECC to S/4HANA — and shows you exactly what a Tavren toolkit gives you before you buy. <a href=\"/free-kit\" class=\"font-semibold text-azure hover:underline\">Get the free starter toolkit</a>."
+  },
+  {
+    "q": "How do I receive a toolkit after I buy?",
+    "a": "Checkout and payment are handled by Lemon Squeezy, our Merchant of Record. Your toolkit is a digital download with instant access — there is no waiting and nothing ships."
+  }
+]

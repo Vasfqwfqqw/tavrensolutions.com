@@ -1,0 +1,26 @@
+# Tavren
+
+> Tavren publishes structured AI toolkits that help in-house SAP teams prepare for the move from ECC to S/4HANA, reducing reliance on external consultants. Each toolkit is a set of structured prompts you run in your own AI tool to produce repeatable, decision-ready outputs for a specific business function — Finance, Sales, Supply Chain or HR. Individual packs are $779 and full series bundles are $3,099 (USD); a starter kit is free. Tavren is a trading name of VBCJ Solutions Ltd, registered in England and Wales. Your company data stays yours — you run the prompts in your own AI tool and Tavren never sees, stores or receives it. Checkout is handled by Lemon Squeezy as Merchant of Record.
+
+## Key pages
+- [Toolkits](https://tavrensolutions.com/toolkits): The four function-specific series, individual packs and series bundles, with pricing.
+- [How it works](https://tavrensolutions.com/how-it-works): What a toolkit is, why structured prompting works, and how you run one.
+- [Free starter toolkit](https://tavrensolutions.com/free-kit): A free, structured prompt set to try the format before buying.
+- [FAQ](https://tavrensolutions.com/faq): Common questions about the toolkits, pricing, data privacy and delivery.
+- [About](https://tavrensolutions.com/about): What Tavren is and how it works.
+- [Contact](https://tavrensolutions.com/contact): Get in touch.
+
+## Toolkit series
+- Finance Director Series (Finance): Structured toolkits that help finance teams carry readiness, reporting and testing work in-house — work that would otherwise sit on a consultancy invoice.
+- Sales Director Series (Sales): Toolkits that give sales and commercial teams a structured path through readiness, data, order-to-cash and go-live — without leaning on external billable hours.
+- Supply Chain Series (Supply Chain): Toolkits for procurement and supply-chain leaders — readiness, sourcing, risk and spend analysis structured so your own team can do the heavy lifting.
+- HR Director Series (HR): Toolkits for HR and people leaders — workforce readiness, change, organisation design and retention, structured to keep adoption and capability on track through the upgrade.
+
+## Blog
+- [SAP Has AI for the Upgrade — But It Won't Help You Before Go-Live](https://tavrensolutions.com/blog/sap-ai-joule-migration-gap): SAP Joule and the new generation of migration AI tools are impressive — but they're built for IT teams and operations after go-live. Here's what that means for your business readiness.
+- [Why Structured Prompts Matter More in the Agentic AI Era, Not Less](https://tavrensolutions.com/blog/why-prompts-matter-in-agentic-ai): AI agents are changing how enterprise software works — but they make prompt quality more important, not less. Here's why that matters for your S/4HANA migration.
+- [What in-house teams can own in an S/4HANA programme](https://tavrensolutions.com/blog/what-in-house-teams-can-own): Not every part of an upgrade needs a consultant's day rate. Here is a clear-eyed split of the work your own Finance, Sales, Supply Chain and HR teams can genuinely carry.
+- [The prompting skill: why structured beats ad-hoc](https://tavrensolutions.com/blog/prompting-skill-structured-vs-adhoc): The gap between a useful AI result and a useless one is rarely the model. It is the prompt. Here is what 'structured prompting' actually means, and why it matters for serious work.
+- [Data readiness: the quiet thing that derails S/4HANA projects](https://tavrensolutions.com/blog/data-readiness-s4hana): Migrations rarely fail on the technology. They fail on the data — duplicates, gaps and inconsistencies that surface too late. Here is how to get ahead of it.
+- [Why SAP consultancy bills run into the millions — and where AI changes the maths](https://tavrensolutions.com/blog/ai-and-sap-consultancy-cost): Implementation consultancy is usually the single largest line in an SAP upgrade budget. Here is why, and how in-house AI use is starting to shift what genuinely needs external hands.
+- [The 2027 deadline, accurately: what's really ending, and when](https://tavrensolutions.com/blog/sap-ecc-2027-deadline-explained): The SAP maintenance timeline is widely misread as a single cliff edge. Here is what actually ends in 2027, what runs to 2030, and what it means for how you plan.

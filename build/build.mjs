@@ -86,6 +86,36 @@ function articleLd(d, url) {
   })}</script>`;
 }
 
+// --- FAQ (src/data/faq.json drives both the visible page and FAQPage JSON-LD) ---
+const stripTags = (html) => String(html).replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim();
+
+function renderFaqList(faqs) {
+  return faqs
+    .map(
+      (f) => `
+      <details class="card group reveal">
+        <summary class="flex cursor-pointer list-none items-center justify-between gap-4 text-lg font-bold text-navy [&::-webkit-details-marker]:hidden">
+          <span>${escHtml(f.q)}</span>
+          <svg class="h-5 w-5 shrink-0 text-azure transition-transform group-open:rotate-180" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="m6 9 6 6 6-6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </summary>
+        <div class="mt-4 leading-relaxed text-navy/80">${f.a}</div>
+      </details>`
+    )
+    .join('\n');
+}
+
+function faqPageLd(faqs) {
+  return `<script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((f) => ({
+      '@type': 'Question',
+      name: f.q,
+      acceptedAnswer: { '@type': 'Answer', text: stripTags(f.a) },
+    })),
+  })}</script>`;
+}
+
 // --- page renderer --------------------------------------------------------
 function renderDocument({ content, data, canonicalPath, extraHead = '', ogType = 'website', bodyClass = '' }) {
   const tokens = catalogueTokens();
@@ -120,6 +150,7 @@ async function writeOut(relPath, html) {
 
 // --- builders -------------------------------------------------------------
 const urls = []; // for sitemap
+let BLOG_POSTS = []; // populated by buildBlog, consumed by buildLlms
 
 async function buildPages() {
   const dir = s('pages');
@@ -139,7 +170,14 @@ async function buildPages() {
     }
     if (name === 'toolkits') extraHead += renderProductJsonLd(CATALOGUE);
 
-    const html = renderDocument({ content, data, canonicalPath, extraHead });
+    let pageContent = content;
+    if (name === 'faq') {
+      const faqs = JSON.parse(await readFile(s('data/faq.json'), 'utf8'));
+      pageContent = content.replace('{{{faqList}}}', renderFaqList(faqs));
+      extraHead += faqPageLd(faqs);
+    }
+
+    const html = renderDocument({ content: pageContent, data, canonicalPath, extraHead });
     const outPath = name === 'index' ? 'index.html' : `${name}.html`;
     await writeOut(outPath, html);
     if (name !== '404') urls.push({ loc: canonicalPath, priority: name === 'index' ? '1.0' : '0.8' });
@@ -213,6 +251,7 @@ async function buildBlog() {
 
   // Blog index from template
   posts.sort((a, b) => (a.date < b.date ? 1 : -1));
+  BLOG_POSTS = posts;
   const list = posts
     .map(
       (p) => `
@@ -251,6 +290,37 @@ async function buildSitemap() {
   await writeFile(r('sitemap.xml'), xml, 'utf8');
 }
 
+// llms.txt — a curated, plain-text map of the site for AI assistants
+// (the "robots.txt for LLMs" convention). Not linked in the UI.
+async function buildLlms() {
+  const series = CATALOGUE.series
+    .map((sx) => `- ${sx.name} (${sx.audience}): ${sx.blurb}`)
+    .join('\n');
+  const blog = BLOG_POSTS.map(
+    (p) => `- [${p.title}](${BASE}${p.canonicalPath}): ${p.description}`
+  ).join('\n');
+
+  const out = `# Tavren
+
+> Tavren publishes structured AI toolkits that help in-house SAP teams prepare for the move from ECC to S/4HANA, reducing reliance on external consultants. Each toolkit is a set of structured prompts you run in your own AI tool to produce repeatable, decision-ready outputs for a specific business function — Finance, Sales, Supply Chain or HR. Individual packs are $${CATALOGUE.packPrice.toLocaleString('en-US')} and full series bundles are $${CATALOGUE.bundlePrice.toLocaleString('en-US')} (USD); a starter kit is free. Tavren is a trading name of VBCJ Solutions Ltd, registered in England and Wales. Your company data stays yours — you run the prompts in your own AI tool and Tavren never sees, stores or receives it. Checkout is handled by Lemon Squeezy as Merchant of Record.
+
+## Key pages
+- [Toolkits](${BASE}/toolkits): The four function-specific series, individual packs and series bundles, with pricing.
+- [How it works](${BASE}/how-it-works): What a toolkit is, why structured prompting works, and how you run one.
+- [Free starter toolkit](${BASE}/free-kit): A free, structured prompt set to try the format before buying.
+- [FAQ](${BASE}/faq): Common questions about the toolkits, pricing, data privacy and delivery.
+- [About](${BASE}/about): What Tavren is and how it works.
+- [Contact](${BASE}/contact): Get in touch.
+
+## Toolkit series
+${series}
+
+## Blog
+${blog}
+`;
+  await writeFile(r('llms.txt'), out, 'utf8');
+}
+
 async function main() {
   await loadPartials();
   CATALOGUE = JSON.parse(await readFile(r('products.json'), 'utf8'));
@@ -258,7 +328,8 @@ async function main() {
   await buildLegal();
   await buildBlog();
   await buildSitemap();
-  console.log(`  ✓ built ${urls.length} pages + sitemap.xml`);
+  await buildLlms();
+  console.log(`  ✓ built ${urls.length} pages + sitemap.xml + llms.txt`);
 }
 
 main().catch((e) => {
