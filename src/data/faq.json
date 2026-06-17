@@ -4,6 +4,10 @@
     "a": "Tavren publishes structured AI toolkits that help in-house SAP teams prepare for the move from ECC to S/4HANA. Each toolkit is a professional playbook of structured prompts you run in your own AI tool to produce repeatable, decision-ready outputs for a specific business function — Finance, Sales, Supply Chain or HR. Tavren is a trading name of VBCJ Solutions Ltd, registered in England and Wales."
   },
   {
+    "q": "Is there a deadline for moving off ECC?",
+    "a": "Yes. SAP ends mainstream maintenance for SAP ECC at the end of 2027, with optional extended maintenance available to the end of 2030 at additional cost. Either way, the business-readiness work — assessing each function, cleaning data, testing and planning cutover — takes time, and it's far less risky done ahead of the deadline than against it."
+  },
+  {
     "q": "What exactly is in a toolkit?",
     "a": "A toolkit is a set of carefully structured prompts — not software, and not a vague list of tips. Each prompt sets the role, context, inputs and output format so your team gets a consistent, decision-ready result every time: readiness assessments, checklists, test scenarios, data-quality reviews, cutover plans and more."
   },
