@@ -37,6 +37,7 @@ function packCard(pack, idx) {
         <h3 class="text-lg font-bold leading-snug">${esc(pack.name)}</h3>
         <p class="mt-2 flex-grow text-sm leading-relaxed text-navy/80">${esc(pack.blurb)}</p>
         <p class="mt-4 font-display text-2xl font-bold text-navy">$779 <span class="text-sm font-medium text-slate">USD</span></p>
+        <p class="text-xs text-slate">Less than a single consultant day (typically $800–$1,200).</p>
         ${gatedBuy(pack.url, 'Buy now — $779', idx)}
       </article>`;
 }
