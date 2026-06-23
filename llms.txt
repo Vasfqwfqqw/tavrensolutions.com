@@ -17,6 +17,7 @@
 - HR Director Series (HR): Toolkits for HR and people leaders — workforce readiness, change, organisation design and retention, structured to keep adoption and capability on track through the upgrade.
 
 ## Blog
+- [Already using SAP Signavio for your S/4HANA move? Your business teams still need to prepare.](https://tavrensolutions.com/blog/sap-signavio-business-team-prep): SAP Signavio is a capable enterprise process platform — but it lives with your transformation team, not on the desk of your finance or supply-chain manager. Here's the personal prep your business users still owe the programme, and how it shrinks the workshop bill.
 - [SAP Has AI for the Upgrade — But It Won't Help You Before Go-Live](https://tavrensolutions.com/blog/sap-ai-joule-migration-gap): SAP Joule and the new generation of migration AI tools are impressive — but they're built for IT teams and operations after go-live. Here's what that means for your business readiness.
 - [Why Structured Prompts Matter More in the Agentic AI Era, Not Less](https://tavrensolutions.com/blog/why-prompts-matter-in-agentic-ai): AI agents are changing how enterprise software works — but they make prompt quality more important, not less. Here's why that matters for your S/4HANA migration.
 - [What in-house teams can own in an S/4HANA programme](https://tavrensolutions.com/blog/what-in-house-teams-can-own): Not every part of an upgrade needs a consultant's day rate. Here is a clear-eyed split of the work your own Finance, Sales, Supply Chain and HR teams can genuinely carry.

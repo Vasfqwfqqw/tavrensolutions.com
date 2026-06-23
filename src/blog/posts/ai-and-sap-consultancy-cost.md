@@ -23,7 +23,7 @@ Strip a programme back and the external spend tends to fall into two piles.
 
 The first pile is **specialist build and configuration** — the work that genuinely requires deep, current SAP expertise. That is money well spent.
 
-The second pile is everything that *surrounds* the build: readiness assessments, requirements gathering, data profiling and cleansing preparation, test-scenario design, cutover planning, stakeholder communications, training material. This work is essential, but it is not specialist in the same way. It is structured, repeatable, knowledge work — and historically it has been billed at specialist rates simply because the in-house team had no efficient way to do it themselves.
+The second pile is everything that *surrounds* the build: readiness assessments, requirements gathering, data profiling and cleansing preparation, test-scenario design, cutover planning, stakeholder communications, training material. This work is essential, but it is not specialist in the same way. It is structured, repeatable, knowledge work — and historically it has been billed at specialist rates simply because the in-house team had no efficient way to do it themselves. Even where a dedicated process platform is in place, the discovery and mapping workshops that feed it are usually consultant-run — [which is its own line on the bill](/blog/sap-signavio-business-team-prep).
 
 That second pile is where the maths is changing.
 

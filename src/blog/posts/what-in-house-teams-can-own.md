@@ -19,7 +19,7 @@ Here is a clear-eyed view of what sits on the in-house side of that line.
 
 ## Readiness assessment
 
-Before anything is built, someone has to establish where you actually stand: which processes are affected, where the gaps are, what decisions need making and by whom. This is business knowledge work — and the people who understand your processes best already work for you. Structured properly, a readiness assessment is one of the most ownable pieces of the whole programme, and one of the highest-value, because it shapes everything that follows.
+Before anything is built, someone has to establish where you actually stand: which processes are affected, where the gaps are, what decisions need making and by whom. This is business knowledge work — and the people who understand your processes best already work for you. Structured properly, a readiness assessment is one of the most ownable pieces of the whole programme, and one of the highest-value, because it shapes everything that follows. That holds even when a process platform like SAP Signavio is in play — [the workshops it feeds still depend on your people knowing their own processes cold](/blog/sap-signavio-business-team-prep).
 
 ## Data quality and master-data preparation
 
