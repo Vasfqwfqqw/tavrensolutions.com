@@ -13,6 +13,19 @@ function esc(s) {
   return String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
 }
 
+// Optional GDPR marketing opt-in checkbox. Unticked by default, independent of
+// the Terms checkbox, and NEVER required to buy. js/buy-button.js reads
+// [data-optin-check] and writes its state into the LemonSqueezy checkout URL as
+// custom data (marketing_optin). Reused by paid cards and the free kit.
+function optinCheckbox(id) {
+  return `
+          <label class="mt-3 flex items-start gap-2.5 text-sm text-navy/90" for="${id}">
+            <input type="checkbox" id="${id}" data-optin-check
+                   class="mt-0.5 h-4 w-4 shrink-0 cursor-pointer rounded border-navy/30 text-azure accent-[#2F80ED] focus-visible:ring-2 focus-visible:ring-azure" />
+            <span>Yes, email me occasional S/4HANA readiness tips and Tavren product updates. You can unsubscribe at any time. See our <a href="https://tavrensolutions.com/legal/privacy-policy" class="link">Privacy Policy</a>.</span>
+          </label>`;
+}
+
 // A paid, Terms-gated buy button. The <a> starts disabled: no live href and no
 // `lemonsqueezy-button` class, so the overlay cannot fire. js/buy-button.js
 // enables it (adds class + href) once the adjacent checkbox is ticked.
@@ -25,6 +38,7 @@ function gatedBuy(url, label, idx) {
                    class="mt-0.5 h-4 w-4 shrink-0 cursor-pointer rounded border-navy/30 text-azure accent-[#2F80ED] focus-visible:ring-2 focus-visible:ring-azure" />
             <span>I have read and accept the <a href="/legal/terms-of-sale" class="link">Terms of Sale</a>.</span>
           </label>
+          ${optinCheckbox(`optin-${idx}`)}
           <a class="btn btn-primary btn-block mt-3 buy-btn" data-buy-url="${esc(url)}"
              href="${esc(url)}" target="_blank" rel="noopener"
              role="button" aria-disabled="true" tabindex="-1">${esc(label)}</a>
@@ -125,8 +139,9 @@ export function renderFreeKitCard(data) {
           <h3 class="mt-2 text-2xl font-bold">${esc(k.name)}</h3>
           <p class="mt-2 max-w-xl text-navy/80">${esc(k.blurb)}</p>
         </div>
-        <div class="mt-5 shrink-0 sm:mt-0">
-          <a class="btn btn-primary lemonsqueezy-button" href="${esc(k.url)}" target="_blank" rel="noopener">Download the free starter toolkit</a>
+        <div class="mt-5 shrink-0 sm:mt-0" data-optin-wrap>
+          <a class="btn btn-primary lemonsqueezy-button" data-buy-url="${esc(k.url)}" href="${esc(k.url)}" target="_blank" rel="noopener">Download the free starter toolkit</a>
+          ${optinCheckbox('optin-free')}
         </div>
       </div>`;
 }

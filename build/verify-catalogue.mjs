@@ -62,7 +62,9 @@ for (const c of cards) {
     const expPrice = exp.price === 3099 ? '$3,099' : '$779';
     if (!c.price.startsWith(expPrice)) issues.push(`price mismatch: card price="${c.price}" expected ${expPrice}`);
   }
-  if (c.hrefAttr !== c.url) issues.push(`href != data-buy-url (fallback would open wrong product)`);
+  // The fallback href may carry the marketing_optin custom-data param (added by
+  // js/buy-button.js); compare the base URL so the param doesn't trip the check.
+  if (c.hrefAttr.split('?')[0] !== c.url) issues.push(`href != data-buy-url (fallback would open wrong product)`);
   if (!c.label.includes(wantPrice)) issues.push(`button label "${c.label}" missing ${wantPrice}`);
   if (seenUrls.has(c.url)) issues.push(`DUPLICATE checkout URL on page`);
   seenUrls.add(c.url);
@@ -78,7 +80,7 @@ for (const c of cards) {
 
 // Free kit
 console.log('');
-if (free.url === data.freeKit.url) console.log(`  ✓ Free kit URL matches  ${free.url.split('/').pop()}`);
+if (free.url.split('?')[0] === data.freeKit.url) console.log(`  ✓ Free kit URL matches  ${free.url.split('?')[0].split('/').pop()}`);
 else {
   console.log(`  ✗ Free kit URL mismatch: page=${free.url} json=${data.freeKit.url}`);
   problems++;

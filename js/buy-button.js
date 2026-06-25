@@ -60,4 +60,81 @@
       }
     });
   });
+
+  // --- GDPR marketing opt-in ----------------------------------------------
+  // A second, OPTIONAL checkbox ([data-optin-check]) sits next to each buy
+  // button (paid cards and the free kit). It is unticked by default, never
+  // gates the purchase, and is fully independent of the Terms checkbox.
+  //
+  // The opt-in state is carried into the LemonSqueezy checkout as custom data —
+  // the URL gains checkout[custom][marketing_optin]=true|false, recorded on the
+  // order. https://docs.lemonsqueezy.com/help/checkout/passing-custom-data
+  //
+  // Adding the contact to the email tool is handled SERVER-SIDE by the
+  // order_created webhook (see /webhook-worker), which is the authoritative
+  // trigger. This client path no longer writes to the email tool — it only
+  // logs, so there is a single source of truth and no double sign-up.
+
+  // Opt-in state of the most recently clicked buy button, for the log below.
+  var pendingOptin = false;
+
+  // Rewrite the button href so it always reflects the current opt-in state.
+  // data-buy-url is kept as the clean base, so toggling never stacks params.
+  function setOptin(btn, on) {
+    var base = btn.getAttribute('data-buy-url') || btn.getAttribute('href');
+    if (!base) return;
+    try {
+      var u = new URL(base, window.location.href);
+      u.searchParams.set('checkout[custom][marketing_optin]', on ? 'true' : 'false');
+      btn.setAttribute('href', u.toString());
+    } catch (e) {
+      /* leave the href untouched if URL parsing is unavailable */
+    }
+  }
+
+  document.querySelectorAll('[data-optin-check]').forEach(function (box) {
+    var scope = box.closest('[data-buy-gate], [data-optin-wrap]');
+    if (!scope) return;
+    var btn = scope.querySelector('.buy-btn, .lemonsqueezy-button');
+    if (!btn) return;
+
+    // Initialise: marketing_optin=false on the href (unticked by default).
+    setOptin(btn, box.checked);
+    box.addEventListener('change', function () {
+      setOptin(btn, box.checked);
+    });
+    // Remember the consent for this purchase at the moment it's initiated.
+    btn.addEventListener('click', function () {
+      pendingOptin = box.checked;
+    });
+  });
+
+  function onCheckoutSuccess() {
+    // Authoritative sign-up happens server-side in the order_created webhook
+    // (/webhook-worker), keyed off the marketing_optin custom data on the order.
+    // This handler deliberately does NOT write to the email tool — it only logs,
+    // so opt-in has a single source of truth and buyers can't be added twice.
+    if (!pendingOptin) return;
+    console.log('[Tavren] marketing opt-in recorded on order; server webhook handles sign-up.');
+  }
+
+  // Register the lemon.js event handler once it's available (lemon.js is
+  // deferred, so it may load after this script).
+  function setupEvents() {
+    if (window.LemonSqueezy && typeof window.LemonSqueezy.Setup === 'function') {
+      window.LemonSqueezy.Setup({
+        eventHandler: function (event) {
+          if (event && event.event === 'Checkout.Success') onCheckoutSuccess(event.data);
+        },
+      });
+      return true;
+    }
+    return false;
+  }
+  if (!setupEvents()) {
+    var tries = 0;
+    var poll = setInterval(function () {
+      if (setupEvents() || ++tries > 40) clearInterval(poll);
+    }, 250);
+  }
 })();
