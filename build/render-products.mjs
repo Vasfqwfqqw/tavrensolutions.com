@@ -22,7 +22,7 @@ function optinCheckbox(id) {
           <label class="mt-3 flex items-start gap-2.5 text-sm text-navy/90" for="${id}">
             <input type="checkbox" id="${id}" data-optin-check
                    class="mt-0.5 h-4 w-4 shrink-0 cursor-pointer rounded border-navy/30 text-azure accent-[#2F80ED] focus-visible:ring-2 focus-visible:ring-azure" />
-            <span>Yes, email me occasional S/4HANA readiness tips and Tavren product updates. You can unsubscribe at any time. See our <a href="https://tavrensolutions.com/legal/privacy-policy" class="link">Privacy Policy</a>.</span>
+            <span>Yes, email me occasional S/4HANA readiness tips and Tavren product updates. You can unsubscribe at any time. See our <a href="https://tavrensolutions.com/legal/privacy-policy" target="_blank" rel="noopener" class="link whitespace-nowrap">Privacy Policy<svg class="ml-0.5 inline h-3 w-3 align-[-0.1em]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (opens in new tab)</span></a>.</span>
           </label>`;
 }
 
@@ -36,7 +36,7 @@ function gatedBuy(url, label, idx) {
           <label class="flex items-center gap-2.5 text-sm text-navy/90" for="${id}">
             <input type="checkbox" id="${id}" data-terms-check
                    class="mt-0.5 h-4 w-4 shrink-0 cursor-pointer rounded border-navy/30 text-azure accent-[#2F80ED] focus-visible:ring-2 focus-visible:ring-azure" />
-            <span>I have read and accept the <a href="/legal/terms-of-sale" class="link">Terms of Sale</a>.</span>
+            <span>I have read and accept the <a href="/legal/terms-of-sale" target="_blank" rel="noopener" class="link whitespace-nowrap">Terms of Sale<svg class="ml-0.5 inline h-3 w-3 align-[-0.1em]" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (opens in new tab)</span></a>.</span>
           </label>
           ${optinCheckbox(`optin-${idx}`)}
           <a class="btn btn-primary btn-block mt-3 buy-btn" data-buy-url="${esc(url)}"
@@ -83,9 +83,11 @@ export function renderSeriesNav(data) {
   const links = data.series
     .map((s) => `<a href="#${s.id}" class="series-nav-link whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-navy/70 transition hover:bg-white hover:text-azure" data-series-link="${s.id}">${esc(s.audience)}</a>`)
     .join('\n        ');
+  const freeLink = `<a href="#free" class="series-nav-link whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-navy/70 transition hover:bg-white hover:text-azure" data-series-link="free">Free</a>`;
   return `
     <div class="sticky top-16 z-30 -mx-5 mb-10 bg-cloud/90 px-5 py-2 backdrop-blur sm:-mx-6 sm:px-6">
       <nav class="container-tavren flex gap-2 overflow-x-auto" aria-label="Toolkit series">
+        ${freeLink}
         ${links}
       </nav>
     </div>`;
@@ -93,7 +95,18 @@ export function renderSeriesNav(data) {
 
 export function renderToolkitSections(data) {
   counter = 0;
-  return data.series
+  const freeSection = `
+    <section id="free" class="scroll-mt-32 pt-16 pb-10" aria-labelledby="free-h">
+      <div class="max-w-2xl reveal">
+        <span class="eyebrow">Free · $0</span>
+        <h2 id="free-h" class="mt-2 text-2xl font-bold sm:text-3xl">Start with the free starter kit</h2>
+        <p class="mt-3 text-navy/80">A real, professionally built toolkit, built to the same standard of craft as the paid packs — the simplest way to judge the quality for yourself before you buy.</p>
+      </div>
+      <div class="mt-8" data-stagger>
+        ${renderFreeKitCard(data)}
+      </div>
+    </section>`;
+  const seriesSections = data.series
     .map((s) => {
       const packs = s.packs.map((p) => packCard(p, counter++)).join('\n');
       const bundle = bundleCard(s, data.packPrice, data.bundlePrice, counter++);
@@ -111,6 +124,7 @@ export function renderToolkitSections(data) {
     </section>`;
     })
     .join('\n');
+  return freeSection + '\n' + seriesSections;
 }
 
 export function renderSeriesOverview(data) {
@@ -139,8 +153,8 @@ export function renderFreeKitCard(data) {
           <h3 class="mt-2 text-2xl font-bold">${esc(k.name)}</h3>
           <p class="mt-2 max-w-xl text-navy/80">${esc(k.blurb)}</p>
         </div>
-        <div class="mt-5 shrink-0 sm:mt-0" data-optin-wrap>
-          <a class="btn btn-primary lemonsqueezy-button" data-buy-url="${esc(k.url)}" href="${esc(k.url)}" target="_blank" rel="noopener">Download the free starter toolkit</a>
+        <div class="mt-5 sm:mt-0 sm:w-72 sm:shrink-0" data-optin-wrap>
+          <a class="btn btn-primary lemonsqueezy-button whitespace-nowrap" data-buy-url="${esc(k.url)}" href="${esc(k.url)}" target="_blank" rel="noopener">Download the free starter toolkit</a>
           ${optinCheckbox('optin-free')}
         </div>
       </div>`;

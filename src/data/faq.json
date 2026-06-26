@@ -1,7 +1,7 @@
 [
   {
-    "q": "What is Tavren?",
-    "a": "Tavren publishes structured AI toolkits that help in-house SAP teams prepare for the move from ECC to S/4HANA. Each toolkit is a professional playbook of structured prompts you run in your own AI tool to produce repeatable, decision-ready outputs for a specific business function — Finance, Sales, Supply Chain or HR. Tavren is a trading name of VBCJ Solutions Ltd, registered in England and Wales."
+    "q": "Who is Tavren?",
+    "a": "Tavren is a publisher of structured AI toolkits that help in-house SAP teams prepare for the move from ECC to S/4HANA. Each toolkit is a professional playbook of structured prompts you run in your own AI tool to produce repeatable, decision-ready outputs for a specific business function — Finance, Sales, Supply Chain or HR."
   },
   {
     "q": "Is there a deadline for moving off ECC?",
