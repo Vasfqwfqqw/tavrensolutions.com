@@ -13,6 +13,7 @@ export default {
     'is-enabled',
     'is-error',
     'is-success',
+    'is-active',
   ],
   theme: {
     extend: {

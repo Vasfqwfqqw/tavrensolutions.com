@@ -104,6 +104,15 @@
     @apply cursor-not-allowed bg-slate/40 text-white/80 shadow-none hover:bg-slate/40 active:translate-y-0;
   }
 
+  /* --- Toolkit series sub-nav -------------------------------------------- */
+  .series-nav-link {
+    @apply shrink-0 rounded-full border border-navy/15 bg-white px-4 py-1.5 text-sm font-medium
+           text-navy/70 transition hover:border-azure/40 hover:text-azure;
+  }
+  .series-nav-link.is-active {
+    @apply border-azure bg-azure text-white shadow-sm hover:text-white;
+  }
+
   /* --- Links ------------------------------------------------------------- */
   .link {
     @apply font-medium text-azure underline-offset-2 hover:underline;

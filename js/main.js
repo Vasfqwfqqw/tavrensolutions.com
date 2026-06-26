@@ -72,8 +72,9 @@
     var setActive = function (id) {
       seriesLinks.forEach(function (l) {
         var on = l.getAttribute('data-series-link') === id;
-        l.classList.toggle('bg-white', on);
-        l.classList.toggle('text-azure', on);
+        l.classList.toggle('is-active', on);
+        if (on) l.setAttribute('aria-current', 'true');
+        else l.removeAttribute('aria-current');
       });
     };
     var spy = new IntersectionObserver(

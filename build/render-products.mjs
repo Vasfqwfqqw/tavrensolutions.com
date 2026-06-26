@@ -81,12 +81,14 @@ let counter = 0;
 
 export function renderSeriesNav(data) {
   const links = data.series
-    .map((s) => `<a href="#${s.id}" class="series-nav-link whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-navy/70 transition hover:bg-white hover:text-azure" data-series-link="${s.id}">${esc(s.audience)}</a>`)
-    .join('\n        ');
-  const freeLink = `<a href="#free" class="series-nav-link whitespace-nowrap rounded-full px-4 py-2 text-sm font-medium text-navy/70 transition hover:bg-white hover:text-azure" data-series-link="free">Free</a>`;
+    .map((s) => `<a href="#${s.id}" class="series-nav-link whitespace-nowrap" data-series-link="${s.id}">${esc(s.audience)}</a>`)
+    .join('\n          ');
+  const freeLink = `<a href="#free" class="series-nav-link whitespace-nowrap" data-series-link="free">Free</a>`;
   return `
-    <div class="sticky top-16 z-30 -mx-5 mb-10 bg-cloud/90 px-5 py-2 backdrop-blur sm:-mx-6 sm:px-6">
-      <nav class="container-tavren flex gap-2 overflow-x-auto" aria-label="Toolkit series">
+    <div class="sticky top-16 z-30 mb-10 mt-10 rounded-2xl border border-navy/10 bg-white/95 px-5 py-3 shadow-sm backdrop-blur">
+      <nav class="flex items-center justify-center gap-3 overflow-x-auto" aria-label="Jump to a toolkit series">
+        <span class="shrink-0 text-xs font-semibold uppercase tracking-wide text-slate" aria-hidden="true">Jump to</span>
+        <span class="hidden h-5 w-px shrink-0 bg-navy/10 sm:block" aria-hidden="true"></span>
         ${freeLink}
         ${links}
       </nav>
