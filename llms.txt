@@ -5,6 +5,7 @@
 ## Key pages
 - [Toolkits](https://tavrensolutions.com/toolkits): The four function-specific series, individual packs and series bundles, with pricing.
 - [How it works](https://tavrensolutions.com/how-it-works): What a toolkit is, why structured prompting works, and how you run one.
+- [Readiness guide](https://tavrensolutions.com/readiness): A curated route through the blog for business teams — timeline, ownership, data, people/process and method.
 - [Free starter toolkit](https://tavrensolutions.com/free-kit): A free, structured prompt set to try the format before buying.
 - [FAQ](https://tavrensolutions.com/faq): Common questions about the toolkits, pricing, data privacy and delivery.
 - [About](https://tavrensolutions.com/about): What Tavren is and how it works.

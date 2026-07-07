@@ -71,6 +71,15 @@ function breadcrumbLd(crumbs) {
     })),
   })}</script>`;
 }
+function collectionPageLd(d, url) {
+  return `<script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'CollectionPage',
+    name: d.title,
+    description: d.description,
+    url,
+  })}</script>`;
+}
 function articleLd(d, url) {
   return `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
@@ -169,6 +178,7 @@ async function buildPages() {
       extraHead += breadcrumbLd(crumbs);
     }
     if (name === 'toolkits') extraHead += renderProductJsonLd(CATALOGUE);
+    if (name === 'readiness') extraHead += collectionPageLd(data, BASE + canonicalPath);
 
     let pageContent = content;
     if (name === 'faq') {
@@ -307,6 +317,7 @@ async function buildLlms() {
 ## Key pages
 - [Toolkits](${BASE}/toolkits): The four function-specific series, individual packs and series bundles, with pricing.
 - [How it works](${BASE}/how-it-works): What a toolkit is, why structured prompting works, and how you run one.
+- [Readiness guide](${BASE}/readiness): A curated route through the blog for business teams — timeline, ownership, data, people/process and method.
 - [Free starter toolkit](${BASE}/free-kit): A free, structured prompt set to try the format before buying.
 - [FAQ](${BASE}/faq): Common questions about the toolkits, pricing, data privacy and delivery.
 - [About](${BASE}/about): What Tavren is and how it works.
