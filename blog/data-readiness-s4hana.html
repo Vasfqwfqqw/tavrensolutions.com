@@ -54,6 +54,20 @@
     <!-- Analytics by Umami -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="f08b187b-9a49-4d5c-8360-f8bb4a0f6c84"></script>
 
+    <!-- Free-kit signup attribution: fires Umami's "kit-signup" custom event with a
+         source read from the URL at click time (no cookies/storage). Convention:
+         internal links use ?src=tcodes|medium|devto|gpt|book, external surfaces use
+         ?utm_source=medium|devto|gpt|book; falls back to "direct" if neither is set. -->
+    <script>
+      document.addEventListener('click', function (e) {
+        var cta = e.target.closest('[data-kit-signup]');
+        if (!cta) return;
+        var params = new URLSearchParams(window.location.search);
+        var source = params.get('src') || params.get('utm_source') || 'direct';
+        if (window.umami) umami.track('kit-signup', { source: source });
+      });
+    </script>
+
     <!-- LemonSqueezy overlay -->
     <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
   </head>

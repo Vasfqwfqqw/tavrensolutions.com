@@ -54,6 +54,20 @@
     <!-- Analytics by Umami -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="f08b187b-9a49-4d5c-8360-f8bb4a0f6c84"></script>
 
+    <!-- Free-kit signup attribution: fires Umami's "kit-signup" custom event with a
+         source read from the URL at click time (no cookies/storage). Convention:
+         internal links use ?src=tcodes|medium|devto|gpt|book, external surfaces use
+         ?utm_source=medium|devto|gpt|book; falls back to "direct" if neither is set. -->
+    <script>
+      document.addEventListener('click', function (e) {
+        var cta = e.target.closest('[data-kit-signup]');
+        if (!cta) return;
+        var params = new URLSearchParams(window.location.search);
+        var source = params.get('src') || params.get('utm_source') || 'direct';
+        if (window.umami) umami.track('kit-signup', { source: source });
+      });
+    </script>
+
     <!-- LemonSqueezy overlay -->
     <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
   </head>
@@ -125,7 +139,7 @@
         <li class="flex items-start gap-3"><span class="mt-1 text-azure" aria-hidden="true">✓</span><span>Run it in your own AI tool — your data stays with you.</span></li>
       </ul>
       <div class="mt-8" data-optin-wrap>
-        <a class="btn btn-primary lemonsqueezy-button" data-buy-url="https://tavrensolutions.lemonsqueezy.com/checkout/buy/ed2e6332-71b5-424b-94c0-e47062c6a8b1" href="https://tavrensolutions.lemonsqueezy.com/checkout/buy/ed2e6332-71b5-424b-94c0-e47062c6a8b1" target="_blank" rel="noopener">Download the free starter toolkit</a>
+        <a class="btn btn-primary lemonsqueezy-button" data-kit-signup data-buy-url="https://tavrensolutions.lemonsqueezy.com/checkout/buy/ed2e6332-71b5-424b-94c0-e47062c6a8b1" href="https://tavrensolutions.lemonsqueezy.com/checkout/buy/ed2e6332-71b5-424b-94c0-e47062c6a8b1" target="_blank" rel="noopener">Download the free starter toolkit</a>
         <label class="mt-3 flex items-start gap-2.5 text-sm text-navy/90" for="optin-free-page">
           <input type="checkbox" id="optin-free-page" data-optin-check
                  class="mt-0.5 h-4 w-4 shrink-0 cursor-pointer rounded border-navy/30 text-azure accent-[#2F80ED] focus-visible:ring-2 focus-visible:ring-azure" />
