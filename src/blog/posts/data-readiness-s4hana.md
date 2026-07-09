@@ -1,5 +1,5 @@
 ---
-title: "Data readiness: the quiet thing that derails S/4HANA projects"
+title: "Why do S/4HANA migrations fail?"
 description: "Migrations rarely fail on the technology. They fail on the data — duplicates, gaps and inconsistencies that surface too late. Here is how to get ahead of it."
 date: "2026-06-03"
 category: "Data & migration"
@@ -9,13 +9,22 @@ sources:
     url: "https://community.sap.com/t5/business-transformation-blog-posts/why-data-readiness-is-the-biggest-success-factor-in-sap-s-4hana-migrations/ba-p/14355173"
   - title: "SAP — Release & maintenance information (support.sap.com)"
     url: "https://support.sap.com/en/release-upgrade-maintenance.html"
+faqs:
+  - q: "Why do S/4HANA migrations fail?"
+    a: "S/4HANA migrations rarely fail on the technology. They fail on the data — duplicates, gaps and inconsistencies that go unnoticed until a new, far less forgiving system exposes them. SAP's own guidance is blunt that data readiness is the single biggest factor in whether a migration succeeds."
+  - q: "Why does data quietly break projects?"
+    a: "The data looks fine because it has run the business for years, and nobody notices duplicates, gaps, inconsistencies and orphaned history until it is moved into a new, less forgiving structure."
+  - q: "What happens if you leave it to the migration?"
+    a: "Treating data as a migration-phase problem means the issues surface in bulk under deadline pressure, competing directly with cutover — exactly when external day-rates spike."
+  - q: "How do you get ahead of it?"
+    a: "Profile before you cleanse, standardise the definitions of a complete record, fix at source where you can, and build a reconciliation habit — all before the migration starts."
 ---
 
+S/4HANA migrations rarely fail on the technology. They fail on the data — duplicates, gaps and inconsistencies that go unnoticed until a new, far less forgiving system exposes them. SAP's own guidance is blunt that data readiness is the single biggest factor in whether a migration succeeds, yet it remains the most underestimated part of most programmes because it stays invisible until it gets expensive.
+
+## Why does data quietly break projects?
+
 When an SAP migration goes badly, the post-mortem almost never says "the software didn't work." It says something quieter and more uncomfortable: *the data wasn't ready.*
-
-This is a well-recognised pattern, and SAP's own guidance is blunt about it — data readiness is repeatedly identified as the single biggest factor in whether a migration succeeds or stumbles. Yet it is consistently the most underestimated part of a programme, because it is invisible until it is expensive.
-
-## Why data is where projects quietly break
 
 The problem is that the data looks fine. It has been running the business for years. Nobody notices the cracks until you try to move it into a new structure that is far less forgiving than the old one.
 
@@ -28,11 +37,11 @@ The usual culprits are unglamorous:
 
 Individually, each is minor. In aggregate, across millions of records, they are the difference between a clean cutover and a go-live weekend nobody wants to relive.
 
-## The trap: leaving it to the migration
+## What happens if you leave it to the migration?
 
 The instinct is to treat data as a migration-phase problem — something to deal with when the technical move happens. By then it is the worst possible time. The team is under deadline pressure, the issues are surfacing in bulk, and fixing them competes directly with the cutover itself. This is precisely the moment when external day-rates spike, because the work is urgent and the in-house team is already at capacity.
 
-## Getting ahead of it
+## How do you get ahead of it?
 
 Data readiness is one of the clearest examples of work an in-house team can — and should — own early. It does not require the migration to have started. It requires structure and a head start:
 

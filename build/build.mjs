@@ -251,7 +251,7 @@ async function buildBlog() {
         data,
         canonicalPath,
         ogType: 'article',
-        extraHead: articleLd(data, BASE + canonicalPath),
+        extraHead: articleLd(data, BASE + canonicalPath) + (data.faqs?.length ? faqPageLd(data.faqs) : ''),
       });
       await writeOut(`blog/${slug}.html`, html);
       urls.push({ loc: canonicalPath, priority: '0.6' });
@@ -319,6 +319,7 @@ async function buildLlms() {
 - [How it works](${BASE}/how-it-works): What a toolkit is, why structured prompting works, and how you run one.
 - [Readiness guide](${BASE}/readiness): A curated route through the blog for business teams — timeline, ownership, data, people/process and method.
 - [Free starter toolkit](${BASE}/free-kit): A free, structured prompt set to try the format before buying.
+- SAP t-code reference (/tcodes/): Coming soon — ECC t-code to S/4HANA/Fiori mapping guide, one page per code.
 - [FAQ](${BASE}/faq): Common questions about the toolkits, pricing, data privacy and delivery.
 - [About](${BASE}/about): What Tavren is and how it works.
 - [Contact](${BASE}/contact): Get in touch.

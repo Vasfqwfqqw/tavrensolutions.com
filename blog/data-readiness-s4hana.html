@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Data readiness: the quiet thing that derails S/4HANA projects</title>
+    <title>Why do S/4HANA migrations fail?</title>
     <meta name="description" content="Migrations rarely fail on the technology. They fail on the data — duplicates, gaps and inconsistencies that surface too late. Here is how to get ahead of it." />
     <link rel="canonical" href="https://tavrensolutions.com/blog/data-readiness-s4hana" />
     <meta name="theme-color" content="#0F3D73" />
@@ -11,12 +11,12 @@
     <!-- Open Graph / social -->
     <meta property="og:site_name" content="Tavren Solutions" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Data readiness: the quiet thing that derails S/4HANA projects" />
+    <meta property="og:title" content="Why do S/4HANA migrations fail?" />
     <meta property="og:description" content="Migrations rarely fail on the technology. They fail on the data — duplicates, gaps and inconsistencies that surface too late. Here is how to get ahead of it." />
     <meta property="og:url" content="https://tavrensolutions.com/blog/data-readiness-s4hana" />
     <meta property="og:image" content="https://tavrensolutions.com/assets/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Data readiness: the quiet thing that derails S/4HANA projects" />
+    <meta name="twitter:title" content="Why do S/4HANA migrations fail?" />
     <meta name="twitter:description" content="Migrations rarely fail on the technology. They fail on the data — duplicates, gaps and inconsistencies that surface too late. Here is how to get ahead of it." />
     <meta name="twitter:image" content="https://tavrensolutions.com/assets/og.png" />
 
@@ -49,7 +49,7 @@
         "email": "contact@tavrensolutions.com"
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Data readiness: the quiet thing that derails S/4HANA projects","description":"Migrations rarely fail on the technology. They fail on the data — duplicates, gaps and inconsistencies that surface too late. Here is how to get ahead of it.","datePublished":"2026-06-03","dateModified":"2026-06-03","author":{"@type":"Organization","name":"Tavren"},"publisher":{"@type":"Organization","name":"Tavren","logo":{"@type":"ImageObject","url":"https://tavrensolutions.com/assets/favicons/icon-512.png"}},"mainEntityOfPage":"https://tavrensolutions.com/blog/data-readiness-s4hana","image":"https://tavrensolutions.com/assets/og.png"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"Why do S/4HANA migrations fail?","description":"Migrations rarely fail on the technology. They fail on the data — duplicates, gaps and inconsistencies that surface too late. Here is how to get ahead of it.","datePublished":"2026-06-03","dateModified":"2026-06-03","author":{"@type":"Organization","name":"Tavren"},"publisher":{"@type":"Organization","name":"Tavren","logo":{"@type":"ImageObject","url":"https://tavrensolutions.com/assets/favicons/icon-512.png"}},"mainEntityOfPage":"https://tavrensolutions.com/blog/data-readiness-s4hana","image":"https://tavrensolutions.com/assets/og.png"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Why do S/4HANA migrations fail?","acceptedAnswer":{"@type":"Answer","text":"S/4HANA migrations rarely fail on the technology. They fail on the data — duplicates, gaps and inconsistencies that go unnoticed until a new, far less forgiving system exposes them. SAP's own guidance is blunt that data readiness is the single biggest factor in whether a migration succeeds."}},{"@type":"Question","name":"Why does data quietly break projects?","acceptedAnswer":{"@type":"Answer","text":"The data looks fine because it has run the business for years, and nobody notices duplicates, gaps, inconsistencies and orphaned history until it is moved into a new, less forgiving structure."}},{"@type":"Question","name":"What happens if you leave it to the migration?","acceptedAnswer":{"@type":"Answer","text":"Treating data as a migration-phase problem means the issues surface in bulk under deadline pressure, competing directly with cutover — exactly when external day-rates spike."}},{"@type":"Question","name":"How do you get ahead of it?","acceptedAnswer":{"@type":"Answer","text":"Profile before you cleanse, standardise the definitions of a complete record, fix at source where you can, and build a reconciliation habit — all before the migration starts."}}]}</script>
 
     <!-- Analytics by Umami -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="f08b187b-9a49-4d5c-8360-f8bb4a0f6c84"></script>
@@ -127,14 +127,14 @@
           <nav class="mb-6 text-sm text-slate" aria-label="Breadcrumb"><a href="/blog" class="hover:text-azure">Blog</a> <span aria-hidden="true">/</span> <span>Data &amp; migration</span></nav>
           <header class="max-w-prose">
             <p class="eyebrow">Data &amp; migration</p>
-            <h1 class="mt-3 text-3xl font-bold leading-tight sm:text-4xl">Data readiness: the quiet thing that derails S/4HANA projects</h1>
+            <h1 class="mt-3 text-3xl font-bold leading-tight sm:text-4xl">Why do S/4HANA migrations fail?</h1>
             <p class="mt-4 text-lg text-navy/80">Migrations rarely fail on the technology. They fail on the data — duplicates, gaps and inconsistencies that surface too late. Here is how to get ahead of it.</p>
             <p class="mt-4 text-sm text-slate"><time datetime="2026-06-03">3 June 2026</time> · 6 min read</p>
           </header>
           <div class="prose-tavren mt-10">
-            <p>When an SAP migration goes badly, the post-mortem almost never says &quot;the software didn&#39;t work.&quot; It says something quieter and more uncomfortable: <em>the data wasn&#39;t ready.</em></p>
-<p>This is a well-recognised pattern, and SAP&#39;s own guidance is blunt about it — data readiness is repeatedly identified as the single biggest factor in whether a migration succeeds or stumbles. Yet it is consistently the most underestimated part of a programme, because it is invisible until it is expensive.</p>
-<h2>Why data is where projects quietly break</h2>
+            <p>S/4HANA migrations rarely fail on the technology. They fail on the data — duplicates, gaps and inconsistencies that go unnoticed until a new, far less forgiving system exposes them. SAP&#39;s own guidance is blunt that data readiness is the single biggest factor in whether a migration succeeds, yet it remains the most underestimated part of most programmes because it stays invisible until it gets expensive.</p>
+<h2>Why does data quietly break projects?</h2>
+<p>When an SAP migration goes badly, the post-mortem almost never says &quot;the software didn&#39;t work.&quot; It says something quieter and more uncomfortable: <em>the data wasn&#39;t ready.</em></p>
 <p>The problem is that the data looks fine. It has been running the business for years. Nobody notices the cracks until you try to move it into a new structure that is far less forgiving than the old one.</p>
 <p>The usual culprits are unglamorous:</p>
 <ul>
@@ -144,9 +144,9 @@
 <li><strong>Orphaned history</strong> — transactional data that no longer reconciles cleanly.</li>
 </ul>
 <p>Individually, each is minor. In aggregate, across millions of records, they are the difference between a clean cutover and a go-live weekend nobody wants to relive.</p>
-<h2>The trap: leaving it to the migration</h2>
+<h2>What happens if you leave it to the migration?</h2>
 <p>The instinct is to treat data as a migration-phase problem — something to deal with when the technical move happens. By then it is the worst possible time. The team is under deadline pressure, the issues are surfacing in bulk, and fixing them competes directly with the cutover itself. This is precisely the moment when external day-rates spike, because the work is urgent and the in-house team is already at capacity.</p>
-<h2>Getting ahead of it</h2>
+<h2>How do you get ahead of it?</h2>
 <p>Data readiness is one of the clearest examples of work an in-house team can — and should — own early. It does not require the migration to have started. It requires structure and a head start:</p>
 <ol>
 <li><strong>Profile before you cleanse.</strong> Understand the shape of the problem — where the duplicates, gaps and inconsistencies actually live — before anyone touches a record.</li>

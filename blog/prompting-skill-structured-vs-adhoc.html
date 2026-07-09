@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>The prompting skill: why structured beats ad-hoc</title>
+    <title>What is structured prompting?</title>
     <meta name="description" content="The gap between a useful AI result and a useless one is rarely the model. It is the prompt. Here is what 'structured prompting' actually means, and why it matters for serious work." />
     <link rel="canonical" href="https://tavrensolutions.com/blog/prompting-skill-structured-vs-adhoc" />
     <meta name="theme-color" content="#0F3D73" />
@@ -11,12 +11,12 @@
     <!-- Open Graph / social -->
     <meta property="og:site_name" content="Tavren Solutions" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="The prompting skill: why structured beats ad-hoc" />
+    <meta property="og:title" content="What is structured prompting?" />
     <meta property="og:description" content="The gap between a useful AI result and a useless one is rarely the model. It is the prompt. Here is what 'structured prompting' actually means, and why it matters for serious work." />
     <meta property="og:url" content="https://tavrensolutions.com/blog/prompting-skill-structured-vs-adhoc" />
     <meta property="og:image" content="https://tavrensolutions.com/assets/og.png" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="The prompting skill: why structured beats ad-hoc" />
+    <meta name="twitter:title" content="What is structured prompting?" />
     <meta name="twitter:description" content="The gap between a useful AI result and a useless one is rarely the model. It is the prompt. Here is what 'structured prompting' actually means, and why it matters for serious work." />
     <meta name="twitter:image" content="https://tavrensolutions.com/assets/og.png" />
 
@@ -49,7 +49,7 @@
         "email": "contact@tavrensolutions.com"
       }
     </script>
-    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"The prompting skill: why structured beats ad-hoc","description":"The gap between a useful AI result and a useless one is rarely the model. It is the prompt. Here is what 'structured prompting' actually means, and why it matters for serious work.","datePublished":"2026-06-06","dateModified":"2026-06-06","author":{"@type":"Organization","name":"Tavren"},"publisher":{"@type":"Organization","name":"Tavren","logo":{"@type":"ImageObject","url":"https://tavrensolutions.com/assets/favicons/icon-512.png"}},"mainEntityOfPage":"https://tavrensolutions.com/blog/prompting-skill-structured-vs-adhoc","image":"https://tavrensolutions.com/assets/og.png"}</script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"What is structured prompting?","description":"The gap between a useful AI result and a useless one is rarely the model. It is the prompt. Here is what 'structured prompting' actually means, and why it matters for serious work.","datePublished":"2026-06-06","dateModified":"2026-06-06","author":{"@type":"Organization","name":"Tavren"},"publisher":{"@type":"Organization","name":"Tavren","logo":{"@type":"ImageObject","url":"https://tavrensolutions.com/assets/favicons/icon-512.png"}},"mainEntityOfPage":"https://tavrensolutions.com/blog/prompting-skill-structured-vs-adhoc","image":"https://tavrensolutions.com/assets/og.png"}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is structured prompting?","acceptedAnswer":{"@type":"Answer","text":"Structured prompting means giving an AI tool an explicit role, context, constraints and format for a task, instead of typing an off-the-cuff question. It consistently produces specific, usable output where ad-hoc prompting produces generic, occasionally-wrong output."}},{"@type":"Question","name":"What does ad-hoc prompting get wrong?","acceptedAnswer":{"@type":"Answer","text":"An off-the-cuff prompt leaves the role, constraints and format unsaid, so the model fills the gaps with the most generic response that fits — fine for low-stakes tasks, unusable when decisions carry real budget and risk."}},{"@type":"Question","name":"What does structured prompting look like?","acceptedAnswer":{"@type":"Answer","text":"A structured prompt states the role, the context, the constraints and the required format, removing the ambiguity that produces generic output."}},{"@type":"Question","name":"Is this a real organisational skill, or just a trick?","acceptedAnswer":{"@type":"Answer","text":"McKinsey's research shows the value goes to organisations that build the discipline of using AI well, not just those with access to the tools — the differentiator is method, and it is learnable but takes time to build across a team."}}]}</script>
 
     <!-- Analytics by Umami -->
     <script defer src="https://cloud.umami.is/script.js" data-website-id="f08b187b-9a49-4d5c-8360-f8bb4a0f6c84"></script>
@@ -127,17 +127,18 @@
           <nav class="mb-6 text-sm text-slate" aria-label="Breadcrumb"><a href="/blog" class="hover:text-azure">Blog</a> <span aria-hidden="true">/</span> <span>Working with AI</span></nav>
           <header class="max-w-prose">
             <p class="eyebrow">Working with AI</p>
-            <h1 class="mt-3 text-3xl font-bold leading-tight sm:text-4xl">The prompting skill: why structured beats ad-hoc</h1>
+            <h1 class="mt-3 text-3xl font-bold leading-tight sm:text-4xl">What is structured prompting?</h1>
             <p class="mt-4 text-lg text-navy/80">The gap between a useful AI result and a useless one is rarely the model. It is the prompt. Here is what 'structured prompting' actually means, and why it matters for serious work.</p>
             <p class="mt-4 text-sm text-slate"><time datetime="2026-06-06">6 June 2026</time> · 5 min read</p>
           </header>
           <div class="prose-tavren mt-10">
-            <p>Most people&#39;s experience of AI at work is a quiet disappointment. They open a chat window, type a question the way they would ask a colleague, and get back something plausible-sounding but vague — too generic to use, occasionally wrong in ways that take longer to catch than to have done the work themselves.</p>
+            <p>Structured prompting means giving an AI tool an explicit role, context, constraints and format for a task, instead of typing an off-the-cuff question. It consistently produces specific, usable output where ad-hoc prompting produces generic, occasionally-wrong output — and the difference is a learnable skill, not a better model.</p>
+<h2>What does ad-hoc prompting get wrong?</h2>
+<p>Most people&#39;s experience of AI at work is a quiet disappointment. They open a chat window, type a question the way they would ask a colleague, and get back something plausible-sounding but vague — too generic to use, occasionally wrong in ways that take longer to catch than to have done the work themselves.</p>
 <p>The conclusion many draw is &quot;AI isn&#39;t ready for real work.&quot; The more accurate conclusion is &quot;ad-hoc prompting isn&#39;t ready for real work.&quot; The difference between the two is a skill, and it is learnable.</p>
-<h2>What &quot;ad-hoc&quot; gets wrong</h2>
 <p>An off-the-cuff prompt leaves almost everything unsaid. It doesn&#39;t tell the model what role to take, what good output looks like, what constraints apply, or what format the answer should arrive in. So the model fills the gaps with the most generic, average response that fits — because that is the safest guess when it has not been told otherwise.</p>
 <p>On low-stakes tasks, that is fine. On a programme where decisions carry real budget and risk, generic and occasionally-wrong is exactly what you cannot use.</p>
-<h2>What &quot;structured&quot; looks like</h2>
+<h2>What does structured prompting look like?</h2>
 <p>A structured prompt does the opposite. It is deliberately engineered to remove ambiguity:</p>
 <ul>
 <li><strong>Role</strong> — who the model is being asked to be (a finance-readiness reviewer, a test-scenario author, a data-quality analyst).</li>
@@ -146,7 +147,7 @@
 <li><strong>Format</strong> — the exact shape of the output, so it drops straight into the work rather than needing to be reshaped.</li>
 </ul>
 <p>The same model, given the same task, produces dramatically different output depending on whether these are present. The skill is not &quot;knowing the magic words.&quot; It is knowing what a good answer requires and saying so, every time, consistently.</p>
-<h2>Why this is a real organisational skill, not a trick</h2>
+<h2>Is this a real organisational skill, or just a trick?</h2>
 <p>McKinsey&#39;s research on AI adoption shows the value is being captured not by organisations that simply <em>have access</em> to the tools, but by those that have built the disciplines around using them well. The tools are now broadly available; the differentiator is method.</p>
 <p>That is the rub for a team mid-upgrade. The method is learnable — but learning it across a whole function, while also doing the day job and preparing for a migration, is its own cost. People develop their own inconsistent styles, quality varies person to person, and nobody has time to write the structure down.</p>
 <p>This is the gap our toolkits close. Each one is a set of structured prompts that already encode the role, context, constraints and format for a specific job — readiness, data, testing, cutover. Your team gets the output of good prompting without each person having to become a prompt engineer first.</p>

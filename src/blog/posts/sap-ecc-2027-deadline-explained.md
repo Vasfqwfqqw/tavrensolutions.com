@@ -1,5 +1,5 @@
 ---
-title: "The 2027 deadline, accurately: what's really ending, and when"
+title: "What is the SAP 2027 mainstream maintenance deadline and what does it mean for me?"
 description: "The SAP maintenance timeline is widely misread as a single cliff edge. Here is what actually ends in 2027, what runs to 2030, and what it means for how you plan."
 date: "2026-05-12"
 category: "Upgrade planning"
@@ -9,13 +9,22 @@ sources:
     url: "https://news.sap.com/2020/02/sap-s4hana-maintenance-2040-clarity-choice-sap-business-suite-7/"
   - title: "SAP — Release & maintenance information (support.sap.com)"
     url: "https://support.sap.com/en/release-upgrade-maintenance.html"
+faqs:
+  - q: "What is the SAP 2027 mainstream maintenance deadline and what does it mean for me?"
+    a: "Mainstream maintenance for the core SAP Business Suite 7 software ends on 31 December 2027, but that is not a single cliff: extended maintenance runs to 2030 for a premium, older enhancement packages already passed their maintenance end in 2025, and SAP has committed to maintaining the successor product line to 2040. Treat the date as a planning horizon, not a panic trigger."
+  - q: "What actually ends, and when?"
+    a: "Mainstream maintenance for SAP Business Suite 7 ends 31 December 2027; extended maintenance is available to 31 December 2030 for a premium, and older enhancement packages already passed their own maintenance end at the close of 2025."
+  - q: "Why is the cliff edge framing unhelpful?"
+    a: "Treating 2027 as a single drop-dead date causes either panic-buying, which inflates consultancy costs, or fatalism that delays starting preparation that could begin now."
+  - q: "What does this mean for planning?"
+    a: "Establish your real release and enhancement-package position, separate unavoidable specialist work from discretionary preparation, and start readiness work before the budget conversation."
 ---
 
+**Mainstream maintenance** for the core SAP Business Suite 7 software — the ECC releases most organisations still run — ends on **31 December 2027**. That is real, but it is not a single cliff: extended maintenance runs to 2030 for a premium, older enhancement packages already passed their maintenance end in 2025, and SAP has committed to maintaining the successor product line to 2040. Treat the date as a planning horizon, not a panic trigger.
+
+## What actually ends, and when?
+
 If you have sat in a steering meeting in the last year, you have heard "the 2027 deadline" used as a drumbeat. It is real — but it is almost always described inaccurately, and the inaccuracy matters, because it changes how sensibly you can plan.
-
-Here is the accurate version.
-
-## What actually ends, and when
 
 Mainstream maintenance for the core SAP Business Suite 7 software — the ECC releases most organisations still run — ends on **31 December 2027**. That much is correct.
 
@@ -27,7 +36,7 @@ Second, the picture is staged, not binary. **Older enhancement packages already 
 
 And on the destination side, SAP has committed to maintaining its successor product line well into the next decade — to **2040** — which tells you the direction of travel is fixed even if your own timing has some flexibility.
 
-## Why the "cliff edge" framing is unhelpful
+## Why is the "cliff edge" framing unhelpful?
 
 When 2027 is sold as a single drop-dead date, two bad things happen.
 
@@ -35,7 +44,7 @@ The first is panic-buying. Organisations rush to commit budget and external reso
 
 The second is the opposite — fatalism. "We'll never make 2027, so why start?" But because extended maintenance reaches 2030 and the staging is gradual, the honest position for most businesses is not "impossible" — it is "start the preparation now, on your terms, before the timeline starts making decisions for you."
 
-## What this means for planning
+## What does this mean for planning?
 
 The deadline is best treated as a **planning horizon, not a panic trigger**. The work that protects you is the work you can do early and in-house:
 
