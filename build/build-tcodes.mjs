@@ -102,6 +102,110 @@ function renderCodePage(record, allRecords, version) {
   return renderDocument({ content, data, canonicalPath, extraHead });
 }
 
+function renderModuleSections(records) {
+  const byModule = new Map();
+  for (const r of records) {
+    if (!byModule.has(r.module)) byModule.set(r.module, []);
+    byModule.get(r.module).push(r);
+  }
+  const modules = [...byModule.keys()].sort((a, b) => moduleLabel(a).localeCompare(moduleLabel(b)));
+  return modules
+    .map((m) => {
+      const codes = byModule.get(m).sort((a, b) => a.tcode.localeCompare(b.tcode));
+      const items = codes.map((c) => `<li><a href="/tcodes/${c.tcode}/" class="text-azure hover:underline">${escHtml(c.tcode)}</a></li>`).join('\n        ');
+      return `
+      <div class="reveal">
+        <h3 class="font-bold text-navy">${escHtml(moduleLabel(m))} <span class="font-normal text-slate">(${codes.length})</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        ${items}
+        </ul>
+      </div>`;
+    })
+    .join('\n');
+}
+
+function renderModuleOptions(records) {
+  const modules = [...new Set(records.map((r) => r.module))].sort((a, b) => moduleLabel(a).localeCompare(moduleLabel(b)));
+  return modules.map((m) => `<option value="${escHtml(m)}">${escHtml(moduleLabel(m))}</option>`).join('\n');
+}
+
+function renderHubPage(records, reviewedCount, version) {
+  const content = `
+<section class="container-tavren py-14 sm:py-20">
+  <div class="max-w-3xl reveal">
+    <span class="eyebrow">T-code reference</span>
+    <h1 class="mt-3 text-4xl font-bold leading-tight sm:text-5xl">What happens to your ECC transaction codes in S/4HANA?</h1>
+    <p class="mt-5 text-lg text-navy/80">This reference checks ${records.length} ECC transaction codes against the SAP Simplification List for S/4HANA — which ones are deleted at conversion, which are replaced, which still run unchanged after go-live, and which strategic Fiori app SAP points you to next. ${reviewedCount} entries are human-reviewed with full detail; the rest are machine-parsed from the Simplification List and flagged for review. Search or filter below, or browse by module.</p>
+  </div>
+</section>
+
+<section class="container-tavren pb-10">
+  <div class="card reveal">
+    <div class="grid gap-4 sm:grid-cols-[2fr_1fr_1fr]">
+      <input type="search" id="tcode-search" placeholder="Search t-code or keyword…" class="rounded-lg border border-navy/15 px-4 py-2.5 text-sm" aria-label="Search t-codes" />
+      <select id="tcode-module-filter" class="rounded-lg border border-navy/15 px-4 py-2.5 text-sm" aria-label="Filter by module">
+        <option value="">All modules</option>
+        ${renderModuleOptions(records)}
+      </select>
+      <select id="tcode-status-filter" class="rounded-lg border border-navy/15 px-4 py-2.5 text-sm" aria-label="Filter by status">
+        <option value="">All statuses</option>
+        <option value="deleted">Deleted</option>
+        <option value="replaced">Replaced</option>
+        <option value="changed">Changed</option>
+        <option value="available">Available</option>
+      </select>
+    </div>
+    <p id="tcode-result-count" class="mt-4 text-sm text-slate" role="status" aria-live="polite">Loading…</p>
+    <div class="mt-2 overflow-x-auto">
+      <table class="w-full border-collapse text-left text-sm">
+        <thead>
+          <tr class="border-b border-navy/10 text-slate">
+            <th class="py-2 pr-4 font-semibold">T-code</th>
+            <th class="py-2 pr-4 font-semibold">Module</th>
+            <th class="py-2 pr-4 font-semibold">Status</th>
+            <th class="py-2 pr-4 font-semibold">Successor</th>
+          </tr>
+        </thead>
+        <tbody id="tcode-results"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="container-tavren pb-16">
+  <h2 class="text-2xl font-bold text-navy reveal">Browse by module</h2>
+  <p class="mt-2 text-sm text-slate reveal">Every t-code page, grouped by SAP module — works without JavaScript.</p>
+  <div class="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3" data-stagger>
+    ${renderModuleSections(records)}
+  </div>
+</section>
+${datasetCreditHtml(version)}`;
+
+  const data = {
+    title: 'SAP ECC t-code reference for S/4HANA | Tavren',
+    description: `What happens to your ECC transaction codes in S/4HANA — replaced, changed, deleted, or still available. ${records.length} t-codes, searchable by module and status.`,
+    extraScripts: '<script src="/js/tcodes-filter.js" defer></script>',
+  };
+  const extraHead =
+    breadcrumbLd([{ name: 'Home', path: '/' }, { name: 'T-code reference', path: '/tcodes' }]) +
+    collectionPageLd(data, `${BASE}/tcodes`);
+
+  return renderDocument({ content, data, canonicalPath: '/tcodes', extraHead });
+}
+
+function buildDataJson(records) {
+  return JSON.stringify(
+    records.map((r) => ({
+      tcode: r.tcode,
+      module: r.module,
+      moduleLabel: moduleLabel(r.module),
+      status: r.status,
+      successor: successorText(r),
+      url: `/tcodes/${r.tcode}/`,
+    }))
+  );
+}
+
 export async function buildTcodes() {
   const { records, version } = await loadDataset(DATASET_PATH);
   for (const r of records) assertValidTcode(r.tcode);
@@ -112,6 +216,12 @@ export async function buildTcodes() {
     await writeOut(`tcodes/${record.tcode}/index.html`, html);
     urls.push({ loc: `/tcodes/${record.tcode}`, priority: '0.4' });
   }
+
+  const hubHtml = renderHubPage(records, records.filter((r) => r.review_status === 'reviewed').length, version);
+  await writeOut('tcodes/index.html', hubHtml);
+  urls.push({ loc: '/tcodes', priority: '0.6' });
+
+  await writeOut('tcodes/data.json', buildDataJson(records));
 
   return {
     urls,
