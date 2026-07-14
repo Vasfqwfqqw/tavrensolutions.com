@@ -24,7 +24,7 @@
 ## Task 1: Vendor the dataset + data loader
 
 **Files:**
-- Create: `data/s4hana-tcode-dataset.json` (copy of the external dataset, v1.1.0, 828 records)
+- Create: `data/s4hana-tcode-dataset.json` (copy of the external dataset, v1.1.1, 828 records)
 - Create: `build/tcode-lib.mjs`
 - Create: `test/tcode-lib.test.mjs`
 - Modify: `package.json` (add `"test": "node --test test/"` script)
@@ -52,7 +52,7 @@ import { loadDataset, assertValidTcode } from '../build/tcode-lib.mjs';
 test('loadDataset reads the vendored dataset', async () => {
   const data = await loadDataset(new URL('../data/s4hana-tcode-dataset.json', import.meta.url));
   assert.equal(data.records.length, 828);
-  assert.equal(data.version, '1.1.0');
+  assert.equal(data.version, '1.1.1');
   assert.ok(data.records.every((r) => typeof r.tcode === 'string' && r.tcode.length > 0));
 });
 
@@ -160,7 +160,7 @@ Add to `build/tcode-lib.mjs`:
 
 ```js
 // Verified exhaustive against the 29 distinct `module` values in
-// data/s4hana-tcode-dataset.json v1.1.0. Business-friendly labels — the
+// data/s4hana-tcode-dataset.json v1.1.1. Business-friendly labels — the
 // audience is FICO analysts / AP clerks / supply chain / HR staff, not
 // SAP module-code-literate architects.
 const MODULE_LABELS = {
@@ -720,7 +720,6 @@ import { renderDocument, writeOut, breadcrumbLd, faqPageLd, collectionPageLd, es
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const DATASET_PATH = join(ROOT, 'data/s4hana-tcode-dataset.json');
 const REPO_URL = 'https://github.com/Vasfqwfqqw/s4hana-tcode-dataset';
-const DATASET_VERSION = '1.1.0';
 
 function truncate(str, max) {
   const clean = String(str).replace(/\s+/g, ' ').trim();
@@ -728,8 +727,11 @@ function truncate(str, max) {
   return clean.slice(0, max - 1).replace(/\s+\S*$/, '') + '…';
 }
 
-function datasetCreditHtml() {
-  return `<p class="mt-8 text-xs text-slate">Data: SAP S/4HANA t-code fate dataset v${DATASET_VERSION} — <a href="${REPO_URL}" class="hover:text-azure" target="_blank" rel="noopener">github.com/Vasfqwfqqw/s4hana-tcode-dataset</a> (CC BY 4.0).</p>`;
+// version comes from the loaded dataset's own `version` field (Task 1's
+// loadDataset), never hardcoded — a future dataset release must not
+// require an edit here to stay accurate.
+function datasetCreditHtml(version) {
+  return `<p class="mt-8 text-xs text-slate">Data: SAP S/4HANA t-code fate dataset v${version} — <a href="${REPO_URL}" class="hover:text-azure" target="_blank" rel="noopener">github.com/Vasfqwfqqw/s4hana-tcode-dataset</a> (CC BY 4.0).</p>`;
 }
 
 function freeKitCtaHtml() {
@@ -741,7 +743,7 @@ function freeKitCtaHtml() {
     </div>`;
 }
 
-function renderCodePage(record, allRecords) {
+function renderCodePage(record, allRecords, version) {
   const h1 = buildH1(record);
   const paragraph = buildFirstParagraph(record);
   const body = buildBodySection(record);
@@ -801,7 +803,7 @@ function renderCodePage(record, allRecords) {
   </div>
   ${siblingsHtml}
   ${freeKitCtaHtml()}
-  ${datasetCreditHtml()}
+  ${datasetCreditHtml(version)}
 </section>`;
 
   const canonicalPath = `/tcodes/${record.tcode}`;
@@ -822,7 +824,7 @@ export async function buildTcodes() {
 
   const urls = [];
   for (const record of records) {
-    const html = renderCodePage(record, records);
+    const html = renderCodePage(record, records, version);
     await writeOut(`tcodes/${record.tcode}/index.html`, html);
     urls.push({ loc: `/tcodes/${record.tcode}`, priority: '0.4' });
   }
@@ -931,7 +933,7 @@ function renderModuleOptions(records) {
   return modules.map((m) => `<option value="${escHtml(m)}">${escHtml(moduleLabel(m))}</option>`).join('\n');
 }
 
-function renderHubPage(records, reviewedCount) {
+function renderHubPage(records, reviewedCount, version) {
   const content = `
 <section class="container-tavren py-14 sm:py-20">
   <div class="max-w-3xl reveal">
@@ -981,7 +983,7 @@ function renderHubPage(records, reviewedCount) {
     ${renderModuleSections(records)}
   </div>
 </section>
-${datasetCreditHtml()}`;
+${datasetCreditHtml(version)}`;
 
   const data = {
     title: 'SAP ECC t-code reference for S/4HANA | Tavren',
@@ -1014,7 +1016,7 @@ function buildDataJson(records) {
 Modify `buildTcodes()` in `build/build-tcodes.mjs` — add before the `return`:
 
 ```js
-  const hubHtml = renderHubPage(records, records.filter((r) => r.review_status === 'reviewed').length);
+  const hubHtml = renderHubPage(records, records.filter((r) => r.review_status === 'reviewed').length, version);
   await writeOut('tcodes/index.html', hubHtml);
   urls.push({ loc: '/tcodes', priority: '0.6' });
 
