@@ -58,6 +58,6 @@ const MODULE_LABELS = {
 };
 
 export function moduleLabel(moduleCode) {
-  const friendly = MODULE_LABELS[moduleCode];
+  const friendly = Object.prototype.hasOwnProperty.call(MODULE_LABELS, moduleCode) ? MODULE_LABELS[moduleCode] : null;
   return friendly ? `${friendly} (${moduleCode})` : moduleCode;
 }
