@@ -21,3 +21,16 @@ test('assertValidTcode rejects anything with path-unsafe characters', () => {
   assert.throws(() => assertValidTcode('FOO BAR'));
   assert.throws(() => assertValidTcode(''));
 });
+
+import { moduleLabel } from '../build/tcode-lib.mjs';
+
+test('moduleLabel returns a friendly label for all 29 known dataset modules', () => {
+  assert.equal(moduleLabel('FI-AP'), 'Accounts Payable (FI-AP)');
+  assert.equal(moduleLabel('CO'), 'Controlling (CO)');
+  assert.equal(moduleLabel('IND-Automotive'), 'Automotive (IND-Automotive)');
+  assert.equal(moduleLabel('CROSS'), 'Cross-application (CROSS)');
+});
+
+test('moduleLabel falls back to the raw code for unknown modules', () => {
+  assert.equal(moduleLabel('ZZ-UNKNOWN'), 'ZZ-UNKNOWN');
+});
