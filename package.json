@@ -12,7 +12,8 @@
     "dev": "node ./build/build.mjs && node ./build/serve.mjs",
     "serve": "node ./build/serve.mjs",
     "fonts": "node ./build/fonts.mjs",
-    "images": "node ./build/images.mjs"
+    "images": "node ./build/images.mjs",
+    "test": "node --test 'test/**/*.test.mjs'"
   },
   "devDependencies": {
     "gray-matter": "^4.0.3",
