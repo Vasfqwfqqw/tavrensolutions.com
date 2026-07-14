@@ -125,3 +125,12 @@ export function buildBodySection(record) {
     citation,
   };
 }
+
+export function buildSiblingLinks(record, allRecords, max = 6) {
+  const sameModule = allRecords.filter((r) => r.module === record.module && r.tcode !== record.tcode);
+  sameModule.sort((a, b) => {
+    if (a.review_status === b.review_status) return 0;
+    return a.review_status === 'reviewed' ? -1 : 1;
+  });
+  return sameModule.slice(0, max).map((r) => ({ tcode: r.tcode, status: r.status }));
+}

@@ -148,3 +148,33 @@ test('buildBodySection: pending record shows the machine-parsed note and citatio
   assert.match(r.pendingNote, /under human review/);
   assert.equal(r.citation, 'S4TWL - Recipe Management (item 10.4.22)');
 });
+
+import { buildSiblingLinks } from '../build/tcode-lib.mjs';
+
+const fixtureModule = [
+  { tcode: 'A1', module: 'FI-AP', review_status: 'pending', status: 'deleted' },
+  { tcode: 'A2', module: 'FI-AP', review_status: 'reviewed', status: 'changed' },
+  { tcode: 'A3', module: 'FI-AP', review_status: 'pending', status: 'replaced' },
+  { tcode: 'A4', module: 'FI-AP', review_status: 'reviewed', status: 'replaced' },
+  { tcode: 'A5', module: 'FI-AP', review_status: 'pending', status: 'deleted' },
+  { tcode: 'A6', module: 'FI-AP', review_status: 'pending', status: 'deleted' },
+  { tcode: 'A7', module: 'FI-AP', review_status: 'pending', status: 'deleted' },
+  { tcode: 'B1', module: 'SD', review_status: 'reviewed', status: 'changed' },
+];
+
+test('buildSiblingLinks excludes self, prefers reviewed, caps at max', () => {
+  const self = fixtureModule[0]; // A1
+  const siblings = buildSiblingLinks(self, fixtureModule, 6);
+  assert.equal(siblings.length, 6);
+  assert.ok(!siblings.some((s) => s.tcode === 'A1'));
+  assert.ok(!siblings.some((s) => s.tcode.startsWith('B'))); // no cross-module leakage
+  // reviewed records (A2, A4) come before pending ones
+  const reviewedIdx = siblings.map((s) => s.tcode).indexOf('A2');
+  const pendingIdx = siblings.map((s) => s.tcode).indexOf('A5');
+  assert.ok(reviewedIdx < pendingIdx);
+});
+
+test('buildSiblingLinks returns fewer than max when the module is small', () => {
+  const self = fixtureModule[7]; // B1, only member of SD in this fixture
+  assert.deepEqual(buildSiblingLinks(self, fixtureModule, 6), []);
+});
