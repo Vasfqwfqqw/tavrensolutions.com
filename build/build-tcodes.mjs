@@ -178,8 +178,8 @@ function renderHubPage(records, reviewedCount, version) {
   <div class="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3" data-stagger>
     ${renderModuleSections(records)}
   </div>
-</section>
-${datasetCreditHtml(version)}`;
+  ${datasetCreditHtml(version)}
+</section>`;
 
   const data = {
     title: 'SAP ECC t-code reference for S/4HANA | Tavren',
