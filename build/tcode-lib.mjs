@@ -61,3 +61,21 @@ export function moduleLabel(moduleCode) {
   const friendly = Object.prototype.hasOwnProperty.call(MODULE_LABELS, moduleCode) ? MODULE_LABELS[moduleCode] : null;
   return friendly ? `${friendly} (${moduleCode})` : moduleCode;
 }
+
+export function buildH1(record) {
+  return record.status === 'replaced'
+    ? `What replaces ${record.tcode} in S/4HANA?`
+    : `What happens to ${record.tcode} in SAP S/4HANA?`;
+}
+
+export function successorText(record) {
+  const parts = [];
+  if (record.replacement) parts.push(record.replacement);
+  if (record.fiori_app_id) parts.push(`Fiori app ${record.fiori_app_id}`);
+  return parts.length ? parts.join(' — ') : '—';
+}
+
+const SHORT_STATUS_LABELS = { deleted: 'Deleted', replaced: 'Replaced', changed: 'Changed', available: 'Available' };
+export function shortStatusLabel(status) {
+  return SHORT_STATUS_LABELS[status] || status;
+}

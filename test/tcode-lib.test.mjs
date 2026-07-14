@@ -34,3 +34,29 @@ test('moduleLabel returns a friendly label for all 29 known dataset modules', ()
 test('moduleLabel falls back to the raw code for unknown modules', () => {
   assert.equal(moduleLabel('ZZ-UNKNOWN'), 'ZZ-UNKNOWN');
 });
+
+import { buildH1, successorText, shortStatusLabel } from '../build/tcode-lib.mjs';
+
+test('buildH1 uses the "what replaces" phrasing only for replaced status', () => {
+  assert.equal(buildH1({ tcode: 'FD32', status: 'replaced' }), 'What replaces FD32 in S/4HANA?');
+  assert.equal(buildH1({ tcode: 'FBL1N', status: 'changed' }), 'What happens to FBL1N in SAP S/4HANA?');
+  assert.equal(buildH1({ tcode: 'ABLM_BLACKLIST', status: 'deleted' }), 'What happens to ABLM_BLACKLIST in SAP S/4HANA?');
+  assert.equal(buildH1({ tcode: 'KKBC_HOE_H', status: 'available' }), 'What happens to KKBC_HOE_H in SAP S/4HANA?');
+});
+
+test('successorText combines replacement text and Fiori app id', () => {
+  assert.equal(
+    successorText({ replacement: 'Manage Supplier Line Items (Fiori app)', fiori_app_id: 'F0712' }),
+    'Manage Supplier Line Items (Fiori app) — Fiori app F0712'
+  );
+  assert.equal(successorText({ replacement: '', fiori_app_id: 'F1077' }), 'Fiori app F1077');
+  assert.equal(successorText({ replacement: 'UKM_BP (SAP Credit Management)', fiori_app_id: '' }), 'UKM_BP (SAP Credit Management)');
+  assert.equal(successorText({ replacement: '', fiori_app_id: '' }), '—');
+});
+
+test('shortStatusLabel maps all four dataset statuses', () => {
+  assert.equal(shortStatusLabel('deleted'), 'Deleted');
+  assert.equal(shortStatusLabel('replaced'), 'Replaced');
+  assert.equal(shortStatusLabel('changed'), 'Changed');
+  assert.equal(shortStatusLabel('available'), 'Available');
+});
