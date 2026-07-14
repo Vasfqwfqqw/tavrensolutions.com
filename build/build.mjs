@@ -17,6 +17,7 @@ import {
   renderFreeKitCard,
   renderProductJsonLd,
 } from './render-products.mjs';
+import { buildTcodes } from './build-tcodes.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const SRC = join(ROOT, 'src');
@@ -339,6 +340,8 @@ async function main() {
   await buildPages();
   await buildLegal();
   await buildBlog();
+  const tcodesResult = await buildTcodes();
+  urls.push(...tcodesResult.urls);
   await buildSitemap();
   await buildLlms();
   console.log(`  ✓ built ${urls.length} pages + sitemap.xml + llms.txt`);
