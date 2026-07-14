@@ -303,7 +303,7 @@ async function buildSitemap() {
 
 // llms.txt — a curated, plain-text map of the site for AI assistants
 // (the "robots.txt for LLMs" convention). Not linked in the UI.
-async function buildLlms() {
+async function buildLlms(tcodesCount) {
   const series = CATALOGUE.series
     .map((sx) => `- ${sx.name} (${sx.audience}): ${sx.blurb}`)
     .join('\n');
@@ -320,7 +320,7 @@ async function buildLlms() {
 - [How it works](${BASE}/how-it-works): What a toolkit is, why structured prompting works, and how you run one.
 - [Readiness guide](${BASE}/readiness): A curated route through the blog for business teams — timeline, ownership, data, people/process and method.
 - [Free starter toolkit](${BASE}/free-kit): A free, structured prompt set to try the format before buying.
-- SAP t-code reference (/tcodes/): Coming soon — ECC t-code to S/4HANA/Fiori mapping guide, one page per code.
+- [SAP t-code reference](${BASE}/tcodes): What happens to ${tcodesCount} ECC transaction codes in S/4HANA — deleted, replaced, changed, or still available, with the SAP Simplification List citation for each. One page per code.
 - [FAQ](${BASE}/faq): Common questions about the toolkits, pricing, data privacy and delivery.
 - [About](${BASE}/about): What Tavren is and how it works.
 - [Contact](${BASE}/contact): Get in touch.
@@ -343,7 +343,7 @@ async function main() {
   const tcodesResult = await buildTcodes();
   urls.push(...tcodesResult.urls);
   await buildSitemap();
-  await buildLlms();
+  await buildLlms(tcodesResult.count);
   console.log(`  ✓ built ${urls.length} pages + sitemap.xml + llms.txt`);
 }
 
