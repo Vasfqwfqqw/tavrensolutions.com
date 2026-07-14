@@ -1,4 +1,4 @@
-import { join, dirname } from 'node:path';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import {
   loadDataset, assertValidTcode, moduleLabel, buildH1, successorText,
@@ -49,12 +49,11 @@ function renderCodePage(record, allRecords, version) {
     </div>`
     : '';
 
-  const bodyInner = body.deltaNote
-    ? `<p class="mt-3 leading-relaxed text-navy/80">${escHtml(body.deltaNote)}</p>`
-    : `<p class="mt-3 leading-relaxed text-navy/80">${escHtml(paragraph)}</p><p class="mt-3 text-sm text-slate">${escHtml(body.pendingNote)}</p>`;
-
-  const citationHtml = body.citation
-    ? `<p class="mt-4 text-sm text-slate">SAP reference: ${escHtml(body.citation)}</p>`
+  const noteParts = [];
+  if (body.pendingNote) noteParts.push(`<p class="leading-relaxed text-navy/80">${escHtml(body.pendingNote)}</p>`);
+  if (body.citation) noteParts.push(`<p class="text-sm text-slate">SAP reference: ${escHtml(body.citation)}</p>`);
+  const noteCardHtml = noteParts.length
+    ? `<div class="mt-10 max-w-3xl card reveal">${noteParts.join('\n')}</div>`
     : '';
 
   const content = `
@@ -63,7 +62,8 @@ function renderCodePage(record, allRecords, version) {
   <div class="max-w-3xl reveal">
     <span class="eyebrow">${escHtml(mLabel)}</span>
     <h1 class="mt-3 text-3xl font-bold leading-tight sm:text-4xl">${escHtml(h1)}</h1>
-    <p class="mt-5 text-lg text-navy/80">${escHtml(paragraph)}</p>
+    <p class="label-muted mt-6">${body.heading}</p>
+    <p class="mt-2 text-lg text-navy/80">${escHtml(paragraph)}</p>
   </div>
 
   <div class="mt-10 max-w-3xl overflow-x-auto reveal">
@@ -84,12 +84,7 @@ function renderCodePage(record, allRecords, version) {
       </tbody>
     </table>
   </div>
-
-  <div class="mt-10 max-w-3xl card reveal">
-    <h2 class="text-lg font-bold text-navy">${body.heading}</h2>
-    ${bodyInner}
-    ${citationHtml}
-  </div>
+  ${noteCardHtml}
   ${siblingsHtml}
   ${freeKitCtaHtml()}
   ${datasetCreditHtml(version)}
