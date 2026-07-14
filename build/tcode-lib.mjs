@@ -107,3 +107,21 @@ export function buildFirstParagraph(record) {
   // renders something honest instead of crashing the build.
   return `${record.tcode} is marked "${record.status}" in S/4HANA. This entry is machine-parsed from the SAP Simplification List and is awaiting human review.`;
 }
+
+function buildCitation(record) {
+  if (!record.sap_reference) return null;
+  return record.source_item ? `${record.sap_reference} (item ${record.source_item})` : record.sap_reference;
+}
+
+export function buildBodySection(record) {
+  const citation = buildCitation(record);
+  if (record.review_status === 'reviewed') {
+    return { heading: 'What changes at your desk', deltaNote: record.delta_note, pendingNote: null, citation };
+  }
+  return {
+    heading: 'Status',
+    deltaNote: null,
+    pendingNote: 'Machine-parsed from the SAP Simplification List — under human review.',
+    citation,
+  };
+}

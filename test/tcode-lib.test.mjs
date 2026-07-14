@@ -115,3 +115,36 @@ test('buildFirstParagraph never writes "post-migration"', () => {
   ];
   for (const r of recs) assert.doesNotMatch(buildFirstParagraph(r), /post-migration/i);
 });
+
+import { buildBodySection } from '../build/tcode-lib.mjs';
+
+test('buildBodySection: reviewed record shows delta note, no pending note', () => {
+  const r = buildBodySection({
+    review_status: 'reviewed', delta_note: 'Nothing changes in how FB60 posts.',
+    sap_reference: '', source_item: null,
+  });
+  assert.equal(r.heading, 'What changes at your desk');
+  assert.equal(r.deltaNote, 'Nothing changes in how FB60 posts.');
+  assert.equal(r.pendingNote, null);
+  assert.equal(r.citation, null);
+});
+
+test('buildBodySection: reviewed record with a sap_reference still shows it as citation', () => {
+  const r = buildBodySection({
+    review_status: 'reviewed', delta_note: 'Some note.',
+    sap_reference: 'S4TWL - Credit Management', source_item: '6.3.1',
+  });
+  assert.equal(r.citation, 'S4TWL - Credit Management (item 6.3.1)');
+});
+
+test('buildBodySection: pending record shows the machine-parsed note and citation, no delta note', () => {
+  const r = buildBodySection({
+    review_status: 'pending', delta_note: '',
+    sap_reference: 'S4TWL - Recipe Management', source_item: '10.4.22',
+  });
+  assert.equal(r.heading, 'Status');
+  assert.equal(r.deltaNote, null);
+  assert.match(r.pendingNote, /Machine-parsed from the SAP Simplification List/);
+  assert.match(r.pendingNote, /under human review/);
+  assert.equal(r.citation, 'S4TWL - Recipe Management (item 10.4.22)');
+});
