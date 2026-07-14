@@ -20,7 +20,7 @@ import {
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const SRC = join(ROOT, 'src');
-const BASE = 'https://tavrensolutions.com';
+export const BASE = 'https://tavrensolutions.com';
 const YEAR = new Date().getFullYear();
 
 const r = (p) => join(ROOT, p);
@@ -33,7 +33,7 @@ async function loadPartials() {
     PARTIALS[name] = await readFile(s(`partials/${name}.html`), 'utf8');
   }
 }
-const escHtml = (v) =>
+export const escHtml = (v) =>
   String(v ?? '').replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
 
 // Replace {{> name }} partial includes.
@@ -59,7 +59,7 @@ function catalogueTokens() {
 }
 
 // --- JSON-LD helpers ------------------------------------------------------
-function breadcrumbLd(crumbs) {
+export function breadcrumbLd(crumbs) {
   return `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
@@ -71,7 +71,7 @@ function breadcrumbLd(crumbs) {
     })),
   })}</script>`;
 }
-function collectionPageLd(d, url) {
+export function collectionPageLd(d, url) {
   return `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'CollectionPage',
@@ -113,7 +113,7 @@ function renderFaqList(faqs) {
     .join('\n');
 }
 
-function faqPageLd(faqs) {
+export function faqPageLd(faqs) {
   return `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',
     '@type': 'FAQPage',
@@ -126,7 +126,7 @@ function faqPageLd(faqs) {
 }
 
 // --- page renderer --------------------------------------------------------
-function renderDocument({ content, data, canonicalPath, extraHead = '', ogType = 'website', bodyClass = '' }) {
+export function renderDocument({ content, data, canonicalPath, extraHead = '', ogType = 'website', bodyClass = '' }) {
   const tokens = catalogueTokens();
   // page body: include partials + fill catalogue/meta tokens
   let body = includePartials(content);
@@ -150,7 +150,7 @@ function renderDocument({ content, data, canonicalPath, extraHead = '', ogType =
   return doc;
 }
 
-async function writeOut(relPath, html) {
+export async function writeOut(relPath, html) {
   const out = r(relPath);
   await mkdir(join(out, '..'), { recursive: true });
   await writeFile(out, html, 'utf8');
