@@ -79,3 +79,31 @@ const SHORT_STATUS_LABELS = { deleted: 'Deleted', replaced: 'Replaced', changed:
 export function shortStatusLabel(status) {
   return SHORT_STATUS_LABELS[status] || status;
 }
+
+export function buildFirstParagraph(record) {
+  if (record.review_status === 'reviewed') {
+    // Human-verified, already 2-3 sentences, already answers the H1 directly.
+    return record.delta_note;
+  }
+
+  // Pending: dataset-verified to always be status 'deleted' or 'replaced',
+  // and to always carry a sap_reference. No delta_note is used here even
+  // if a stray one exists on the record (spec: pending never shows one).
+  if (record.status === 'deleted') {
+    return `${record.tcode} is removed in S/4HANA — it does not exist after conversion. This entry is machine-parsed from the SAP Simplification List and is awaiting human review, so treat the detail as provisional until it has been checked against the source.`;
+  }
+
+  if (record.status === 'replaced') {
+    if (record.replacement) {
+      const fioriPart = record.fiori_app_id ? ` (Fiori app ${record.fiori_app_id})` : '';
+      return `${record.tcode} is replaced in S/4HANA by ${record.replacement}${fioriPart}. This mapping is machine-parsed from the SAP Simplification List and is awaiting human review, so treat the successor as provisional until it has been checked against the source.`;
+    }
+    return `${record.tcode} is marked as replaced in S/4HANA, but the specific successor has not yet been confirmed in this dataset. This entry is machine-parsed from the SAP Simplification List and is awaiting human review — check the cited source for the named replacement.`;
+  }
+
+  // Defensive fallback — not hit by the current dataset (verified: pending
+  // records are only ever 'deleted' or 'replaced'), kept so a future
+  // dataset release with a pending 'changed'/'available' record still
+  // renders something honest instead of crashing the build.
+  return `${record.tcode} is marked "${record.status}" in S/4HANA. This entry is machine-parsed from the SAP Simplification List and is awaiting human review.`;
+}
