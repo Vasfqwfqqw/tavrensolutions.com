@@ -1420,7 +1420,23 @@ echo "  http://localhost:4321/tcodes/COMP           (deleted, reviewed)"
 git diff HEAD~<N> -- llms.txt   # llms.txt diff for the user to review, N = number of commits back to before Task 11
 ```
 
-- [ ] **Step 5: Present to the user, wait for explicit OK, then commit any stragglers and stop short of push**
+- [ ] **Step 5: Commit the generated output**
+
+Every prior task (1–14) intentionally committed only source (build
+scripts, tests, dataset, partials, `js/`) — never the 828+ generated
+`tcodes/*/index.html` files, `tcodes/index.html`, or `tcodes/data.json`,
+since that output kept changing shape through Tasks 8–11 and re-committing
+829 files after every task would have been wasted diff noise. This repo's
+convention (CLAUDE.md §2) is that generated root-level output IS committed
+alongside source — it's what GitHub Pages serves. Commit it now, once,
+after the final build:
+
+```bash
+git add tcodes/ sitemap.xml llms.txt
+git commit -m "Generate final /tcodes/ output: 828 code pages + hub + data.json"
+```
+
+- [ ] **Step 6: Present to the user, wait for explicit OK, then stop short of push**
 
 Do not run `git push`. Report the review pack (page count, 3 sample URLs,
 llms.txt diff) to the user and wait for their explicit "OK, push" before
