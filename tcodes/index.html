@@ -1,0 +1,1263 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>SAP ECC t-code reference for S/4HANA | Tavren</title>
+    <meta name="description" content="What happens to your ECC transaction codes in S/4HANA — replaced, changed, deleted, or still available. 828 t-codes, searchable by module and status." />
+    <link rel="canonical" href="https://tavrensolutions.com/tcodes" />
+    <meta name="theme-color" content="#0F3D73" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:site_name" content="Tavren Solutions" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SAP ECC t-code reference for S/4HANA | Tavren" />
+    <meta property="og:description" content="What happens to your ECC transaction codes in S/4HANA — replaced, changed, deleted, or still available. 828 t-codes, searchable by module and status." />
+    <meta property="og:url" content="https://tavrensolutions.com/tcodes" />
+    <meta property="og:image" content="https://tavrensolutions.com/assets/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="SAP ECC t-code reference for S/4HANA | Tavren" />
+    <meta name="twitter:description" content="What happens to your ECC transaction codes in S/4HANA — replaced, changed, deleted, or still available. 828 t-codes, searchable by module and status." />
+    <meta name="twitter:image" content="https://tavrensolutions.com/assets/og.png" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/favicons/site.webmanifest" />
+
+    <!-- Fonts: preload the variable files actually used above the fold -->
+    <link rel="preload" href="/assets/fonts/RedHatDisplay-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/RedHatText-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- Mark JS as active before paint so reveal animations only hide content
+         when JS can bring it back. No-JS visits show everything immediately. -->
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+
+    <!-- Organization JSON-LD (site-wide) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Tavren",
+        "url": "https://tavrensolutions.com/",
+        "logo": "https://tavrensolutions.com/assets/favicons/icon-512.png",
+        "description": "Tavren publishes structured AI toolkits that help in-house SAP teams prepare for the ECC-to-S/4HANA upgrade.",
+        "email": "contact@tavrensolutions.com"
+      }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tavrensolutions.com/"},{"@type":"ListItem","position":2,"name":"T-code reference","item":"https://tavrensolutions.com/tcodes"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"CollectionPage","name":"SAP ECC t-code reference for S/4HANA | Tavren","description":"What happens to your ECC transaction codes in S/4HANA — replaced, changed, deleted, or still available. 828 t-codes, searchable by module and status.","url":"https://tavrensolutions.com/tcodes"}</script>
+
+    <!-- Analytics by Umami -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="f08b187b-9a49-4d5c-8360-f8bb4a0f6c84"></script>
+
+    <!-- Free-kit signup attribution: fires Umami's "kit-signup" custom event with a
+         source read from the URL at click time (no cookies/storage). Convention:
+         internal links use ?src=tcodes|medium|devto|gpt|book, external surfaces use
+         ?utm_source=medium|devto|gpt|book; falls back to "direct" if neither is set. -->
+    <script>
+      document.addEventListener('click', function (e) {
+        var cta = e.target.closest('[data-kit-signup]');
+        if (!cta) return;
+        var params = new URLSearchParams(window.location.search);
+        var source = params.get('src') || params.get('utm_source') || 'direct';
+        if (window.umami) umami.track('kit-signup', { source: source });
+      });
+    </script>
+
+    <!-- LemonSqueezy overlay -->
+    <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+  </head>
+  <body class="flex min-h-screen flex-col ">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-navy focus:shadow-card">Skip to content</a>
+    <header class="sticky top-0 z-40 border-b border-navy/10 bg-cloud/85 backdrop-blur supports-[backdrop-filter]:bg-cloud/70">
+  <div class="container-tavren flex h-16 items-center justify-between gap-4">
+    <a href="/" class="flex items-center" aria-label="Tavren — home">
+      <img src="/assets/Tavern Logos with Text/tavren-lockup-horizontal-navy.svg" alt="Tavren" class="h-7 w-auto" width="140" height="28" />
+    </a>
+
+    <nav class="hidden items-center gap-7 md:flex" aria-label="Primary">
+      <a href="/toolkits" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">Toolkits</a>
+      <a href="/how-it-works" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">How it works</a>
+      <a href="/readiness" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">Readiness guide</a>
+      <a href="/tcodes" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">T-code reference</a>
+      <a href="/blog" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">Blog</a>
+      <a href="/about" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">About</a>
+      <a href="/faq" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">FAQ</a>
+      <a href="/contact" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="/toolkits" class="btn-primary hidden px-4 py-2 text-sm sm:inline-flex">Browse toolkits</a>
+      <button
+        type="button"
+        id="menu-toggle"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-navy md:hidden"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden border-t border-navy/10 bg-cloud md:hidden">
+    <nav class="container-tavren flex flex-col py-3" aria-label="Mobile">
+      <a href="/toolkits" class="nav-link py-2.5 font-medium text-navy">Toolkits</a>
+      <a href="/how-it-works" class="nav-link py-2.5 font-medium text-navy">How it works</a>
+      <a href="/readiness" class="nav-link py-2.5 font-medium text-navy">Readiness guide</a>
+      <a href="/tcodes" class="nav-link py-2.5 font-medium text-navy">T-code reference</a>
+      <a href="/blog" class="nav-link py-2.5 font-medium text-navy">Blog</a>
+      <a href="/about" class="nav-link py-2.5 font-medium text-navy">About</a>
+      <a href="/faq" class="nav-link py-2.5 font-medium text-navy">FAQ</a>
+      <a href="/contact" class="nav-link py-2.5 font-medium text-navy">Contact</a>
+      <a href="/toolkits" class="btn-primary mt-3">Browse toolkits</a>
+    </nav>
+  </div>
+</header>
+
+    <main id="main" class="flex-grow">
+      
+<section class="container-tavren py-14 sm:py-20">
+  <div class="max-w-3xl reveal">
+    <span class="eyebrow">T-code reference</span>
+    <h1 class="mt-3 text-4xl font-bold leading-tight sm:text-5xl">What happens to your ECC transaction codes in S/4HANA?</h1>
+    <p class="mt-5 text-lg text-navy/80">This reference checks 828 ECC transaction codes against the SAP Simplification List for S/4HANA — which ones are deleted at conversion, which are replaced, which still run unchanged after go-live, and which strategic Fiori app SAP points you to next. 197 entries are human-reviewed with full detail; the rest are machine-parsed from the Simplification List and flagged for review. Search or filter below, or browse by module.</p>
+  </div>
+</section>
+
+<section class="container-tavren pb-10">
+  <div class="card reveal">
+    <div class="grid gap-4 sm:grid-cols-[2fr_1fr_1fr]">
+      <input type="search" id="tcode-search" placeholder="Search t-code or keyword…" class="rounded-lg border border-navy/15 px-4 py-2.5 text-sm" aria-label="Search t-codes" />
+      <select id="tcode-module-filter" class="rounded-lg border border-navy/15 px-4 py-2.5 text-sm" aria-label="Filter by module">
+        <option value="">All modules</option>
+        <option value="FI-AP">Accounts Payable (FI-AP)</option>
+<option value="FI-AR">Accounts Receivable (FI-AR)</option>
+<option value="IND-Aerospace and Defense">Aerospace &amp; Defense (IND-Aerospace and Defense)</option>
+<option value="IND-Automotive">Automotive (IND-Automotive)</option>
+<option value="IND-Banking">Banking (IND-Banking)</option>
+<option value="CO">Controlling (CO)</option>
+<option value="CROSS">Cross-application (CROSS)</option>
+<option value="CS">Customer Service (CS)</option>
+<option value="EHS">Environment, Health &amp; Safety (EHS)</option>
+<option value="FIN-CLOSE">Financial Close (FIN-CLOSE)</option>
+<option value="FI-GL">General Ledger (FI-GL)</option>
+<option value="FI-GRC">Governance, Risk &amp; Compliance (FI-GRC)</option>
+<option value="IND-High Tech">High Tech (IND-High Tech)</option>
+<option value="HR">Human Resources (HR)</option>
+<option value="MM-IM">Inventory Management (MM-IM)</option>
+<option value="MM-IV">Invoice Verification (MM-IV)</option>
+<option value="MDM">Master Data Management (MDM)</option>
+<option value="IND-Oil and Gas">Oil &amp; Gas (IND-Oil and Gas)</option>
+<option value="PLM">Product Lifecycle Management (PLM)</option>
+<option value="PP">Production Planning (PP)</option>
+<option value="CO-PA">Profitability Analysis (CO-PA)</option>
+<option value="PPM">Project &amp; Portfolio Management (PPM)</option>
+<option value="IND-Public Sector">Public Sector (IND-Public Sector)</option>
+<option value="MM-PUR">Purchasing (MM-PUR)</option>
+<option value="QM">Quality Management (QM)</option>
+<option value="IND-Retail">Retail (IND-Retail)</option>
+<option value="SD">Sales &amp; Distribution (SD)</option>
+<option value="FI-TRM">Treasury &amp; Risk Management (FI-TRM)</option>
+<option value="IND-Utilities">Utilities (IND-Utilities)</option>
+      </select>
+      <select id="tcode-status-filter" class="rounded-lg border border-navy/15 px-4 py-2.5 text-sm" aria-label="Filter by status">
+        <option value="">All statuses</option>
+        <option value="deleted">Deleted</option>
+        <option value="replaced">Replaced</option>
+        <option value="changed">Changed</option>
+        <option value="available">Available</option>
+      </select>
+    </div>
+    <p id="tcode-result-count" class="mt-4 text-sm text-slate" role="status" aria-live="polite">Loading…</p>
+    <div class="mt-2 overflow-x-auto">
+      <table class="w-full border-collapse text-left text-sm">
+        <thead>
+          <tr class="border-b border-navy/10 text-slate">
+            <th class="py-2 pr-4 font-semibold">T-code</th>
+            <th class="py-2 pr-4 font-semibold">Module</th>
+            <th class="py-2 pr-4 font-semibold">Status</th>
+            <th class="py-2 pr-4 font-semibold">Successor</th>
+          </tr>
+        </thead>
+        <tbody id="tcode-results"></tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="container-tavren pb-16">
+  <h2 class="text-2xl font-bold text-navy reveal">Browse by module</h2>
+  <p class="mt-2 text-sm text-slate reveal">Every t-code page, grouped by SAP module — works without JavaScript.</p>
+  <div class="mt-6 grid gap-8 sm:grid-cols-2 lg:grid-cols-3" data-stagger>
+    
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Accounts Payable (FI-AP) <span class="font-normal text-slate">(22)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/F110/" class="text-azure hover:underline">F110</a></li>
+        <li><a href="/tcodes/FB60/" class="text-azure hover:underline">FB60</a></li>
+        <li><a href="/tcodes/FBL1N/" class="text-azure hover:underline">FBL1N</a></li>
+        <li><a href="/tcodes/FCV1/" class="text-azure hover:underline">FCV1</a></li>
+        <li><a href="/tcodes/FCV2/" class="text-azure hover:underline">FCV2</a></li>
+        <li><a href="/tcodes/FCV3/" class="text-azure hover:underline">FCV3</a></li>
+        <li><a href="/tcodes/FD24/" class="text-azure hover:underline">FD24</a></li>
+        <li><a href="/tcodes/FD32/" class="text-azure hover:underline">FD32</a></li>
+        <li><a href="/tcodes/FD33/" class="text-azure hover:underline">FD33</a></li>
+        <li><a href="/tcodes/FDK43/" class="text-azure hover:underline">FDK43</a></li>
+        <li><a href="/tcodes/FI-ARI/" class="text-azure hover:underline">FI-ARI</a></li>
+        <li><a href="/tcodes/FK10N/" class="text-azure hover:underline">FK10N</a></li>
+        <li><a href="/tcodes/RFARI020/" class="text-azure hover:underline">RFARI020</a></li>
+        <li><a href="/tcodes/RFARI030/" class="text-azure hover:underline">RFARI030</a></li>
+        <li><a href="/tcodes/RFDFILZE/" class="text-azure hover:underline">RFDFILZE</a></li>
+        <li><a href="/tcodes/S_ALR_87012215/" class="text-azure hover:underline">S_ALR_87012215</a></li>
+        <li><a href="/tcodes/S_ALR_87012218/" class="text-azure hover:underline">S_ALR_87012218</a></li>
+        <li><a href="/tcodes/VKM1/" class="text-azure hover:underline">VKM1</a></li>
+        <li><a href="/tcodes/VKM2/" class="text-azure hover:underline">VKM2</a></li>
+        <li><a href="/tcodes/VKM3/" class="text-azure hover:underline">VKM3</a></li>
+        <li><a href="/tcodes/VKM4/" class="text-azure hover:underline">VKM4</a></li>
+        <li><a href="/tcodes/VKM5/" class="text-azure hover:underline">VKM5</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Accounts Receivable (FI-AR) <span class="font-normal text-slate">(3)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/FB70/" class="text-azure hover:underline">FB70</a></li>
+        <li><a href="/tcodes/FBL5N/" class="text-azure hover:underline">FBL5N</a></li>
+        <li><a href="/tcodes/FD10N/" class="text-azure hover:underline">FD10N</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Aerospace &amp; Defense (IND-Aerospace and Defense) <span class="font-normal text-slate">(27)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/AD02ACTV/" class="text-azure hover:underline">AD02ACTV</a></li>
+        <li><a href="/tcodes/AD02PRCE/" class="text-azure hover:underline">AD02PRCE</a></li>
+        <li><a href="/tcodes/ADAA/" class="text-azure hover:underline">ADAA</a></li>
+        <li><a href="/tcodes/BADI_GPD_02/" class="text-azure hover:underline">BADI_GPD_02</a></li>
+        <li><a href="/tcodes/BADI_GPD_03/" class="text-azure hover:underline">BADI_GPD_03</a></li>
+        <li><a href="/tcodes/BADI_GPD_04/" class="text-azure hover:underline">BADI_GPD_04</a></li>
+        <li><a href="/tcodes/BADI_GPD_05/" class="text-azure hover:underline">BADI_GPD_05</a></li>
+        <li><a href="/tcodes/BADI_GPD_06/" class="text-azure hover:underline">BADI_GPD_06</a></li>
+        <li><a href="/tcodes/BADI_GPD_07/" class="text-azure hover:underline">BADI_GPD_07</a></li>
+        <li><a href="/tcodes/BADI_GPD_09/" class="text-azure hover:underline">BADI_GPD_09</a></li>
+        <li><a href="/tcodes/BADI_GPD_11/" class="text-azure hover:underline">BADI_GPD_11</a></li>
+        <li><a href="/tcodes/BADI_GPD_12/" class="text-azure hover:underline">BADI_GPD_12</a></li>
+        <li><a href="/tcodes/BADI_GPD_14/" class="text-azure hover:underline">BADI_GPD_14</a></li>
+        <li><a href="/tcodes/BADI_GPD_15/" class="text-azure hover:underline">BADI_GPD_15</a></li>
+        <li><a href="/tcodes/BADI_GPD_17/" class="text-azure hover:underline">BADI_GPD_17</a></li>
+        <li><a href="/tcodes/BADI_GPD_18/" class="text-azure hover:underline">BADI_GPD_18</a></li>
+        <li><a href="/tcodes/BADI_GPD_19/" class="text-azure hover:underline">BADI_GPD_19</a></li>
+        <li><a href="/tcodes/CANCDIS01/" class="text-azure hover:underline">CANCDIS01</a></li>
+        <li><a href="/tcodes/DIS01/" class="text-azure hover:underline">DIS01</a></li>
+        <li><a href="/tcodes/DIS01N/" class="text-azure hover:underline">DIS01N</a></li>
+        <li><a href="/tcodes/GDP_MM_EKKO_WRITE/" class="text-azure hover:underline">GDP_MM_EKKO_WRITE</a></li>
+        <li><a href="/tcodes/MM_EKKO/" class="text-azure hover:underline">MM_EKKO</a></li>
+        <li><a href="/tcodes/PEG01/" class="text-azure hover:underline">PEG01</a></li>
+        <li><a href="/tcodes/PEG01N/" class="text-azure hover:underline">PEG01N</a></li>
+        <li><a href="/tcodes/PEG12/" class="text-azure hover:underline">PEG12</a></li>
+        <li><a href="/tcodes/PEG13/" class="text-azure hover:underline">PEG13</a></li>
+        <li><a href="/tcodes/PEG15/" class="text-azure hover:underline">PEG15</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Automotive (IND-Automotive) <span class="font-normal text-slate">(49)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/ESPLOG/" class="text-azure hover:underline">ESPLOG</a></li>
+        <li><a href="/tcodes/ESPLOGD/" class="text-azure hover:underline">ESPLOGD</a></li>
+        <li><a href="/tcodes/ISA_SICALERT/" class="text-azure hover:underline">ISA_SICALERT</a></li>
+        <li><a href="/tcodes/ISA_SICKANBAN/" class="text-azure hover:underline">ISA_SICKANBAN</a></li>
+        <li><a href="/tcodes/ISAUTO_SICASN1/" class="text-azure hover:underline">ISAUTO_SICASN1</a></li>
+        <li><a href="/tcodes/ISAUTO_SICASN2/" class="text-azure hover:underline">ISAUTO_SICASN2</a></li>
+        <li><a href="/tcodes/ISAUTO_SICASN3/" class="text-azure hover:underline">ISAUTO_SICASN3</a></li>
+        <li><a href="/tcodes/ISAUTO_SICASN4/" class="text-azure hover:underline">ISAUTO_SICASN4</a></li>
+        <li><a href="/tcodes/ISAUTO_SICBC/" class="text-azure hover:underline">ISAUTO_SICBC</a></li>
+        <li><a href="/tcodes/ISAUTO_SICCO/" class="text-azure hover:underline">ISAUTO_SICCO</a></li>
+        <li><a href="/tcodes/ISAUTO_SICDDL1/" class="text-azure hover:underline">ISAUTO_SICDDL1</a></li>
+        <li><a href="/tcodes/ISAUTO_SICENG/" class="text-azure hover:underline">ISAUTO_SICENG</a></li>
+        <li><a href="/tcodes/ISAUTO_SICIV/" class="text-azure hover:underline">ISAUTO_SICIV</a></li>
+        <li><a href="/tcodes/ISAUTO_SICJIT/" class="text-azure hover:underline">ISAUTO_SICJIT</a></li>
+        <li><a href="/tcodes/ISAUTO_SICPDI/" class="text-azure hover:underline">ISAUTO_SICPDI</a></li>
+        <li><a href="/tcodes/ISAUTO_SICPH/" class="text-azure hover:underline">ISAUTO_SICPH</a></li>
+        <li><a href="/tcodes/ISAUTO_SICPI/" class="text-azure hover:underline">ISAUTO_SICPI</a></li>
+        <li><a href="/tcodes/ISAUTO_SICRL/" class="text-azure hover:underline">ISAUTO_SICRL</a></li>
+        <li><a href="/tcodes/ISAUTO_SICRLRD/" class="text-azure hover:underline">ISAUTO_SICRLRD</a></li>
+        <li><a href="/tcodes/ISAUTO_SICRPM/" class="text-azure hover:underline">ISAUTO_SICRPM</a></li>
+        <li><a href="/tcodes/ISAUTO_SICSR/" class="text-azure hover:underline">ISAUTO_SICSR</a></li>
+        <li><a href="/tcodes/ISI_BCI/" class="text-azure hover:underline">ISI_BCI</a></li>
+        <li><a href="/tcodes/ISI_BCO/" class="text-azure hover:underline">ISI_BCO</a></li>
+        <li><a href="/tcodes/ISI_POD/" class="text-azure hover:underline">ISI_POD</a></li>
+        <li><a href="/tcodes/ISI_PR/" class="text-azure hover:underline">ISI_PR</a></li>
+        <li><a href="/tcodes/ISIPI_CP/" class="text-azure hover:underline">ISIPI_CP</a></li>
+        <li><a href="/tcodes/ISIPI_CS/" class="text-azure hover:underline">ISIPI_CS</a></li>
+        <li><a href="/tcodes/ISIPI_ESP/" class="text-azure hover:underline">ISIPI_ESP</a></li>
+        <li><a href="/tcodes/ISIPI_OEPM/" class="text-azure hover:underline">ISIPI_OEPM</a></li>
+        <li><a href="/tcodes/ISIPI_POD/" class="text-azure hover:underline">ISIPI_POD</a></li>
+        <li><a href="/tcodes/ISIPI_PUL/" class="text-azure hover:underline">ISIPI_PUL</a></li>
+        <li><a href="/tcodes/ISIPI_SM/" class="text-azure hover:underline">ISIPI_SM</a></li>
+        <li><a href="/tcodes/ISIPI_SUMJIT/" class="text-azure hover:underline">ISIPI_SUMJIT</a></li>
+        <li><a href="/tcodes/ISIPI_TRACK/" class="text-azure hover:underline">ISIPI_TRACK</a></li>
+        <li><a href="/tcodes/ISIT_PR/" class="text-azure hover:underline">ISIT_PR</a></li>
+        <li><a href="/tcodes/ME69/" class="text-azure hover:underline">ME69</a></li>
+        <li><a href="/tcodes/MMLS/" class="text-azure hover:underline">MMLS</a></li>
+        <li><a href="/tcodes/OESP/" class="text-azure hover:underline">OESP</a></li>
+        <li><a href="/tcodes/SIC_MA/" class="text-azure hover:underline">SIC_MA</a></li>
+        <li><a href="/tcodes/SIC_MD/" class="text-azure hover:underline">SIC_MD</a></li>
+        <li><a href="/tcodes/TCLSVERS/" class="text-azure hover:underline">TCLSVERS</a></li>
+        <li><a href="/tcodes/VL51A/" class="text-azure hover:underline">VL51A</a></li>
+        <li><a href="/tcodes/VL52A/" class="text-azure hover:underline">VL52A</a></li>
+        <li><a href="/tcodes/VL53A/" class="text-azure hover:underline">VL53A</a></li>
+        <li><a href="/tcodes/VL54A/" class="text-azure hover:underline">VL54A</a></li>
+        <li><a href="/tcodes/VTCU/" class="text-azure hover:underline">VTCU</a></li>
+        <li><a href="/tcodes/XLOC/" class="text-azure hover:underline">XLOC</a></li>
+        <li><a href="/tcodes/XLOR/" class="text-azure hover:underline">XLOR</a></li>
+        <li><a href="/tcodes/XLOS/" class="text-azure hover:underline">XLOS</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Banking (IND-Banking) <span class="font-normal text-slate">(1)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/SEM/" class="text-azure hover:underline">SEM</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Controlling (CO) <span class="font-normal text-slate">(78)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/CPC1-3/" class="text-azure hover:underline">CPC1-3</a></li>
+        <li><a href="/tcodes/CPC5/" class="text-azure hover:underline">CPC5</a></li>
+        <li><a href="/tcodes/CPII/" class="text-azure hover:underline">CPII</a></li>
+        <li><a href="/tcodes/CPP1-3/" class="text-azure hover:underline">CPP1-3</a></li>
+        <li><a href="/tcodes/CPP5/" class="text-azure hover:underline">CPP5</a></li>
+        <li><a href="/tcodes/CPTG/" class="text-azure hover:underline">CPTG</a></li>
+        <li><a href="/tcodes/CPTH/" class="text-azure hover:underline">CPTH</a></li>
+        <li><a href="/tcodes/CPV1-3/" class="text-azure hover:underline">CPV1-3</a></li>
+        <li><a href="/tcodes/CPV5/" class="text-azure hover:underline">CPV5</a></li>
+        <li><a href="/tcodes/F0125/" class="text-azure hover:underline">F0125</a></li>
+        <li><a href="/tcodes/F0126/" class="text-azure hover:underline">F0126</a></li>
+        <li><a href="/tcodes/KA01/" class="text-azure hover:underline">KA01</a></li>
+        <li><a href="/tcodes/KA02/" class="text-azure hover:underline">KA02</a></li>
+        <li><a href="/tcodes/KA03/" class="text-azure hover:underline">KA03</a></li>
+        <li><a href="/tcodes/KA06/" class="text-azure hover:underline">KA06</a></li>
+        <li><a href="/tcodes/KB11N/" class="text-azure hover:underline">KB11N</a></li>
+        <li><a href="/tcodes/KB11NP/" class="text-azure hover:underline">KB11NP</a></li>
+        <li><a href="/tcodes/KB13N/" class="text-azure hover:underline">KB13N</a></li>
+        <li><a href="/tcodes/KB13NP/" class="text-azure hover:underline">KB13NP</a></li>
+        <li><a href="/tcodes/KB14N/" class="text-azure hover:underline">KB14N</a></li>
+        <li><a href="/tcodes/KB14NP/" class="text-azure hover:underline">KB14NP</a></li>
+        <li><a href="/tcodes/KB21N/" class="text-azure hover:underline">KB21N</a></li>
+        <li><a href="/tcodes/KB21NP/" class="text-azure hover:underline">KB21NP</a></li>
+        <li><a href="/tcodes/KB23N/" class="text-azure hover:underline">KB23N</a></li>
+        <li><a href="/tcodes/KB23NP/" class="text-azure hover:underline">KB23NP</a></li>
+        <li><a href="/tcodes/KB24N/" class="text-azure hover:underline">KB24N</a></li>
+        <li><a href="/tcodes/KB24NP/" class="text-azure hover:underline">KB24NP</a></li>
+        <li><a href="/tcodes/KE27/" class="text-azure hover:underline">KE27</a></li>
+        <li><a href="/tcodes/KK16/" class="text-azure hover:underline">KK16</a></li>
+        <li><a href="/tcodes/KK17/" class="text-azure hover:underline">KK17</a></li>
+        <li><a href="/tcodes/KK46/" class="text-azure hover:underline">KK46</a></li>
+        <li><a href="/tcodes/KK47/" class="text-azure hover:underline">KK47</a></li>
+        <li><a href="/tcodes/KK88/" class="text-azure hover:underline">KK88</a></li>
+        <li><a href="/tcodes/KK89/" class="text-azure hover:underline">KK89</a></li>
+        <li><a href="/tcodes/KKB4/" class="text-azure hover:underline">KKB4</a></li>
+        <li><a href="/tcodes/KKBC_HOE/" class="text-azure hover:underline">KKBC_HOE</a></li>
+        <li><a href="/tcodes/KKBC_HOE_H/" class="text-azure hover:underline">KKBC_HOE_H</a></li>
+        <li><a href="/tcodes/KKBC_KTR/" class="text-azure hover:underline">KKBC_KTR</a></li>
+        <li><a href="/tcodes/KKC1/" class="text-azure hover:underline">KKC1</a></li>
+        <li><a href="/tcodes/KKC2/" class="text-azure hover:underline">KKC2</a></li>
+        <li><a href="/tcodes/KKC3/" class="text-azure hover:underline">KKC3</a></li>
+        <li><a href="/tcodes/KKC4/" class="text-azure hover:underline">KKC4</a></li>
+        <li><a href="/tcodes/KKC5/" class="text-azure hover:underline">KKC5</a></li>
+        <li><a href="/tcodes/KKC6/" class="text-azure hover:underline">KKC6</a></li>
+        <li><a href="/tcodes/KKC7/" class="text-azure hover:underline">KKC7</a></li>
+        <li><a href="/tcodes/KKC8/" class="text-azure hover:underline">KKC8</a></li>
+        <li><a href="/tcodes/KKC9/" class="text-azure hover:underline">KKC9</a></li>
+        <li><a href="/tcodes/KKE1/" class="text-azure hover:underline">KKE1</a></li>
+        <li><a href="/tcodes/KKE2/" class="text-azure hover:underline">KKE2</a></li>
+        <li><a href="/tcodes/KKE3/" class="text-azure hover:underline">KKE3</a></li>
+        <li><a href="/tcodes/KKEB/" class="text-azure hover:underline">KKEB</a></li>
+        <li><a href="/tcodes/KKEC/" class="text-azure hover:underline">KKEC</a></li>
+        <li><a href="/tcodes/KKED/" class="text-azure hover:underline">KKED</a></li>
+        <li><a href="/tcodes/KKH1/" class="text-azure hover:underline">KKH1</a></li>
+        <li><a href="/tcodes/KKH2/" class="text-azure hover:underline">KKH2</a></li>
+        <li><a href="/tcodes/KKH3/" class="text-azure hover:underline">KKH3</a></li>
+        <li><a href="/tcodes/KKN1/" class="text-azure hover:underline">KKN1</a></li>
+        <li><a href="/tcodes/KKN2/" class="text-azure hover:underline">KKN2</a></li>
+        <li><a href="/tcodes/KKP2/" class="text-azure hover:underline">KKP2</a></li>
+        <li><a href="/tcodes/KKP4/" class="text-azure hover:underline">KKP4</a></li>
+        <li><a href="/tcodes/KKPH/" class="text-azure hover:underline">KKPH</a></li>
+        <li><a href="/tcodes/KKPHIE/" class="text-azure hover:underline">KKPHIE</a></li>
+        <li><a href="/tcodes/KKPJ/" class="text-azure hover:underline">KKPJ</a></li>
+        <li><a href="/tcodes/KKPZ/" class="text-azure hover:underline">KKPZ</a></li>
+        <li><a href="/tcodes/KKR0/" class="text-azure hover:underline">KKR0</a></li>
+        <li><a href="/tcodes/KKRC/" class="text-azure hover:underline">KKRC</a></li>
+        <li><a href="/tcodes/KSC1-3/" class="text-azure hover:underline">KSC1-3</a></li>
+        <li><a href="/tcodes/KSC5/" class="text-azure hover:underline">KSC5</a></li>
+        <li><a href="/tcodes/KSII/" class="text-azure hover:underline">KSII</a></li>
+        <li><a href="/tcodes/KSU1-3/" class="text-azure hover:underline">KSU1-3</a></li>
+        <li><a href="/tcodes/KSU5/" class="text-azure hover:underline">KSU5</a></li>
+        <li><a href="/tcodes/KSV1-3/" class="text-azure hover:underline">KSV1-3</a></li>
+        <li><a href="/tcodes/KSV5/" class="text-azure hover:underline">KSV5</a></li>
+        <li><a href="/tcodes/OKB9/" class="text-azure hover:underline">OKB9</a></li>
+        <li><a href="/tcodes/S_ALR_87013028/" class="text-azure hover:underline">S_ALR_87013028</a></li>
+        <li><a href="/tcodes/S_ALR_87013029/" class="text-azure hover:underline">S_ALR_87013029</a></li>
+        <li><a href="/tcodes/S_ALR_87013036/" class="text-azure hover:underline">S_ALR_87013036</a></li>
+        <li><a href="/tcodes/TKA3A/" class="text-azure hover:underline">TKA3A</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Cross-application (CROSS) <span class="font-normal text-slate">(64)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/CBCACT/" class="text-azure hover:underline">CBCACT</a></li>
+        <li><a href="/tcodes/CBCAT/" class="text-azure hover:underline">CBCAT</a></li>
+        <li><a href="/tcodes/CBCBRG/" class="text-azure hover:underline">CBCBRG</a></li>
+        <li><a href="/tcodes/CBCF/" class="text-azure hover:underline">CBCF</a></li>
+        <li><a href="/tcodes/CBCMLS/" class="text-azure hover:underline">CBCMLS</a></li>
+        <li><a href="/tcodes/CBCMOD/" class="text-azure hover:underline">CBCMOD</a></li>
+        <li><a href="/tcodes/CBCMSV/" class="text-azure hover:underline">CBCMSV</a></li>
+        <li><a href="/tcodes/CBCMTG/" class="text-azure hover:underline">CBCMTG</a></li>
+        <li><a href="/tcodes/CBCPAR/" class="text-azure hover:underline">CBCPAR</a></li>
+        <li><a href="/tcodes/CBCS/" class="text-azure hover:underline">CBCS</a></li>
+        <li><a href="/tcodes/CBCSTEP/" class="text-azure hover:underline">CBCSTEP</a></li>
+        <li><a href="/tcodes/CBP_SOP_PLAN_SAVE/" class="text-azure hover:underline">CBP_SOP_PLAN_SAVE</a></li>
+        <li><a href="/tcodes/CBP1/" class="text-azure hover:underline">CBP1</a></li>
+        <li><a href="/tcodes/CBP2/" class="text-azure hover:underline">CBP2</a></li>
+        <li><a href="/tcodes/CBP3/" class="text-azure hover:underline">CBP3</a></li>
+        <li><a href="/tcodes/CBP4/" class="text-azure hover:underline">CBP4</a></li>
+        <li><a href="/tcodes/CBP5/" class="text-azure hover:underline">CBP5</a></li>
+        <li><a href="/tcodes/CBP6/" class="text-azure hover:underline">CBP6</a></li>
+        <li><a href="/tcodes/CBP7/" class="text-azure hover:underline">CBP7</a></li>
+        <li><a href="/tcodes/CBPRO/" class="text-azure hover:underline">CBPRO</a></li>
+        <li><a href="/tcodes/CBPV/" class="text-azure hover:underline">CBPV</a></li>
+        <li><a href="/tcodes/ESH_SEARCH/" class="text-azure hover:underline">ESH_SEARCH</a></li>
+        <li><a href="/tcodes/ISA/" class="text-azure hover:underline">ISA</a></li>
+        <li><a href="/tcodes/ISA_CAT_REPL_DELETE/" class="text-azure hover:underline">ISA_CAT_REPL_DELETE</a></li>
+        <li><a href="/tcodes/ISA_CAT_REPLICATION/" class="text-azure hover:underline">ISA_CAT_REPLICATION</a></li>
+        <li><a href="/tcodes/LPO_BOM_GETDETAIL/" class="text-azure hover:underline">LPO_BOM_GETDETAIL</a></li>
+        <li><a href="/tcodes/LPO_DEMANDS_GETLIST/" class="text-azure hover:underline">LPO_DEMANDS_GETLIST</a></li>
+        <li><a href="/tcodes/LPO_ITEM_GETDETAIL/" class="text-azure hover:underline">LPO_ITEM_GETDETAIL</a></li>
+        <li><a href="/tcodes/LPO_MATDATA_FIND/" class="text-azure hover:underline">LPO_MATDATA_FIND</a></li>
+        <li><a href="/tcodes/LPO_PLANT_GETLIST/" class="text-azure hover:underline">LPO_PLANT_GETLIST</a></li>
+        <li><a href="/tcodes/LPO_PRODCONF_CREATE/" class="text-azure hover:underline">LPO_PRODCONF_CREATE</a></li>
+        <li><a href="/tcodes/LPO_ROUTE_GEDETAIL/" class="text-azure hover:underline">LPO_ROUTE_GEDETAIL</a></li>
+        <li><a href="/tcodes/LPO_STOCK_GETLIST/" class="text-azure hover:underline">LPO_STOCK_GETLIST</a></li>
+        <li><a href="/tcodes/LPO_WORKCENTER_FIND/" class="text-azure hover:underline">LPO_WORKCENTER_FIND</a></li>
+        <li><a href="/tcodes/PFSE/" class="text-azure hover:underline">PFSE</a></li>
+        <li><a href="/tcodes/PX01/" class="text-azure hover:underline">PX01</a></li>
+        <li><a href="/tcodes/PX02/" class="text-azure hover:underline">PX02</a></li>
+        <li><a href="/tcodes/PX03/" class="text-azure hover:underline">PX03</a></li>
+        <li><a href="/tcodes/PX04/" class="text-azure hover:underline">PX04</a></li>
+        <li><a href="/tcodes/PX05/" class="text-azure hover:underline">PX05</a></li>
+        <li><a href="/tcodes/S_EB5_05000537/" class="text-azure hover:underline">S_EB5_05000537</a></li>
+        <li><a href="/tcodes/S_EB5_05000608/" class="text-azure hover:underline">S_EB5_05000608</a></li>
+        <li><a href="/tcodes/S_EB5_05000609/" class="text-azure hover:underline">S_EB5_05000609</a></li>
+        <li><a href="/tcodes/S_EB5_05000612/" class="text-azure hover:underline">S_EB5_05000612</a></li>
+        <li><a href="/tcodes/S_EB5_05000660/" class="text-azure hover:underline">S_EB5_05000660</a></li>
+        <li><a href="/tcodes/S_EB5_05000669/" class="text-azure hover:underline">S_EB5_05000669</a></li>
+        <li><a href="/tcodes/S_EB5_05000670/" class="text-azure hover:underline">S_EB5_05000670</a></li>
+        <li><a href="/tcodes/S_EB5_05000679/" class="text-azure hover:underline">S_EB5_05000679</a></li>
+        <li><a href="/tcodes/S_EB5_05000680/" class="text-azure hover:underline">S_EB5_05000680</a></li>
+        <li><a href="/tcodes/S_EB5_05000691/" class="text-azure hover:underline">S_EB5_05000691</a></li>
+        <li><a href="/tcodes/S_EB5_05000692/" class="text-azure hover:underline">S_EB5_05000692</a></li>
+        <li><a href="/tcodes/S_EB5_05000762/" class="text-azure hover:underline">S_EB5_05000762</a></li>
+        <li><a href="/tcodes/S_EBJ_98000052/" class="text-azure hover:underline">S_EBJ_98000052</a></li>
+        <li><a href="/tcodes/S_EBJ_98000078/" class="text-azure hover:underline">S_EBJ_98000078</a></li>
+        <li><a href="/tcodes/S_EBJ_98000092/" class="text-azure hover:underline">S_EBJ_98000092</a></li>
+        <li><a href="/tcodes/S_EBS_44000154/" class="text-azure hover:underline">S_EBS_44000154</a></li>
+        <li><a href="/tcodes/S_EBS_44000345/" class="text-azure hover:underline">S_EBS_44000345</a></li>
+        <li><a href="/tcodes/S_EBS_44000346/" class="text-azure hover:underline">S_EBS_44000346</a></li>
+        <li><a href="/tcodes/S_EBS_44000415/" class="text-azure hover:underline">S_EBS_44000415</a></li>
+        <li><a href="/tcodes/S_EBS_44000421/" class="text-azure hover:underline">S_EBS_44000421</a></li>
+        <li><a href="/tcodes/S_EBS_44000427/" class="text-azure hover:underline">S_EBS_44000427</a></li>
+        <li><a href="/tcodes/S_EBS_44000505/" class="text-azure hover:underline">S_EBS_44000505</a></li>
+        <li><a href="/tcodes/S_EBS_44000536/" class="text-azure hover:underline">S_EBS_44000536</a></li>
+        <li><a href="/tcodes/TREX/" class="text-azure hover:underline">TREX</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Customer Service (CS) <span class="font-normal text-slate">(1)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/CIC0/" class="text-azure hover:underline">CIC0</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Environment, Health &amp; Safety (EHS) <span class="font-normal text-slate">(101)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/CBIH00/" class="text-azure hover:underline">CBIH00</a></li>
+        <li><a href="/tcodes/CBIH02/" class="text-azure hover:underline">CBIH02</a></li>
+        <li><a href="/tcodes/CBIH03/" class="text-azure hover:underline">CBIH03</a></li>
+        <li><a href="/tcodes/CBIH12/" class="text-azure hover:underline">CBIH12</a></li>
+        <li><a href="/tcodes/CBIH13/" class="text-azure hover:underline">CBIH13</a></li>
+        <li><a href="/tcodes/CBIH14/" class="text-azure hover:underline">CBIH14</a></li>
+        <li><a href="/tcodes/CBIH42/" class="text-azure hover:underline">CBIH42</a></li>
+        <li><a href="/tcodes/CBIH43/" class="text-azure hover:underline">CBIH43</a></li>
+        <li><a href="/tcodes/CBIH50/" class="text-azure hover:underline">CBIH50</a></li>
+        <li><a href="/tcodes/CBIH51/" class="text-azure hover:underline">CBIH51</a></li>
+        <li><a href="/tcodes/CBIH52/" class="text-azure hover:underline">CBIH52</a></li>
+        <li><a href="/tcodes/CBIH72/" class="text-azure hover:underline">CBIH72</a></li>
+        <li><a href="/tcodes/CBIH73/" class="text-azure hover:underline">CBIH73</a></li>
+        <li><a href="/tcodes/CBIH82/" class="text-azure hover:underline">CBIH82</a></li>
+        <li><a href="/tcodes/CBIH83/" class="text-azure hover:underline">CBIH83</a></li>
+        <li><a href="/tcodes/CBIH88/" class="text-azure hover:underline">CBIH88</a></li>
+        <li><a href="/tcodes/CBIH89/" class="text-azure hover:underline">CBIH89</a></li>
+        <li><a href="/tcodes/CBIH92/" class="text-azure hover:underline">CBIH92</a></li>
+        <li><a href="/tcodes/CBIH92OLD/" class="text-azure hover:underline">CBIH92OLD</a></li>
+        <li><a href="/tcodes/CBIH93OLD/" class="text-azure hover:underline">CBIH93OLD</a></li>
+        <li><a href="/tcodes/CBIHB0/" class="text-azure hover:underline">CBIHB0</a></li>
+        <li><a href="/tcodes/CBIHB1/" class="text-azure hover:underline">CBIHB1</a></li>
+        <li><a href="/tcodes/CBIHB2/" class="text-azure hover:underline">CBIHB2</a></li>
+        <li><a href="/tcodes/CBIHB3/" class="text-azure hover:underline">CBIHB3</a></li>
+        <li><a href="/tcodes/CBIHB4/" class="text-azure hover:underline">CBIHB4</a></li>
+        <li><a href="/tcodes/CBIHB5/" class="text-azure hover:underline">CBIHB5</a></li>
+        <li><a href="/tcodes/CBIHB6/" class="text-azure hover:underline">CBIHB6</a></li>
+        <li><a href="/tcodes/CBIHCH1/" class="text-azure hover:underline">CBIHCH1</a></li>
+        <li><a href="/tcodes/CBIHCH2/" class="text-azure hover:underline">CBIHCH2</a></li>
+        <li><a href="/tcodes/CBIHCH3/" class="text-azure hover:underline">CBIHCH3</a></li>
+        <li><a href="/tcodes/CBIHCH4/" class="text-azure hover:underline">CBIHCH4</a></li>
+        <li><a href="/tcodes/CBIHM2/" class="text-azure hover:underline">CBIHM2</a></li>
+        <li><a href="/tcodes/CBIHM3/" class="text-azure hover:underline">CBIHM3</a></li>
+        <li><a href="/tcodes/CBIHMR01/" class="text-azure hover:underline">CBIHMR01</a></li>
+        <li><a href="/tcodes/CBIHMR02/" class="text-azure hover:underline">CBIHMR02</a></li>
+        <li><a href="/tcodes/CBIHMR03/" class="text-azure hover:underline">CBIHMR03</a></li>
+        <li><a href="/tcodes/CBIHMR04/" class="text-azure hover:underline">CBIHMR04</a></li>
+        <li><a href="/tcodes/CBIHMR05/" class="text-azure hover:underline">CBIHMR05</a></li>
+        <li><a href="/tcodes/CBIHMR06/" class="text-azure hover:underline">CBIHMR06</a></li>
+        <li><a href="/tcodes/CBIHMR07/" class="text-azure hover:underline">CBIHMR07</a></li>
+        <li><a href="/tcodes/CBIHMR08/" class="text-azure hover:underline">CBIHMR08</a></li>
+        <li><a href="/tcodes/CBIHMR09/" class="text-azure hover:underline">CBIHMR09</a></li>
+        <li><a href="/tcodes/CBIHR01/" class="text-azure hover:underline">CBIHR01</a></li>
+        <li><a href="/tcodes/CBIHSR01/" class="text-azure hover:underline">CBIHSR01</a></li>
+        <li><a href="/tcodes/CBIHT0/" class="text-azure hover:underline">CBIHT0</a></li>
+        <li><a href="/tcodes/CBIHT1/" class="text-azure hover:underline">CBIHT1</a></li>
+        <li><a href="/tcodes/CBIHT12/" class="text-azure hover:underline">CBIHT12</a></li>
+        <li><a href="/tcodes/CBIHT13/" class="text-azure hover:underline">CBIHT13</a></li>
+        <li><a href="/tcodes/CBIHT2/" class="text-azure hover:underline">CBIHT2</a></li>
+        <li><a href="/tcodes/CBIHT22/" class="text-azure hover:underline">CBIHT22</a></li>
+        <li><a href="/tcodes/CBIHT23/" class="text-azure hover:underline">CBIHT23</a></li>
+        <li><a href="/tcodes/CBIHT3/" class="text-azure hover:underline">CBIHT3</a></li>
+        <li><a href="/tcodes/CBIHT32/" class="text-azure hover:underline">CBIHT32</a></li>
+        <li><a href="/tcodes/CBIHT33/" class="text-azure hover:underline">CBIHT33</a></li>
+        <li><a href="/tcodes/CBIHT4/" class="text-azure hover:underline">CBIHT4</a></li>
+        <li><a href="/tcodes/CBIHT5/" class="text-azure hover:underline">CBIHT5</a></li>
+        <li><a href="/tcodes/CBIHT52/" class="text-azure hover:underline">CBIHT52</a></li>
+        <li><a href="/tcodes/CBIHT53/" class="text-azure hover:underline">CBIHT53</a></li>
+        <li><a href="/tcodes/CBIHT6/" class="text-azure hover:underline">CBIHT6</a></li>
+        <li><a href="/tcodes/CBIHT62/" class="text-azure hover:underline">CBIHT62</a></li>
+        <li><a href="/tcodes/CBIHT63/" class="text-azure hover:underline">CBIHT63</a></li>
+        <li><a href="/tcodes/CBIHT7/" class="text-azure hover:underline">CBIHT7</a></li>
+        <li><a href="/tcodes/CBIHT72/" class="text-azure hover:underline">CBIHT72</a></li>
+        <li><a href="/tcodes/CBIHT73/" class="text-azure hover:underline">CBIHT73</a></li>
+        <li><a href="/tcodes/EHSAMED/" class="text-azure hover:underline">EHSAMED</a></li>
+        <li><a href="/tcodes/EHSBC02/" class="text-azure hover:underline">EHSBC02</a></li>
+        <li><a href="/tcodes/EHSBP11/" class="text-azure hover:underline">EHSBP11</a></li>
+        <li><a href="/tcodes/EHSBP12/" class="text-azure hover:underline">EHSBP12</a></li>
+        <li><a href="/tcodes/EHSBP13/" class="text-azure hover:underline">EHSBP13</a></li>
+        <li><a href="/tcodes/EHSBP31/" class="text-azure hover:underline">EHSBP31</a></li>
+        <li><a href="/tcodes/EHSBP32/" class="text-azure hover:underline">EHSBP32</a></li>
+        <li><a href="/tcodes/EHSBP33/" class="text-azure hover:underline">EHSBP33</a></li>
+        <li><a href="/tcodes/EHSBP41/" class="text-azure hover:underline">EHSBP41</a></li>
+        <li><a href="/tcodes/EHSBP42/" class="text-azure hover:underline">EHSBP42</a></li>
+        <li><a href="/tcodes/EHSBP43/" class="text-azure hover:underline">EHSBP43</a></li>
+        <li><a href="/tcodes/EHSBP51/" class="text-azure hover:underline">EHSBP51</a></li>
+        <li><a href="/tcodes/EHSBP52/" class="text-azure hover:underline">EHSBP52</a></li>
+        <li><a href="/tcodes/EHSBP53/" class="text-azure hover:underline">EHSBP53</a></li>
+        <li><a href="/tcodes/EHSCBER/" class="text-azure hover:underline">EHSCBER</a></li>
+        <li><a href="/tcodes/EHSCDCT/" class="text-azure hover:underline">EHSCDCT</a></li>
+        <li><a href="/tcodes/EHSCMAS/" class="text-azure hover:underline">EHSCMAS</a></li>
+        <li><a href="/tcodes/EHSEVAL00/" class="text-azure hover:underline">EHSEVAL00</a></li>
+        <li><a href="/tcodes/EHSEXIST0/" class="text-azure hover:underline">EHSEXIST0</a></li>
+        <li><a href="/tcodes/EHSH_C_NR_EXA_CO/" class="text-azure hover:underline">EHSH_C_NR_EXA_CO</a></li>
+        <li><a href="/tcodes/EHSH_C_NR_NEWPER/" class="text-azure hover:underline">EHSH_C_NR_NEWPER</a></li>
+        <li><a href="/tcodes/EHSH_C_NR_RECN/" class="text-azure hover:underline">EHSH_C_NR_RECN</a></li>
+        <li><a href="/tcodes/EHSH_C_NR_VAC_ID/" class="text-azure hover:underline">EHSH_C_NR_VAC_ID</a></li>
+        <li><a href="/tcodes/EHSH_D_CALPHYS/" class="text-azure hover:underline">EHSH_D_CALPHYS</a></li>
+        <li><a href="/tcodes/EHSH_D_PCP/" class="text-azure hover:underline">EHSH_D_PCP</a></li>
+        <li><a href="/tcodes/EHSK_D_ACTION_STATUS/" class="text-azure hover:underline">EHSK_D_ACTION_STATUS</a></li>
+        <li><a href="/tcodes/EHSK_D_ASSPERSPROT/" class="text-azure hover:underline">EHSK_D_ASSPERSPROT</a></li>
+        <li><a href="/tcodes/EHSK_D_GEN_SERVERS/" class="text-azure hover:underline">EHSK_D_GEN_SERVERS</a></li>
+        <li><a href="/tcodes/EHSK_D_IAL/" class="text-azure hover:underline">EHSK_D_IAL</a></li>
+        <li><a href="/tcodes/EHSK_D_REP_GEN_QUEUE/" class="text-azure hover:underline">EHSK_D_REP_GEN_QUEUE</a></li>
+        <li><a href="/tcodes/EHSK_D_REP_REQUESTS/" class="text-azure hover:underline">EHSK_D_REP_REQUESTS</a></li>
+        <li><a href="/tcodes/EHSK_D_RISK_ASSESS/" class="text-azure hover:underline">EHSK_D_RISK_ASSESS</a></li>
+        <li><a href="/tcodes/EHSK_D_SHIP_ORDERS/" class="text-azure hover:underline">EHSK_D_SHIP_ORDERS</a></li>
+        <li><a href="/tcodes/EHSMQUEST01/" class="text-azure hover:underline">EHSMQUEST01</a></li>
+        <li><a href="/tcodes/EHSPERSHC1/" class="text-azure hover:underline">EHSPERSHC1</a></li>
+        <li><a href="/tcodes/EHSPP01/" class="text-azure hover:underline">EHSPP01</a></li>
+        <li><a href="/tcodes/EHSPRA/" class="text-azure hover:underline">EHSPRA</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Financial Close (FIN-CLOSE) <span class="font-normal text-slate">(9)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/OVACT/" class="text-azure hover:underline">OVACT</a></li>
+        <li><a href="/tcodes/OVEP/" class="text-azure hover:underline">OVEP</a></li>
+        <li><a href="/tcodes/VF42/" class="text-azure hover:underline">VF42</a></li>
+        <li><a href="/tcodes/VF43/" class="text-azure hover:underline">VF43</a></li>
+        <li><a href="/tcodes/VF44/" class="text-azure hover:underline">VF44</a></li>
+        <li><a href="/tcodes/VF45/" class="text-azure hover:underline">VF45</a></li>
+        <li><a href="/tcodes/VF46/" class="text-azure hover:underline">VF46</a></li>
+        <li><a href="/tcodes/VF47/" class="text-azure hover:underline">VF47</a></li>
+        <li><a href="/tcodes/VF48/" class="text-azure hover:underline">VF48</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">General Ledger (FI-GL) <span class="font-normal text-slate">(2)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/FBL3N/" class="text-azure hover:underline">FBL3N</a></li>
+        <li><a href="/tcodes/FS10N/" class="text-azure hover:underline">FS10N</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Governance, Risk &amp; Compliance (FI-GRC) <span class="font-normal text-slate">(65)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/COMP/" class="text-azure hover:underline">COMP</a></li>
+        <li><a href="/tcodes/CUSDE/" class="text-azure hover:underline">CUSDE</a></li>
+        <li><a href="/tcodes/CUSDEC/" class="text-azure hover:underline">CUSDEC</a></li>
+        <li><a href="/tcodes/EN99/" class="text-azure hover:underline">EN99</a></li>
+        <li><a href="/tcodes/NETUS_ER/" class="text-azure hover:underline">NETUS_ER</a></li>
+        <li><a href="/tcodes/OVE1/" class="text-azure hover:underline">OVE1</a></li>
+        <li><a href="/tcodes/POF/" class="text-azure hover:underline">POF</a></li>
+        <li><a href="/tcodes/POFO/" class="text-azure hover:underline">POFO</a></li>
+        <li><a href="/tcodes/POFO1/" class="text-azure hover:underline">POFO1</a></li>
+        <li><a href="/tcodes/POFO2/" class="text-azure hover:underline">POFO2</a></li>
+        <li><a href="/tcodes/POFO3/" class="text-azure hover:underline">POFO3</a></li>
+        <li><a href="/tcodes/POFO31/" class="text-azure hover:underline">POFO31</a></li>
+        <li><a href="/tcodes/POFO32/" class="text-azure hover:underline">POFO32</a></li>
+        <li><a href="/tcodes/POFO33/" class="text-azure hover:underline">POFO33</a></li>
+        <li><a href="/tcodes/RWB2B001/" class="text-azure hover:underline">RWB2B001</a></li>
+        <li><a href="/tcodes/RWB2B006/" class="text-azure hover:underline">RWB2B006</a></li>
+        <li><a href="/tcodes/RWB2BM/" class="text-azure hover:underline">RWB2BM</a></li>
+        <li><a href="/tcodes/RWB2BRE/" class="text-azure hover:underline">RWB2BRE</a></li>
+        <li><a href="/tcodes/RWB2DI001/" class="text-azure hover:underline">RWB2DI001</a></li>
+        <li><a href="/tcodes/RWB2DI002/" class="text-azure hover:underline">RWB2DI002</a></li>
+        <li><a href="/tcodes/RWB2DI003/" class="text-azure hover:underline">RWB2DI003</a></li>
+        <li><a href="/tcodes/RWB2DI004/" class="text-azure hover:underline">RWB2DI004</a></li>
+        <li><a href="/tcodes/SER/" class="text-azure hover:underline">SER</a></li>
+        <li><a href="/tcodes/VE85/" class="text-azure hover:underline">VE85</a></li>
+        <li><a href="/tcodes/VE86/" class="text-azure hover:underline">VE86</a></li>
+        <li><a href="/tcodes/VE87/" class="text-azure hover:underline">VE87</a></li>
+        <li><a href="/tcodes/VE88/" class="text-azure hover:underline">VE88</a></li>
+        <li><a href="/tcodes/VE89/" class="text-azure hover:underline">VE89</a></li>
+        <li><a href="/tcodes/VEBE/" class="text-azure hover:underline">VEBE</a></li>
+        <li><a href="/tcodes/VECZ/" class="text-azure hover:underline">VECZ</a></li>
+        <li><a href="/tcodes/VEHU/" class="text-azure hover:underline">VEHU</a></li>
+        <li><a href="/tcodes/VEI3/" class="text-azure hover:underline">VEI3</a></li>
+        <li><a href="/tcodes/VEIA/" class="text-azure hover:underline">VEIA</a></li>
+        <li><a href="/tcodes/VEIB/" class="text-azure hover:underline">VEIB</a></li>
+        <li><a href="/tcodes/VEPL/" class="text-azure hover:underline">VEPL</a></li>
+        <li><a href="/tcodes/VESK/" class="text-azure hover:underline">VESK</a></li>
+        <li><a href="/tcodes/VI08X/" class="text-azure hover:underline">VI08X</a></li>
+        <li><a href="/tcodes/VI09X/" class="text-azure hover:underline">VI09X</a></li>
+        <li><a href="/tcodes/VI10X/" class="text-azure hover:underline">VI10X</a></li>
+        <li><a href="/tcodes/VI14X/" class="text-azure hover:underline">VI14X</a></li>
+        <li><a href="/tcodes/VI64X/" class="text-azure hover:underline">VI64X</a></li>
+        <li><a href="/tcodes/VI77X/" class="text-azure hover:underline">VI77X</a></li>
+        <li><a href="/tcodes/VI79X/" class="text-azure hover:underline">VI79X</a></li>
+        <li><a href="/tcodes/VI80X/" class="text-azure hover:underline">VI80X</a></li>
+        <li><a href="/tcodes/VIEX/" class="text-azure hover:underline">VIEX</a></li>
+        <li><a href="/tcodes/VIIM/" class="text-azure hover:underline">VIIM</a></li>
+        <li><a href="/tcodes/VIWE/" class="text-azure hover:underline">VIWE</a></li>
+        <li><a href="/tcodes/VX99/" class="text-azure hover:underline">VX99</a></li>
+        <li><a href="/tcodes/VXCZ/" class="text-azure hover:underline">VXCZ</a></li>
+        <li><a href="/tcodes/VXHU/" class="text-azure hover:underline">VXHU</a></li>
+        <li><a href="/tcodes/VXPL/" class="text-azure hover:underline">VXPL</a></li>
+        <li><a href="/tcodes/VXSK/" class="text-azure hover:underline">VXSK</a></li>
+        <li><a href="/tcodes/WB24/" class="text-azure hover:underline">WB24</a></li>
+        <li><a href="/tcodes/WB24N/" class="text-azure hover:underline">WB24N</a></li>
+        <li><a href="/tcodes/WB25/" class="text-azure hover:underline">WB25</a></li>
+        <li><a href="/tcodes/WB25_COMP/" class="text-azure hover:underline">WB25_COMP</a></li>
+        <li><a href="/tcodes/WB2B/" class="text-azure hover:underline">WB2B</a></li>
+        <li><a href="/tcodes/WB2B_CREATE_TC_U/" class="text-azure hover:underline">WB2B_CREATE_TC_U</a></li>
+        <li><a href="/tcodes/WB2B_NETUS/" class="text-azure hover:underline">WB2B_NETUS</a></li>
+        <li><a href="/tcodes/WB2DI1/" class="text-azure hover:underline">WB2DI1</a></li>
+        <li><a href="/tcodes/WB2DI2/" class="text-azure hover:underline">WB2DI2</a></li>
+        <li><a href="/tcodes/WB2DI3/" class="text-azure hover:underline">WB2DI3</a></li>
+        <li><a href="/tcodes/WB2DI4/" class="text-azure hover:underline">WB2DI4</a></li>
+        <li><a href="/tcodes/WB31/" class="text-azure hover:underline">WB31</a></li>
+        <li><a href="/tcodes/WBRR/" class="text-azure hover:underline">WBRR</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">High Tech (IND-High Tech) <span class="font-normal text-slate">(22)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/DRM/" class="text-azure hover:underline">DRM</a></li>
+        <li><a href="/tcodes/DRMBUMS/" class="text-azure hover:underline">DRMBUMS</a></li>
+        <li><a href="/tcodes/DRMCDMS/" class="text-azure hover:underline">DRMCDMS</a></li>
+        <li><a href="/tcodes/DRMCLMS/" class="text-azure hover:underline">DRMCLMS</a></li>
+        <li><a href="/tcodes/DRMIRMS/" class="text-azure hover:underline">DRMIRMS</a></li>
+        <li><a href="/tcodes/DRMLMMS/" class="text-azure hover:underline">DRMLMMS</a></li>
+        <li><a href="/tcodes/DRMPCMS/" class="text-azure hover:underline">DRMPCMS</a></li>
+        <li><a href="/tcodes/DRMPEMS/" class="text-azure hover:underline">DRMPEMS</a></li>
+        <li><a href="/tcodes/DRMPPMS/" class="text-azure hover:underline">DRMPPMS</a></li>
+        <li><a href="/tcodes/DRMPPMS_C/" class="text-azure hover:underline">DRMPPMS_C</a></li>
+        <li><a href="/tcodes/DRMPPMS_D/" class="text-azure hover:underline">DRMPPMS_D</a></li>
+        <li><a href="/tcodes/DRMPPMS_P/" class="text-azure hover:underline">DRMPPMS_P</a></li>
+        <li><a href="/tcodes/DRMR3MS/" class="text-azure hover:underline">DRMR3MS</a></li>
+        <li><a href="/tcodes/DRMSTGMS/" class="text-azure hover:underline">DRMSTGMS</a></li>
+        <li><a href="/tcodes/DRMXMRPT/" class="text-azure hover:underline">DRMXMRPT</a></li>
+        <li><a href="/tcodes/OK30/" class="text-azure hover:underline">OK30</a></li>
+        <li><a href="/tcodes/OK32/" class="text-azure hover:underline">OK32</a></li>
+        <li><a href="/tcodes/OK36/" class="text-azure hover:underline">OK36</a></li>
+        <li><a href="/tcodes/PASW/" class="text-azure hover:underline">PASW</a></li>
+        <li><a href="/tcodes/SMP/" class="text-azure hover:underline">SMP</a></li>
+        <li><a href="/tcodes/SPC/" class="text-azure hover:underline">SPC</a></li>
+        <li><a href="/tcodes/VBSY/" class="text-azure hover:underline">VBSY</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Human Resources (HR) <span class="font-normal text-slate">(15)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/CATSXC/" class="text-azure hover:underline">CATSXC</a></li>
+        <li><a href="/tcodes/CATSXC_CHECK/" class="text-azure hover:underline">CATSXC_CHECK</a></li>
+        <li><a href="/tcodes/CATSXC_COMP_DTL/" class="text-azure hover:underline">CATSXC_COMP_DTL</a></li>
+        <li><a href="/tcodes/CATSXT/" class="text-azure hover:underline">CATSXT</a></li>
+        <li><a href="/tcodes/CATSXT_ADMIN/" class="text-azure hover:underline">CATSXT_ADMIN</a></li>
+        <li><a href="/tcodes/S_AL0_96000015/" class="text-azure hover:underline">S_AL0_96000015</a></li>
+        <li><a href="/tcodes/S_ALR_87100621/" class="text-azure hover:underline">S_ALR_87100621</a></li>
+        <li><a href="/tcodes/S_ALR_87100718/" class="text-azure hover:underline">S_ALR_87100718</a></li>
+        <li><a href="/tcodes/S_ALR_87100771/" class="text-azure hover:underline">S_ALR_87100771</a></li>
+        <li><a href="/tcodes/S_ALR_87100775/" class="text-azure hover:underline">S_ALR_87100775</a></li>
+        <li><a href="/tcodes/S_ALR_87100776/" class="text-azure hover:underline">S_ALR_87100776</a></li>
+        <li><a href="/tcodes/S_ALR_87100782/" class="text-azure hover:underline">S_ALR_87100782</a></li>
+        <li><a href="/tcodes/S_ALR_87100834/" class="text-azure hover:underline">S_ALR_87100834</a></li>
+        <li><a href="/tcodes/S_P00_07000122/" class="text-azure hover:underline">S_P00_07000122</a></li>
+        <li><a href="/tcodes/S_P00_07000322/" class="text-azure hover:underline">S_P00_07000322</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Inventory Management (MM-IM) <span class="font-normal text-slate">(2)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/MB51/" class="text-azure hover:underline">MB51</a></li>
+        <li><a href="/tcodes/MMPI/" class="text-azure hover:underline">MMPI</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Invoice Verification (MM-IV) <span class="font-normal text-slate">(1)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/MIRO/" class="text-azure hover:underline">MIRO</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Master Data Management (MDM) <span class="font-normal text-slate">(83)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/BOR/" class="text-azure hover:underline">BOR</a></li>
+        <li><a href="/tcodes/BPH/" class="text-azure hover:underline">BPH</a></li>
+        <li><a href="/tcodes/BPH_TYPE/" class="text-azure hover:underline">BPH_TYPE</a></li>
+        <li><a href="/tcodes/BUHI_CLEAR_BUFFER/" class="text-azure hover:underline">BUHI_CLEAR_BUFFER</a></li>
+        <li><a href="/tcodes/BUS1006004/" class="text-azure hover:underline">BUS1006004</a></li>
+        <li><a href="/tcodes/COM_PR_MDCHECK/" class="text-azure hover:underline">COM_PR_MDCHECK</a></li>
+        <li><a href="/tcodes/COMC_MATERIALID_ALL/" class="text-azure hover:underline">COMC_MATERIALID_ALL</a></li>
+        <li><a href="/tcodes/COMC_PR_ALTID/" class="text-azure hover:underline">COMC_PR_ALTID</a></li>
+        <li><a href="/tcodes/COMC_PR_ALTID_BSP/" class="text-azure hover:underline">COMC_PR_ALTID_BSP</a></li>
+        <li><a href="/tcodes/COMC_PR_OBJ_FAM/" class="text-azure hover:underline">COMC_PR_OBJ_FAM</a></li>
+        <li><a href="/tcodes/COMC_PR_OBJ_FAM1/" class="text-azure hover:underline">COMC_PR_OBJ_FAM1</a></li>
+        <li><a href="/tcodes/COMC_PR_RFCDEST/" class="text-azure hover:underline">COMC_PR_RFCDEST</a></li>
+        <li><a href="/tcodes/COMC_PRODUCT_IDX/" class="text-azure hover:underline">COMC_PRODUCT_IDX</a></li>
+        <li><a href="/tcodes/COMC_SERVICEID_ALL/" class="text-azure hover:underline">COMC_SERVICEID_ALL</a></li>
+        <li><a href="/tcodes/COMCPRD_BSP_ID/" class="text-azure hover:underline">COMCPRD_BSP_ID</a></li>
+        <li><a href="/tcodes/COMM_DEL_PRWB_USER/" class="text-azure hover:underline">COMM_DEL_PRWB_USER</a></li>
+        <li><a href="/tcodes/COMM_EXTRSET/" class="text-azure hover:underline">COMM_EXTRSET</a></li>
+        <li><a href="/tcodes/COMM_HIERARCHY/" class="text-azure hover:underline">COMM_HIERARCHY</a></li>
+        <li><a href="/tcodes/COMM_IOBJ_RECATEG/" class="text-azure hover:underline">COMM_IOBJ_RECATEG</a></li>
+        <li><a href="/tcodes/COMM_MSG01/" class="text-azure hover:underline">COMM_MSG01</a></li>
+        <li><a href="/tcodes/COMM_PRAPPLCAT/" class="text-azure hover:underline">COMM_PRAPPLCAT</a></li>
+        <li><a href="/tcodes/COMM_PRDARC/" class="text-azure hover:underline">COMM_PRDARC</a></li>
+        <li><a href="/tcodes/COMM_PROD_RECATEG/" class="text-azure hover:underline">COMM_PROD_RECATEG</a></li>
+        <li><a href="/tcodes/COMMPR_PCUI/" class="text-azure hover:underline">COMMPR_PCUI</a></li>
+        <li><a href="/tcodes/COMMPR01/" class="text-azure hover:underline">COMMPR01</a></li>
+        <li><a href="/tcodes/COMMPR02/" class="text-azure hover:underline">COMMPR02</a></li>
+        <li><a href="/tcodes/CRM_PRODUCT_LOG/" class="text-azure hover:underline">CRM_PRODUCT_LOG</a></li>
+        <li><a href="/tcodes/CRM_PRODUCT_STA/" class="text-azure hover:underline">CRM_PRODUCT_STA</a></li>
+        <li><a href="/tcodes/FD01/" class="text-azure hover:underline">FD01</a></li>
+        <li><a href="/tcodes/FD02/" class="text-azure hover:underline">FD02</a></li>
+        <li><a href="/tcodes/FD03/" class="text-azure hover:underline">FD03</a></li>
+        <li><a href="/tcodes/FD05/" class="text-azure hover:underline">FD05</a></li>
+        <li><a href="/tcodes/FD06/" class="text-azure hover:underline">FD06</a></li>
+        <li><a href="/tcodes/FK01/" class="text-azure hover:underline">FK01</a></li>
+        <li><a href="/tcodes/FK02/" class="text-azure hover:underline">FK02</a></li>
+        <li><a href="/tcodes/FK03/" class="text-azure hover:underline">FK03</a></li>
+        <li><a href="/tcodes/FK05/" class="text-azure hover:underline">FK05</a></li>
+        <li><a href="/tcodes/FK06/" class="text-azure hover:underline">FK06</a></li>
+        <li><a href="/tcodes/IMG/" class="text-azure hover:underline">IMG</a></li>
+        <li><a href="/tcodes/MAP1/" class="text-azure hover:underline">MAP1</a></li>
+        <li><a href="/tcodes/MAP2/" class="text-azure hover:underline">MAP2</a></li>
+        <li><a href="/tcodes/MAP3/" class="text-azure hover:underline">MAP3</a></li>
+        <li><a href="/tcodes/MK01/" class="text-azure hover:underline">MK01</a></li>
+        <li><a href="/tcodes/MK02/" class="text-azure hover:underline">MK02</a></li>
+        <li><a href="/tcodes/MK03/" class="text-azure hover:underline">MK03</a></li>
+        <li><a href="/tcodes/MK05/" class="text-azure hover:underline">MK05</a></li>
+        <li><a href="/tcodes/MK06/" class="text-azure hover:underline">MK06</a></li>
+        <li><a href="/tcodes/MK12/" class="text-azure hover:underline">MK12</a></li>
+        <li><a href="/tcodes/MK18/" class="text-azure hover:underline">MK18</a></li>
+        <li><a href="/tcodes/MK19/" class="text-azure hover:underline">MK19</a></li>
+        <li><a href="/tcodes/MSC1/" class="text-azure hover:underline">MSC1</a></li>
+        <li><a href="/tcodes/MSC2/" class="text-azure hover:underline">MSC2</a></li>
+        <li><a href="/tcodes/MSC3/" class="text-azure hover:underline">MSC3</a></li>
+        <li><a href="/tcodes/MSC4/" class="text-azure hover:underline">MSC4</a></li>
+        <li><a href="/tcodes/TBC001/" class="text-azure hover:underline">TBC001</a></li>
+        <li><a href="/tcodes/TBD001/" class="text-azure hover:underline">TBD001</a></li>
+        <li><a href="/tcodes/V-04/" class="text-azure hover:underline">V-04</a></li>
+        <li><a href="/tcodes/V-05/" class="text-azure hover:underline">V-05</a></li>
+        <li><a href="/tcodes/V-06/" class="text-azure hover:underline">V-06</a></li>
+        <li><a href="/tcodes/V-07/" class="text-azure hover:underline">V-07</a></li>
+        <li><a href="/tcodes/V-08/" class="text-azure hover:underline">V-08</a></li>
+        <li><a href="/tcodes/V-09/" class="text-azure hover:underline">V-09</a></li>
+        <li><a href="/tcodes/V-11/" class="text-azure hover:underline">V-11</a></li>
+        <li><a href="/tcodes/VAP1/" class="text-azure hover:underline">VAP1</a></li>
+        <li><a href="/tcodes/VAP2/" class="text-azure hover:underline">VAP2</a></li>
+        <li><a href="/tcodes/VAP3/" class="text-azure hover:underline">VAP3</a></li>
+        <li><a href="/tcodes/VD01/" class="text-azure hover:underline">VD01</a></li>
+        <li><a href="/tcodes/VD02/" class="text-azure hover:underline">VD02</a></li>
+        <li><a href="/tcodes/VD03/" class="text-azure hover:underline">VD03</a></li>
+        <li><a href="/tcodes/VD05/" class="text-azure hover:underline">VD05</a></li>
+        <li><a href="/tcodes/VD06/" class="text-azure hover:underline">VD06</a></li>
+        <li><a href="/tcodes/XD01/" class="text-azure hover:underline">XD01</a></li>
+        <li><a href="/tcodes/XD02/" class="text-azure hover:underline">XD02</a></li>
+        <li><a href="/tcodes/XD03/" class="text-azure hover:underline">XD03</a></li>
+        <li><a href="/tcodes/XD05/" class="text-azure hover:underline">XD05</a></li>
+        <li><a href="/tcodes/XD06/" class="text-azure hover:underline">XD06</a></li>
+        <li><a href="/tcodes/XD07/" class="text-azure hover:underline">XD07</a></li>
+        <li><a href="/tcodes/XK01/" class="text-azure hover:underline">XK01</a></li>
+        <li><a href="/tcodes/XK02/" class="text-azure hover:underline">XK02</a></li>
+        <li><a href="/tcodes/XK03/" class="text-azure hover:underline">XK03</a></li>
+        <li><a href="/tcodes/XK05/" class="text-azure hover:underline">XK05</a></li>
+        <li><a href="/tcodes/XK06/" class="text-azure hover:underline">XK06</a></li>
+        <li><a href="/tcodes/XK07/" class="text-azure hover:underline">XK07</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Oil &amp; Gas (IND-Oil and Gas) <span class="font-normal text-slate">(19)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/O300/" class="text-azure hover:underline">O300</a></li>
+        <li><a href="/tcodes/O3C1/" class="text-azure hover:underline">O3C1</a></li>
+        <li><a href="/tcodes/O3C2/" class="text-azure hover:underline">O3C2</a></li>
+        <li><a href="/tcodes/O4KC/" class="text-azure hover:underline">O4KC</a></li>
+        <li><a href="/tcodes/O4KE/" class="text-azure hover:underline">O4KE</a></li>
+        <li><a href="/tcodes/O4KG/" class="text-azure hover:underline">O4KG</a></li>
+        <li><a href="/tcodes/O4KH/" class="text-azure hover:underline">O4KH</a></li>
+        <li><a href="/tcodes/O4KI/" class="text-azure hover:underline">O4KI</a></li>
+        <li><a href="/tcodes/O4NC/" class="text-azure hover:underline">O4NC</a></li>
+        <li><a href="/tcodes/O4NS/" class="text-azure hover:underline">O4NS</a></li>
+        <li><a href="/tcodes/O4NV/" class="text-azure hover:underline">O4NV</a></li>
+        <li><a href="/tcodes/O4T0/" class="text-azure hover:underline">O4T0</a></li>
+        <li><a href="/tcodes/O4TC/" class="text-azure hover:underline">O4TC</a></li>
+        <li><a href="/tcodes/O4TCB/" class="text-azure hover:underline">O4TCB</a></li>
+        <li><a href="/tcodes/O4TDL/" class="text-azure hover:underline">O4TDL</a></li>
+        <li><a href="/tcodes/O4TE/" class="text-azure hover:underline">O4TE</a></li>
+        <li><a href="/tcodes/O4TF/" class="text-azure hover:underline">O4TF</a></li>
+        <li><a href="/tcodes/O4TG/" class="text-azure hover:underline">O4TG</a></li>
+        <li><a href="/tcodes/REVERSE/" class="text-azure hover:underline">REVERSE</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Product Lifecycle Management (PLM) <span class="font-normal text-slate">(91)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/BD_GEN_GRCP/" class="text-azure hover:underline">BD_GEN_GRCP</a></li>
+        <li><a href="/tcodes/BD_GEN_SRCP/" class="text-azure hover:underline">BD_GEN_SRCP</a></li>
+        <li><a href="/tcodes/CC04/" class="text-azure hover:underline">CC04</a></li>
+        <li><a href="/tcodes/CC31/" class="text-azure hover:underline">CC31</a></li>
+        <li><a href="/tcodes/CC32/" class="text-azure hover:underline">CC32</a></li>
+        <li><a href="/tcodes/CC33/" class="text-azure hover:underline">CC33</a></li>
+        <li><a href="/tcodes/CC62/" class="text-azure hover:underline">CC62</a></li>
+        <li><a href="/tcodes/CCSEQ_CSGUPD/" class="text-azure hover:underline">CCSEQ_CSGUPD</a></li>
+        <li><a href="/tcodes/CCSEQ_CUST/" class="text-azure hover:underline">CCSEQ_CUST</a></li>
+        <li><a href="/tcodes/CCSEQ_CYCLE/" class="text-azure hover:underline">CCSEQ_CYCLE</a></li>
+        <li><a href="/tcodes/CE01/" class="text-azure hover:underline">CE01</a></li>
+        <li><a href="/tcodes/CE02/" class="text-azure hover:underline">CE02</a></li>
+        <li><a href="/tcodes/CE03/" class="text-azure hover:underline">CE03</a></li>
+        <li><a href="/tcodes/CEP_R3_MON/" class="text-azure hover:underline">CEP_R3_MON</a></li>
+        <li><a href="/tcodes/CFC01/" class="text-azure hover:underline">CFC01</a></li>
+        <li><a href="/tcodes/CFC02/" class="text-azure hover:underline">CFC02</a></li>
+        <li><a href="/tcodes/CFE01/" class="text-azure hover:underline">CFE01</a></li>
+        <li><a href="/tcodes/CFE02/" class="text-azure hover:underline">CFE02</a></li>
+        <li><a href="/tcodes/CFE03/" class="text-azure hover:underline">CFE03</a></li>
+        <li><a href="/tcodes/CFI01/" class="text-azure hover:underline">CFI01</a></li>
+        <li><a href="/tcodes/CFI02/" class="text-azure hover:underline">CFI02</a></li>
+        <li><a href="/tcodes/CFI03/" class="text-azure hover:underline">CFI03</a></li>
+        <li><a href="/tcodes/CL20/" class="text-azure hover:underline">CL20</a></li>
+        <li><a href="/tcodes/CL20N/" class="text-azure hover:underline">CL20N</a></li>
+        <li><a href="/tcodes/CL22/" class="text-azure hover:underline">CL22</a></li>
+        <li><a href="/tcodes/CL22N/" class="text-azure hover:underline">CL22N</a></li>
+        <li><a href="/tcodes/CL24/" class="text-azure hover:underline">CL24</a></li>
+        <li><a href="/tcodes/CL24N/" class="text-azure hover:underline">CL24N</a></li>
+        <li><a href="/tcodes/CL6E/" class="text-azure hover:underline">CL6E</a></li>
+        <li><a href="/tcodes/CL6F/" class="text-azure hover:underline">CL6F</a></li>
+        <li><a href="/tcodes/CL6G/" class="text-azure hover:underline">CL6G</a></li>
+        <li><a href="/tcodes/CL6R/" class="text-azure hover:underline">CL6R</a></li>
+        <li><a href="/tcodes/CLB1/" class="text-azure hover:underline">CLB1</a></li>
+        <li><a href="/tcodes/CLB2/" class="text-azure hover:underline">CLB2</a></li>
+        <li><a href="/tcodes/CLB3/" class="text-azure hover:underline">CLB3</a></li>
+        <li><a href="/tcodes/CLNA/" class="text-azure hover:underline">CLNA</a></li>
+        <li><a href="/tcodes/CT01/" class="text-azure hover:underline">CT01</a></li>
+        <li><a href="/tcodes/CT02/" class="text-azure hover:underline">CT02</a></li>
+        <li><a href="/tcodes/CT03/" class="text-azure hover:underline">CT03</a></li>
+        <li><a href="/tcodes/CT04/" class="text-azure hover:underline">CT04</a></li>
+        <li><a href="/tcodes/CT05/" class="text-azure hover:underline">CT05</a></li>
+        <li><a href="/tcodes/CT06/" class="text-azure hover:underline">CT06</a></li>
+        <li><a href="/tcodes/CT11/" class="text-azure hover:underline">CT11</a></li>
+        <li><a href="/tcodes/CT12/" class="text-azure hover:underline">CT12</a></li>
+        <li><a href="/tcodes/CT21/" class="text-azure hover:underline">CT21</a></li>
+        <li><a href="/tcodes/CT22/" class="text-azure hover:underline">CT22</a></li>
+        <li><a href="/tcodes/CU51/" class="text-azure hover:underline">CU51</a></li>
+        <li><a href="/tcodes/CU51E/" class="text-azure hover:underline">CU51E</a></li>
+        <li><a href="/tcodes/CU52/" class="text-azure hover:underline">CU52</a></li>
+        <li><a href="/tcodes/CU52E/" class="text-azure hover:underline">CU52E</a></li>
+        <li><a href="/tcodes/CU55/" class="text-azure hover:underline">CU55</a></li>
+        <li><a href="/tcodes/CU80/" class="text-azure hover:underline">CU80</a></li>
+        <li><a href="/tcodes/CUMODEL/" class="text-azure hover:underline">CUMODEL</a></li>
+        <li><a href="/tcodes/DIN/" class="text-azure hover:underline">DIN</a></li>
+        <li><a href="/tcodes/EASYDMS_CUS/" class="text-azure hover:underline">EASYDMS_CUS</a></li>
+        <li><a href="/tcodes/ECH/" class="text-azure hover:underline">ECH</a></li>
+        <li><a href="/tcodes/EDESK_CUS/" class="text-azure hover:underline">EDESK_CUS</a></li>
+        <li><a href="/tcodes/EDESK_IPPE/" class="text-azure hover:underline">EDESK_IPPE</a></li>
+        <li><a href="/tcodes/FRML02/" class="text-azure hover:underline">FRML02</a></li>
+        <li><a href="/tcodes/FRML03/" class="text-azure hover:underline">FRML03</a></li>
+        <li><a href="/tcodes/FRML04/" class="text-azure hover:underline">FRML04</a></li>
+        <li><a href="/tcodes/GENC/" class="text-azure hover:underline">GENC</a></li>
+        <li><a href="/tcodes/MRTRS_START/" class="text-azure hover:underline">MRTRS_START</a></li>
+        <li><a href="/tcodes/MRTRSC01/" class="text-azure hover:underline">MRTRSC01</a></li>
+        <li><a href="/tcodes/MRTRSC02/" class="text-azure hover:underline">MRTRSC02</a></li>
+        <li><a href="/tcodes/O021/" class="text-azure hover:underline">O021</a></li>
+        <li><a href="/tcodes/O023/" class="text-azure hover:underline">O023</a></li>
+        <li><a href="/tcodes/O024/" class="text-azure hover:underline">O024</a></li>
+        <li><a href="/tcodes/OPPE07/" class="text-azure hover:underline">OPPE07</a></li>
+        <li><a href="/tcodes/OS72/" class="text-azure hover:underline">OS72</a></li>
+        <li><a href="/tcodes/OS73/" class="text-azure hover:underline">OS73</a></li>
+        <li><a href="/tcodes/PDCE/" class="text-azure hover:underline">PDCE</a></li>
+        <li><a href="/tcodes/PDN/" class="text-azure hover:underline">PDN</a></li>
+        <li><a href="/tcodes/PMEVC/" class="text-azure hover:underline">PMEVC</a></li>
+        <li><a href="/tcodes/PPECS/" class="text-azure hover:underline">PPECS</a></li>
+        <li><a href="/tcodes/RLMFW_CUST/" class="text-azure hover:underline">RLMFW_CUST</a></li>
+        <li><a href="/tcodes/RLMFW_NUM/" class="text-azure hover:underline">RLMFW_NUM</a></li>
+        <li><a href="/tcodes/RLMFW_OOCU/" class="text-azure hover:underline">RLMFW_OOCU</a></li>
+        <li><a href="/tcodes/RMSL02/" class="text-azure hover:underline">RMSL02</a></li>
+        <li><a href="/tcodes/RMSL03/" class="text-azure hover:underline">RMSL03</a></li>
+        <li><a href="/tcodes/RMSTAT/" class="text-azure hover:underline">RMSTAT</a></li>
+        <li><a href="/tcodes/RMWB/" class="text-azure hover:underline">RMWB</a></li>
+        <li><a href="/tcodes/STEP10/" class="text-azure hover:underline">STEP10</a></li>
+        <li><a href="/tcodes/STEP20/" class="text-azure hover:underline">STEP20</a></li>
+        <li><a href="/tcodes/UA_CE_REPORT/" class="text-azure hover:underline">UA_CE_REPORT</a></li>
+        <li><a href="/tcodes/UA_DATABASIS/" class="text-azure hover:underline">UA_DATABASIS</a></li>
+        <li><a href="/tcodes/UA_IMG/" class="text-azure hover:underline">UA_IMG</a></li>
+        <li><a href="/tcodes/UA_STRUC_MAINT1/" class="text-azure hover:underline">UA_STRUC_MAINT1</a></li>
+        <li><a href="/tcodes/UAMO/" class="text-azure hover:underline">UAMO</a></li>
+        <li><a href="/tcodes/UAMO_REPORTING/" class="text-azure hover:underline">UAMO_REPORTING</a></li>
+        <li><a href="/tcodes/UAST/" class="text-azure hover:underline">UAST</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Production Planning (PP) <span class="font-normal text-slate">(18)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/MDAB/" class="text-azure hover:underline">MDAB</a></li>
+        <li><a href="/tcodes/MDRE/" class="text-azure hover:underline">MDRE</a></li>
+        <li><a href="/tcodes/MRP/" class="text-azure hover:underline">MRP</a></li>
+        <li><a href="/tcodes/MS22/" class="text-azure hover:underline">MS22</a></li>
+        <li><a href="/tcodes/MS23/" class="text-azure hover:underline">MS23</a></li>
+        <li><a href="/tcodes/MSAB/" class="text-azure hover:underline">MSAB</a></li>
+        <li><a href="/tcodes/MSAC/" class="text-azure hover:underline">MSAC</a></li>
+        <li><a href="/tcodes/OM0F/" class="text-azure hover:underline">OM0F</a></li>
+        <li><a href="/tcodes/PKW1/" class="text-azure hover:underline">PKW1</a></li>
+        <li><a href="/tcodes/PPH_MDAB/" class="text-azure hover:underline">PPH_MDAB</a></li>
+        <li><a href="/tcodes/PPH_MSAB/" class="text-azure hover:underline">PPH_MSAB</a></li>
+        <li><a href="/tcodes/PPH_MSAC/" class="text-azure hover:underline">PPH_MSAC</a></li>
+        <li><a href="/tcodes/RMDBVM00/" class="text-azure hover:underline">RMDBVM00</a></li>
+        <li><a href="/tcodes/RMDBVM10/" class="text-azure hover:underline">RMDBVM10</a></li>
+        <li><a href="/tcodes/RMMDVL10/" class="text-azure hover:underline">RMMDVL10</a></li>
+        <li><a href="/tcodes/RMMDVL20/" class="text-azure hover:underline">RMMDVL20</a></li>
+        <li><a href="/tcodes/RMMDVM10/" class="text-azure hover:underline">RMMDVM10</a></li>
+        <li><a href="/tcodes/RMMDVM20/" class="text-azure hover:underline">RMMDVM20</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Profitability Analysis (CO-PA) <span class="font-normal text-slate">(2)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/KE24/" class="text-azure hover:underline">KE24</a></li>
+        <li><a href="/tcodes/KE30/" class="text-azure hover:underline">KE30</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Project &amp; Portfolio Management (PPM) <span class="font-normal text-slate">(5)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/CN06/" class="text-azure hover:underline">CN06</a></li>
+        <li><a href="/tcodes/CN07/" class="text-azure hover:underline">CN07</a></li>
+        <li><a href="/tcodes/CPR/" class="text-azure hover:underline">CPR</a></li>
+        <li><a href="/tcodes/MPX/" class="text-azure hover:underline">MPX</a></li>
+        <li><a href="/tcodes/OPENPS/" class="text-azure hover:underline">OPENPS</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Public Sector (IND-Public Sector) <span class="font-normal text-slate">(28)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/FI-GL/" class="text-azure hover:underline">FI-GL</a></li>
+        <li><a href="/tcodes/FMADB_CREATE_FYV/" class="text-azure hover:underline">FMADB_CREATE_FYV</a></li>
+        <li><a href="/tcodes/FMADB_CUSTOM/" class="text-azure hover:underline">FMADB_CUSTOM</a></li>
+        <li><a href="/tcodes/FMADB_POST/" class="text-azure hover:underline">FMADB_POST</a></li>
+        <li><a href="/tcodes/FMADB_TRACE/" class="text-azure hover:underline">FMADB_TRACE</a></li>
+        <li><a href="/tcodes/FMEUFDD/" class="text-azure hover:underline">FMEUFDD</a></li>
+        <li><a href="/tcodes/FMEUFLP1/" class="text-azure hover:underline">FMEUFLP1</a></li>
+        <li><a href="/tcodes/FMEUFLP2/" class="text-azure hover:underline">FMEUFLP2</a></li>
+        <li><a href="/tcodes/FMHIE_CHANGE/" class="text-azure hover:underline">FMHIE_CHANGE</a></li>
+        <li><a href="/tcodes/FMHIE_CHKINCONDATA/" class="text-azure hover:underline">FMHIE_CHKINCONDATA</a></li>
+        <li><a href="/tcodes/FMHIE_CHKINCONDISTR/" class="text-azure hover:underline">FMHIE_CHKINCONDISTR</a></li>
+        <li><a href="/tcodes/FMHIE_COPY/" class="text-azure hover:underline">FMHIE_COPY</a></li>
+        <li><a href="/tcodes/FMHIE_DELETE/" class="text-azure hover:underline">FMHIE_DELETE</a></li>
+        <li><a href="/tcodes/FMHIE_DISPLAY/" class="text-azure hover:underline">FMHIE_DISPLAY</a></li>
+        <li><a href="/tcodes/FMHIE_EXPORT/" class="text-azure hover:underline">FMHIE_EXPORT</a></li>
+        <li><a href="/tcodes/FMHIE_GENERATION/" class="text-azure hover:underline">FMHIE_GENERATION</a></li>
+        <li><a href="/tcodes/FMHIE_HIEID/" class="text-azure hover:underline">FMHIE_HIEID</a></li>
+        <li><a href="/tcodes/FMHIE_IMPORT/" class="text-azure hover:underline">FMHIE_IMPORT</a></li>
+        <li><a href="/tcodes/RFACTS1_BL/" class="text-azure hover:underline">RFACTS1_BL</a></li>
+        <li><a href="/tcodes/RFACTS1_FILE_SEND/" class="text-azure hover:underline">RFACTS1_FILE_SEND</a></li>
+        <li><a href="/tcodes/RFACTS2_BL/" class="text-azure hover:underline">RFACTS2_BL</a></li>
+        <li><a href="/tcodes/RFACTS2_EDITS/" class="text-azure hover:underline">RFACTS2_EDITS</a></li>
+        <li><a href="/tcodes/RFACTS2_EXTRACT/" class="text-azure hover:underline">RFACTS2_EXTRACT</a></li>
+        <li><a href="/tcodes/RFACTS2_FILE_SEND/" class="text-azure hover:underline">RFACTS2_FILE_SEND</a></li>
+        <li><a href="/tcodes/RFACTS2_FOOTNOTE/" class="text-azure hover:underline">RFACTS2_FOOTNOTE</a></li>
+        <li><a href="/tcodes/RFACTS2_MAF/" class="text-azure hover:underline">RFACTS2_MAF</a></li>
+        <li><a href="/tcodes/RFACTS2_UPLMAF/" class="text-azure hover:underline">RFACTS2_UPLMAF</a></li>
+        <li><a href="/tcodes/VACB/" class="text-azure hover:underline">VACB</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Purchasing (MM-PUR) <span class="font-normal text-slate">(8)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/ME21N/" class="text-azure hover:underline">ME21N</a></li>
+        <li><a href="/tcodes/MEW0/" class="text-azure hover:underline">MEW0</a></li>
+        <li><a href="/tcodes/MEW1/" class="text-azure hover:underline">MEW1</a></li>
+        <li><a href="/tcodes/MEW2/" class="text-azure hover:underline">MEW2</a></li>
+        <li><a href="/tcodes/MEW3/" class="text-azure hover:underline">MEW3</a></li>
+        <li><a href="/tcodes/MEW5/" class="text-azure hover:underline">MEW5</a></li>
+        <li><a href="/tcodes/MEW6/" class="text-azure hover:underline">MEW6</a></li>
+        <li><a href="/tcodes/MEWP/" class="text-azure hover:underline">MEWP</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Quality Management (QM) <span class="font-normal text-slate">(25)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/IQS8/" class="text-azure hover:underline">IQS8</a></li>
+        <li><a href="/tcodes/IQS8WP/" class="text-azure hover:underline">IQS8WP</a></li>
+        <li><a href="/tcodes/IQS9/" class="text-azure hover:underline">IQS9</a></li>
+        <li><a href="/tcodes/IQS9WP/" class="text-azure hover:underline">IQS9WP</a></li>
+        <li><a href="/tcodes/QA32/" class="text-azure hover:underline">QA32</a></li>
+        <li><a href="/tcodes/QA32WP/" class="text-azure hover:underline">QA32WP</a></li>
+        <li><a href="/tcodes/QE09/" class="text-azure hover:underline">QE09</a></li>
+        <li><a href="/tcodes/QE09WP/" class="text-azure hover:underline">QE09WP</a></li>
+        <li><a href="/tcodes/QEH1/" class="text-azure hover:underline">QEH1</a></li>
+        <li><a href="/tcodes/QM10/" class="text-azure hover:underline">QM10</a></li>
+        <li><a href="/tcodes/QM10WP/" class="text-azure hover:underline">QM10WP</a></li>
+        <li><a href="/tcodes/QM13/" class="text-azure hover:underline">QM13</a></li>
+        <li><a href="/tcodes/QM13WP/" class="text-azure hover:underline">QM13WP</a></li>
+        <li><a href="/tcodes/QPIQS8/" class="text-azure hover:underline">QPIQS8</a></li>
+        <li><a href="/tcodes/QPIQS9/" class="text-azure hover:underline">QPIQS9</a></li>
+        <li><a href="/tcodes/QPQA32/" class="text-azure hover:underline">QPQA32</a></li>
+        <li><a href="/tcodes/QPQGC1/" class="text-azure hover:underline">QPQGC1</a></li>
+        <li><a href="/tcodes/QPQM10/" class="text-azure hover:underline">QPQM10</a></li>
+        <li><a href="/tcodes/QPQM13/" class="text-azure hover:underline">QPQM13</a></li>
+        <li><a href="/tcodes/WAO_QA32WP/" class="text-azure hover:underline">WAO_QA32WP</a></li>
+        <li><a href="/tcodes/WAO_QM10WP/" class="text-azure hover:underline">WAO_QM10WP</a></li>
+        <li><a href="/tcodes/WAO_QM13WP/" class="text-azure hover:underline">WAO_QM13WP</a></li>
+        <li><a href="/tcodes/WAO_QPQA32/" class="text-azure hover:underline">WAO_QPQA32</a></li>
+        <li><a href="/tcodes/WAO_QPQM10/" class="text-azure hover:underline">WAO_QPQM10</a></li>
+        <li><a href="/tcodes/WAO_QPQM13/" class="text-azure hover:underline">WAO_QPQM13</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Retail (IND-Retail) <span class="font-normal text-slate">(27)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/ABLM_BLACKLIST/" class="text-azure hover:underline">ABLM_BLACKLIST</a></li>
+        <li><a href="/tcodes/FPS0/" class="text-azure hover:underline">FPS0</a></li>
+        <li><a href="/tcodes/IAC/" class="text-azure hover:underline">IAC</a></li>
+        <li><a href="/tcodes/MEB1/" class="text-azure hover:underline">MEB1</a></li>
+        <li><a href="/tcodes/MEB7/" class="text-azure hover:underline">MEB7</a></li>
+        <li><a href="/tcodes/MEBH/" class="text-azure hover:underline">MEBH</a></li>
+        <li><a href="/tcodes/MEBV/" class="text-azure hover:underline">MEBV</a></li>
+        <li><a href="/tcodes/MM-SD/" class="text-azure hover:underline">MM-SD</a></li>
+        <li><a href="/tcodes/WCU1/" class="text-azure hover:underline">WCU1</a></li>
+        <li><a href="/tcodes/WCUM/" class="text-azure hover:underline">WCUM</a></li>
+        <li><a href="/tcodes/WPC1/" class="text-azure hover:underline">WPC1</a></li>
+        <li><a href="/tcodes/WPC2/" class="text-azure hover:underline">WPC2</a></li>
+        <li><a href="/tcodes/WPC3/" class="text-azure hover:underline">WPC3</a></li>
+        <li><a href="/tcodes/WPC4/" class="text-azure hover:underline">WPC4</a></li>
+        <li><a href="/tcodes/WPC5/" class="text-azure hover:underline">WPC5</a></li>
+        <li><a href="/tcodes/WPCC/" class="text-azure hover:underline">WPCC</a></li>
+        <li><a href="/tcodes/WPCI/" class="text-azure hover:underline">WPCI</a></li>
+        <li><a href="/tcodes/WPCJ/" class="text-azure hover:underline">WPCJ</a></li>
+        <li><a href="/tcodes/WW10/" class="text-azure hover:underline">WW10</a></li>
+        <li><a href="/tcodes/WW20/" class="text-azure hover:underline">WW20</a></li>
+        <li><a href="/tcodes/WW30/" class="text-azure hover:underline">WW30</a></li>
+        <li><a href="/tcodes/WWCD/" class="text-azure hover:underline">WWCD</a></li>
+        <li><a href="/tcodes/WWM1/" class="text-azure hover:underline">WWM1</a></li>
+        <li><a href="/tcodes/WWM2/" class="text-azure hover:underline">WWM2</a></li>
+        <li><a href="/tcodes/WWM3/" class="text-azure hover:underline">WWM3</a></li>
+        <li><a href="/tcodes/WWM4/" class="text-azure hover:underline">WWM4</a></li>
+        <li><a href="/tcodes/WWM5/" class="text-azure hover:underline">WWM5</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Sales &amp; Distribution (SD) <span class="font-normal text-slate">(28)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/BADI_CMP_PROCESSING/" class="text-azure hover:underline">BADI_CMP_PROCESSING</a></li>
+        <li><a href="/tcodes/MCTA/" class="text-azure hover:underline">MCTA</a></li>
+        <li><a href="/tcodes/MCTC/" class="text-azure hover:underline">MCTC</a></li>
+        <li><a href="/tcodes/MCTE/" class="text-azure hover:underline">MCTE</a></li>
+        <li><a href="/tcodes/MCTG/" class="text-azure hover:underline">MCTG</a></li>
+        <li><a href="/tcodes/MCTI/" class="text-azure hover:underline">MCTI</a></li>
+        <li><a href="/tcodes/MCTK/" class="text-azure hover:underline">MCTK</a></li>
+        <li><a href="/tcodes/OAGZ/" class="text-azure hover:underline">OAGZ</a></li>
+        <li><a href="/tcodes/RWLF10/" class="text-azure hover:underline">RWLF10</a></li>
+        <li><a href="/tcodes/RWLF1051/" class="text-azure hover:underline">RWLF1051</a></li>
+        <li><a href="/tcodes/SIS/" class="text-azure hover:underline">SIS</a></li>
+        <li><a href="/tcodes/VA06/" class="text-azure hover:underline">VA06</a></li>
+        <li><a href="/tcodes/VBO1/" class="text-azure hover:underline">VBO1</a></li>
+        <li><a href="/tcodes/VPW1/" class="text-azure hover:underline">VPW1</a></li>
+        <li><a href="/tcodes/VPWL/" class="text-azure hover:underline">VPWL</a></li>
+        <li><a href="/tcodes/WBL1/" class="text-azure hover:underline">WBL1</a></li>
+        <li><a href="/tcodes/WCMP_MASS/" class="text-azure hover:underline">WCMP_MASS</a></li>
+        <li><a href="/tcodes/WCMP_PROCESSING/" class="text-azure hover:underline">WCMP_PROCESSING</a></li>
+        <li><a href="/tcodes/WCMP_RESULT/" class="text-azure hover:underline">WCMP_RESULT</a></li>
+        <li><a href="/tcodes/WLFB/" class="text-azure hover:underline">WLFB</a></li>
+        <li><a href="/tcodes/WLFC/" class="text-azure hover:underline">WLFC</a></li>
+        <li><a href="/tcodes/WLFD/" class="text-azure hover:underline">WLFD</a></li>
+        <li><a href="/tcodes/WLFE/" class="text-azure hover:underline">WLFE</a></li>
+        <li><a href="/tcodes/WLFG/" class="text-azure hover:underline">WLFG</a></li>
+        <li><a href="/tcodes/WLFH/" class="text-azure hover:underline">WLFH</a></li>
+        <li><a href="/tcodes/WLFO/" class="text-azure hover:underline">WLFO</a></li>
+        <li><a href="/tcodes/WLI2/" class="text-azure hover:underline">WLI2</a></li>
+        <li><a href="/tcodes/WLR1/" class="text-azure hover:underline">WLR1</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Treasury &amp; Risk Management (FI-TRM) <span class="font-normal text-slate">(28)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/FF-3/" class="text-azure hover:underline">FF-3</a></li>
+        <li><a href="/tcodes/FF-4/" class="text-azure hover:underline">FF-4</a></li>
+        <li><a href="/tcodes/FF-5/" class="text-azure hover:underline">FF-5</a></li>
+        <li><a href="/tcodes/FF-6/" class="text-azure hover:underline">FF-6</a></li>
+        <li><a href="/tcodes/FF69/" class="text-azure hover:underline">FF69</a></li>
+        <li><a href="/tcodes/FF70/" class="text-azure hover:underline">FF70</a></li>
+        <li><a href="/tcodes/FF71/" class="text-azure hover:underline">FF71</a></li>
+        <li><a href="/tcodes/FF72/" class="text-azure hover:underline">FF72</a></li>
+        <li><a href="/tcodes/FF7A/" class="text-azure hover:underline">FF7A</a></li>
+        <li><a href="/tcodes/FF7B/" class="text-azure hover:underline">FF7B</a></li>
+        <li><a href="/tcodes/FF7F/" class="text-azure hover:underline">FF7F</a></li>
+        <li><a href="/tcodes/FFTL/" class="text-azure hover:underline">FFTL</a></li>
+        <li><a href="/tcodes/FFZK/" class="text-azure hover:underline">FFZK</a></li>
+        <li><a href="/tcodes/FLQAB/" class="text-azure hover:underline">FLQAB</a></li>
+        <li><a href="/tcodes/FLQAC/" class="text-azure hover:underline">FLQAC</a></li>
+        <li><a href="/tcodes/FLQAD/" class="text-azure hover:underline">FLQAD</a></li>
+        <li><a href="/tcodes/FLQAF/" class="text-azure hover:underline">FLQAF</a></li>
+        <li><a href="/tcodes/FLQAL/" class="text-azure hover:underline">FLQAL</a></li>
+        <li><a href="/tcodes/FLQAM/" class="text-azure hover:underline">FLQAM</a></li>
+        <li><a href="/tcodes/FLQAM_TP/" class="text-azure hover:underline">FLQAM_TP</a></li>
+        <li><a href="/tcodes/FLQC10/" class="text-azure hover:underline">FLQC10</a></li>
+        <li><a href="/tcodes/FLQC12/" class="text-azure hover:underline">FLQC12</a></li>
+        <li><a href="/tcodes/FLQC13/" class="text-azure hover:underline">FLQC13</a></li>
+        <li><a href="/tcodes/FLQC13F/" class="text-azure hover:underline">FLQC13F</a></li>
+        <li><a href="/tcodes/FLQC1A/" class="text-azure hover:underline">FLQC1A</a></li>
+        <li><a href="/tcodes/FLQC2/" class="text-azure hover:underline">FLQC2</a></li>
+        <li><a href="/tcodes/FLQC20/" class="text-azure hover:underline">FLQC20</a></li>
+        <li><a href="/tcodes/OT48/" class="text-azure hover:underline">OT48</a></li>
+        </ul>
+      </div>
+
+      <div class="reveal">
+        <h3 class="font-bold text-navy">Utilities (IND-Utilities) <span class="font-normal text-slate">(4)</span></h3>
+        <ul class="mt-2 space-y-1 text-sm">
+        <li><a href="/tcodes/EDM1/" class="text-azure hover:underline">EDM1</a></li>
+        <li><a href="/tcodes/EPODSRVC1/" class="text-azure hover:underline">EPODSRVC1</a></li>
+        <li><a href="/tcodes/EPODSRVC2/" class="text-azure hover:underline">EPODSRVC2</a></li>
+        <li><a href="/tcodes/EPODSRVC3/" class="text-azure hover:underline">EPODSRVC3</a></li>
+        </ul>
+      </div>
+  </div>
+  <p class="mt-8 text-xs text-slate">Data: SAP S/4HANA t-code fate dataset v1.1.1 — <a href="https://github.com/Vasfqwfqqw/s4hana-tcode-dataset" class="hover:text-azure" target="_blank" rel="noopener">github.com/Vasfqwfqqw/s4hana-tcode-dataset</a> (CC BY 4.0).</p>
+</section>
+    </main>
+    <footer class="mt-20 border-t border-navy/10 bg-white">
+  <div class="container-tavren py-12">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:col-span-1">
+        <img src="/assets/Tavern Logos with Text/tavren-lockup-horizontal-navy.svg" alt="Tavren" class="h-7 w-auto" width="140" height="28" />
+        <p class="mt-4 max-w-xs text-sm text-slate">Structured AI toolkits that help in-house SAP teams prepare for the move from ECC to S/4HANA.</p>
+      </div>
+
+      <div>
+        <h2 class="label-muted mb-3">Explore</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/toolkits" class="text-navy/80 hover:text-azure">Toolkits</a></li>
+          <li><a href="/how-it-works" class="text-navy/80 hover:text-azure">How it works</a></li>
+          <li><a href="/readiness" class="text-navy/80 hover:text-azure">Readiness guide</a></li>
+          <li><a href="/tcodes" class="text-navy/80 hover:text-azure">T-code reference</a></li>
+          <li><a href="/free-kit" class="text-navy/80 hover:text-azure">Free starter toolkit</a></li>
+          <li><a href="/blog" class="text-navy/80 hover:text-azure">Blog</a></li>
+          <li><a href="/about" class="text-navy/80 hover:text-azure">About</a></li>
+          <li><a href="/faq" class="text-navy/80 hover:text-azure">FAQ</a></li>
+          <li><a href="/contact" class="text-navy/80 hover:text-azure">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="label-muted mb-3">Legal</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/legal/terms-of-sale" target="_blank" rel="noopener" class="inline-flex items-center text-navy/80 hover:text-azure">Terms of Sale<svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (opens in new tab)</span></a></li>
+          <li><a href="/legal/terms-and-conditions" target="_blank" rel="noopener" class="inline-flex items-center text-navy/80 hover:text-azure">Terms &amp; Conditions<svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (opens in new tab)</span></a></li>
+          <li><a href="/legal/privacy-policy" target="_blank" rel="noopener" class="inline-flex items-center text-navy/80 hover:text-azure">Privacy Policy<svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (opens in new tab)</span></a></li>
+          <li><a href="/legal/cookie-policy" target="_blank" rel="noopener" class="inline-flex items-center text-navy/80 hover:text-azure">Cookie Policy<svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (opens in new tab)</span></a></li>
+          <li><a href="/legal/disclaimer" target="_blank" rel="noopener" class="inline-flex items-center text-navy/80 hover:text-azure">Disclaimer<svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="label-muted mb-3">Connect</h2>
+        <div class="flex items-center gap-3">
+          <a href="https://www.linkedin.com/company/tavren-solutions/" aria-label="Tavren on LinkedIn" class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-navy/15 text-slate transition hover:border-azure/40 hover:text-azure" rel="noopener" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 0 0 2.5 6 2.5 2.5 0 0 0 5 8.5 2.5 2.5 0 0 0 7.5 6 2.5 2.5 0 0 0 4.98 3.5ZM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.96 1.83-1.97 3.77-1.97 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.1c0-1.22-.02-2.8-1.9-2.8-1.9 0-2.2 1.34-2.2 2.71V21h-4z"/></svg>
+          </a>
+          <a href="mailto:contact@tavrensolutions.com" class="text-sm text-navy/80 hover:text-azure">contact@tavrensolutions.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 border-t border-navy/10 pt-6 text-xs text-slate">
+      <p>&copy; 2026 Tavren. All rights reserved.</p>
+      <p class="mt-1">Tavren is a trading name of VBCJ Solutions Ltd, registered in England &amp; Wales. Prices in USD. Payments are processed by Lemon Squeezy, our Merchant of Record.</p>
+      <p class="mt-1">VBCJ Solutions Ltd (trading as Tavren) · Registered in England and Wales · Company No. 07598797 · Registered office: 5 Martinshaw Close, Leicester, Leicestershire, LE3 9SQ, United Kingdom</p>
+    </div>
+  </div>
+</footer>
+
+    <script src="/js/main.js" defer></script>
+    <script src="/js/tcodes-filter.js" defer></script>
+  </body>
+</html>

@@ -110,7 +110,10 @@ export function buildFirstParagraph(record) {
 
 function buildCitation(record) {
   if (!record.sap_reference) return null;
-  return record.source_item ? `${record.sap_reference} (item ${record.source_item})` : record.sap_reference;
+  if (record.source_item && !record.sap_reference.includes(String(record.source_item))) {
+    return `${record.sap_reference} (item ${record.source_item})`;
+  }
+  return record.sap_reference;
 }
 
 export function buildBodySection(record) {

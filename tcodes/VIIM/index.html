@@ -1,0 +1,233 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VIIM in S/4HANA — what replaces it | Tavren</title>
+    <meta name="description" content="Retired together with SD-FT's import processing. What you did in VIIM is handled by the International Trade functions and SAP GTS." />
+    <link rel="canonical" href="https://tavrensolutions.com/tcodes/VIIM" />
+    <meta name="theme-color" content="#0F3D73" />
+
+    <!-- Open Graph / social -->
+    <meta property="og:site_name" content="Tavren Solutions" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="VIIM in S/4HANA — what replaces it | Tavren" />
+    <meta property="og:description" content="Retired together with SD-FT's import processing. What you did in VIIM is handled by the International Trade functions and SAP GTS." />
+    <meta property="og:url" content="https://tavrensolutions.com/tcodes/VIIM" />
+    <meta property="og:image" content="https://tavrensolutions.com/assets/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="VIIM in S/4HANA — what replaces it | Tavren" />
+    <meta name="twitter:description" content="Retired together with SD-FT's import processing. What you did in VIIM is handled by the International Trade functions and SAP GTS." />
+    <meta name="twitter:image" content="https://tavrensolutions.com/assets/og.png" />
+
+    <!-- Icons -->
+    <link rel="icon" href="/favicon.ico" sizes="32x32" />
+    <link rel="icon" href="/assets/favicons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png" />
+    <link rel="manifest" href="/assets/favicons/site.webmanifest" />
+
+    <!-- Fonts: preload the variable files actually used above the fold -->
+    <link rel="preload" href="/assets/fonts/RedHatDisplay-latin.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="/assets/fonts/RedHatText-latin.woff2" as="font" type="font/woff2" crossorigin />
+
+    <link rel="stylesheet" href="/css/styles.css" />
+    <!-- Mark JS as active before paint so reveal animations only hide content
+         when JS can bring it back. No-JS visits show everything immediately. -->
+    <script>
+      document.documentElement.classList.add('js');
+    </script>
+
+    <!-- Organization JSON-LD (site-wide) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "Organization",
+        "name": "Tavren",
+        "url": "https://tavrensolutions.com/",
+        "logo": "https://tavrensolutions.com/assets/favicons/icon-512.png",
+        "description": "Tavren publishes structured AI toolkits that help in-house SAP teams prepare for the ECC-to-S/4HANA upgrade.",
+        "email": "contact@tavrensolutions.com"
+      }
+    </script>
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://tavrensolutions.com/"},{"@type":"ListItem","position":2,"name":"T-code reference","item":"https://tavrensolutions.com/tcodes"},{"@type":"ListItem","position":3,"name":"VIIM","item":"https://tavrensolutions.com/tcodes/VIIM"}]}</script><script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What replaces VIIM in S/4HANA?","acceptedAnswer":{"@type":"Answer","text":"Retired together with SD-FT's import processing. What you did in VIIM is handled by the International Trade functions and SAP GTS."}}]}</script>
+
+    <!-- Analytics by Umami -->
+    <script defer src="https://cloud.umami.is/script.js" data-website-id="f08b187b-9a49-4d5c-8360-f8bb4a0f6c84"></script>
+
+    <!-- Free-kit signup attribution: fires Umami's "kit-signup" custom event with a
+         source read from the URL at click time (no cookies/storage). Convention:
+         internal links use ?src=tcodes|medium|devto|gpt|book, external surfaces use
+         ?utm_source=medium|devto|gpt|book; falls back to "direct" if neither is set. -->
+    <script>
+      document.addEventListener('click', function (e) {
+        var cta = e.target.closest('[data-kit-signup]');
+        if (!cta) return;
+        var params = new URLSearchParams(window.location.search);
+        var source = params.get('src') || params.get('utm_source') || 'direct';
+        if (window.umami) umami.track('kit-signup', { source: source });
+      });
+    </script>
+
+    <!-- LemonSqueezy overlay -->
+    <script src="https://app.lemonsqueezy.com/js/lemon.js" defer></script>
+  </head>
+  <body class="flex min-h-screen flex-col ">
+    <a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-white focus:px-4 focus:py-2 focus:text-navy focus:shadow-card">Skip to content</a>
+    <header class="sticky top-0 z-40 border-b border-navy/10 bg-cloud/85 backdrop-blur supports-[backdrop-filter]:bg-cloud/70">
+  <div class="container-tavren flex h-16 items-center justify-between gap-4">
+    <a href="/" class="flex items-center" aria-label="Tavren — home">
+      <img src="/assets/Tavern Logos with Text/tavren-lockup-horizontal-navy.svg" alt="Tavren" class="h-7 w-auto" width="140" height="28" />
+    </a>
+
+    <nav class="hidden items-center gap-7 md:flex" aria-label="Primary">
+      <a href="/toolkits" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">Toolkits</a>
+      <a href="/how-it-works" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">How it works</a>
+      <a href="/readiness" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">Readiness guide</a>
+      <a href="/tcodes" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">T-code reference</a>
+      <a href="/blog" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">Blog</a>
+      <a href="/about" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">About</a>
+      <a href="/faq" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">FAQ</a>
+      <a href="/contact" class="nav-link text-sm font-medium text-navy/80 transition hover:text-azure">Contact</a>
+    </nav>
+
+    <div class="flex items-center gap-3">
+      <a href="/toolkits" class="btn-primary hidden px-4 py-2 text-sm sm:inline-flex">Browse toolkits</a>
+      <button
+        type="button"
+        id="menu-toggle"
+        class="inline-flex h-10 w-10 items-center justify-center rounded-lg text-navy md:hidden"
+        aria-label="Open menu"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+      >
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+          <path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden border-t border-navy/10 bg-cloud md:hidden">
+    <nav class="container-tavren flex flex-col py-3" aria-label="Mobile">
+      <a href="/toolkits" class="nav-link py-2.5 font-medium text-navy">Toolkits</a>
+      <a href="/how-it-works" class="nav-link py-2.5 font-medium text-navy">How it works</a>
+      <a href="/readiness" class="nav-link py-2.5 font-medium text-navy">Readiness guide</a>
+      <a href="/tcodes" class="nav-link py-2.5 font-medium text-navy">T-code reference</a>
+      <a href="/blog" class="nav-link py-2.5 font-medium text-navy">Blog</a>
+      <a href="/about" class="nav-link py-2.5 font-medium text-navy">About</a>
+      <a href="/faq" class="nav-link py-2.5 font-medium text-navy">FAQ</a>
+      <a href="/contact" class="nav-link py-2.5 font-medium text-navy">Contact</a>
+      <a href="/toolkits" class="btn-primary mt-3">Browse toolkits</a>
+    </nav>
+  </div>
+</header>
+
+    <main id="main" class="flex-grow">
+      
+<section class="container-tavren py-14 sm:py-20">
+  <nav class="mb-6 text-sm text-slate" aria-label="Breadcrumb"><a href="/tcodes" class="hover:text-azure">T-code reference</a> <span aria-hidden="true">/</span> <span>VIIM</span></nav>
+  <div class="max-w-3xl reveal">
+    <span class="eyebrow">Governance, Risk &amp; Compliance (FI-GRC)</span>
+    <h1 class="mt-3 text-3xl font-bold leading-tight sm:text-4xl">What replaces VIIM in S/4HANA?</h1>
+    <p class="label-muted mt-6">What changes at your desk</p>
+    <p class="mt-2 text-lg text-navy/80">Retired together with SD-FT's import processing. What you did in VIIM is handled by the International Trade functions and SAP GTS.</p>
+  </div>
+
+  <div class="mt-10 max-w-3xl overflow-x-auto reveal">
+    <table class="w-full border-collapse text-left text-sm">
+      <thead>
+        <tr class="border-b border-navy/10 text-slate">
+          <th class="py-2 pr-4 font-semibold">ECC t-code</th>
+          <th class="py-2 pr-4 font-semibold">Status</th>
+          <th class="py-2 pr-4 font-semibold">Successor</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="border-b border-navy/10">
+          <td class="py-3 pr-4 font-mono font-semibold text-navy">VIIM</td>
+          <td class="py-3 pr-4">Replaced</td>
+          <td class="py-3 pr-4">—</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="mt-10 max-w-3xl card reveal"><p class="text-sm text-slate">SAP reference: S4TWL - Foreign Trade (S4TWL item 6.6.1, SAP Note 2267310)</p></div>
+  
+    <div class="mt-10 max-w-3xl reveal">
+      <h2 class="text-lg font-bold text-navy">More Governance, Risk &amp; Compliance (FI-GRC) t-codes</h2>
+      <ul class="mt-3 grid gap-2 sm:grid-cols-2">
+        <li><a href="/tcodes/COMP/" class="text-azure hover:underline">COMP — Deleted</a></li>
+        <li><a href="/tcodes/CUSDE/" class="text-azure hover:underline">CUSDE — Replaced</a></li>
+        <li><a href="/tcodes/CUSDEC/" class="text-azure hover:underline">CUSDEC — Replaced</a></li>
+        <li><a href="/tcodes/EN99/" class="text-azure hover:underline">EN99 — Replaced</a></li>
+        <li><a href="/tcodes/NETUS_ER/" class="text-azure hover:underline">NETUS_ER — Deleted</a></li>
+        <li><a href="/tcodes/OVE1/" class="text-azure hover:underline">OVE1 — Replaced</a></li>
+      </ul>
+    </div>
+  
+    <div class="mt-12 max-w-3xl rounded-2xl bg-navy p-8 text-white reveal">
+      <h2 class="text-xl font-bold text-white">Start with the free toolkit</h2>
+      <p class="mt-2 text-white/85">See the format for yourself before you buy — the S/4HANA Readiness Starter Kit is free.</p>
+      <a class="btn btn-onnavy mt-5" href="/free-kit?src=tcodes">Get the free starter toolkit</a>
+    </div>
+  <p class="mt-8 text-xs text-slate">Data: SAP S/4HANA t-code fate dataset v1.1.1 — <a href="https://github.com/Vasfqwfqqw/s4hana-tcode-dataset" class="hover:text-azure" target="_blank" rel="noopener">github.com/Vasfqwfqqw/s4hana-tcode-dataset</a> (CC BY 4.0).</p>
+</section>
+    </main>
+    <footer class="mt-20 border-t border-navy/10 bg-white">
+  <div class="container-tavren py-12">
+    <div class="grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="lg:col-span-1">
+        <img src="/assets/Tavern Logos with Text/tavren-lockup-horizontal-navy.svg" alt="Tavren" class="h-7 w-auto" width="140" height="28" />
+        <p class="mt-4 max-w-xs text-sm text-slate">Structured AI toolkits that help in-house SAP teams prepare for the move from ECC to S/4HANA.</p>
+      </div>
+
+      <div>
+        <h2 class="label-muted mb-3">Explore</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/toolkits" class="text-navy/80 hover:text-azure">Toolkits</a></li>
+          <li><a href="/how-it-works" class="text-navy/80 hover:text-azure">How it works</a></li>
+          <li><a href="/readiness" class="text-navy/80 hover:text-azure">Readiness guide</a></li>
+          <li><a href="/tcodes" class="text-navy/80 hover:text-azure">T-code reference</a></li>
+          <li><a href="/free-kit" class="text-navy/80 hover:text-azure">Free starter toolkit</a></li>
+          <li><a href="/blog" class="text-navy/80 hover:text-azure">Blog</a></li>
+          <li><a href="/about" class="text-navy/80 hover:text-azure">About</a></li>
+          <li><a href="/faq" class="text-navy/80 hover:text-azure">FAQ</a></li>
+          <li><a href="/contact" class="text-navy/80 hover:text-azure">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="label-muted mb-3">Legal</h2>
+        <ul class="space-y-2 text-sm">
+          <li><a href="/legal/terms-of-sale" target="_blank" rel="noopener" class="inline-flex items-center text-navy/80 hover:text-azure">Terms of Sale<svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (opens in new tab)</span></a></li>
+          <li><a href="/legal/terms-and-conditions" target="_blank" rel="noopener" class="inline-flex items-center text-navy/80 hover:text-azure">Terms &amp; Conditions<svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (opens in new tab)</span></a></li>
+          <li><a href="/legal/privacy-policy" target="_blank" rel="noopener" class="inline-flex items-center text-navy/80 hover:text-azure">Privacy Policy<svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (opens in new tab)</span></a></li>
+          <li><a href="/legal/cookie-policy" target="_blank" rel="noopener" class="inline-flex items-center text-navy/80 hover:text-azure">Cookie Policy<svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (opens in new tab)</span></a></li>
+          <li><a href="/legal/disclaimer" target="_blank" rel="noopener" class="inline-flex items-center text-navy/80 hover:text-azure">Disclaimer<svg class="ml-1 h-3 w-3" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5" stroke-linecap="round" stroke-linejoin="round"/></svg><span class="sr-only"> (opens in new tab)</span></a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="label-muted mb-3">Connect</h2>
+        <div class="flex items-center gap-3">
+          <a href="https://www.linkedin.com/company/tavren-solutions/" aria-label="Tavren on LinkedIn" class="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-navy/15 text-slate transition hover:border-azure/40 hover:text-azure" rel="noopener" target="_blank">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M4.98 3.5A2.5 2.5 0 0 0 2.5 6 2.5 2.5 0 0 0 5 8.5 2.5 2.5 0 0 0 7.5 6 2.5 2.5 0 0 0 4.98 3.5ZM3 9h4v12H3zM10 9h3.8v1.7h.05c.53-.96 1.83-1.97 3.77-1.97 4.03 0 4.78 2.5 4.78 5.75V21h-4v-5.1c0-1.22-.02-2.8-1.9-2.8-1.9 0-2.2 1.34-2.2 2.71V21h-4z"/></svg>
+          </a>
+          <a href="mailto:contact@tavrensolutions.com" class="text-sm text-navy/80 hover:text-azure">contact@tavrensolutions.com</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-10 border-t border-navy/10 pt-6 text-xs text-slate">
+      <p>&copy; 2026 Tavren. All rights reserved.</p>
+      <p class="mt-1">Tavren is a trading name of VBCJ Solutions Ltd, registered in England &amp; Wales. Prices in USD. Payments are processed by Lemon Squeezy, our Merchant of Record.</p>
+      <p class="mt-1">VBCJ Solutions Ltd (trading as Tavren) · Registered in England and Wales · Company No. 07598797 · Registered office: 5 Martinshaw Close, Leicester, Leicestershire, LE3 9SQ, United Kingdom</p>
+    </div>
+  </div>
+</footer>
+
+    <script src="/js/main.js" defer></script>
+    
+  </body>
+</html>
