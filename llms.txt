@@ -7,7 +7,7 @@
 - [How it works](https://tavrensolutions.com/how-it-works): What a toolkit is, why structured prompting works, and how you run one.
 - [Readiness guide](https://tavrensolutions.com/readiness): A curated route through the blog for business teams — timeline, ownership, data, people/process and method.
 - [Free starter toolkit](https://tavrensolutions.com/free-kit): A free, structured prompt set to try the format before buying.
-- [SAP t-code reference](https://tavrensolutions.com/tcodes): What happens to 828 ECC transaction codes in S/4HANA — deleted, replaced, changed, or still available, with the SAP Simplification List citation for each. One page per code.
+- [SAP t-code reference](https://tavrensolutions.com/tcodes): What happens to 838 ECC transaction codes in S/4HANA — deleted, replaced, changed, or still available, with the SAP Simplification List citation for each. One page per code.
 - [FAQ](https://tavrensolutions.com/faq): Common questions about the toolkits, pricing, data privacy and delivery.
 - [About](https://tavrensolutions.com/about): What Tavren is and how it works.
 - [Contact](https://tavrensolutions.com/contact): Get in touch.
