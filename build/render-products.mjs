@@ -179,6 +179,7 @@ export function renderProductJsonLd(data) {
       '@type': 'Product',
       name,
       description: desc,
+      image: `${BASE}/assets/og.png`,
       brand: { '@type': 'Brand', name: 'Tavren' },
       category: 'SAP S/4HANA readiness toolkit',
       url,
@@ -188,6 +189,17 @@ export function renderProductJsonLd(data) {
         priceCurrency: 'USD',
         availability: 'https://schema.org/InStock',
         url,
+        // Digital downloads: no physical shipping; all sales final (see /legal/terms-of-sale).
+        shippingDetails: {
+          '@type': 'OfferShippingDetails',
+          shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'USD' },
+          shippingDestination: { '@type': 'DefinedRegion', addressCountry: ['GB', 'US'] },
+        },
+        hasMerchantReturnPolicy: {
+          '@type': 'MerchantReturnPolicy',
+          applicableCountry: ['GB', 'US'],
+          returnPolicyCategory: 'https://schema.org/MerchantReturnNotPermitted',
+        },
       },
     };
   }
