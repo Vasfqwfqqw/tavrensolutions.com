@@ -194,6 +194,12 @@ export function renderProductJsonLd(data) {
           '@type': 'OfferShippingDetails',
           shippingRate: { '@type': 'MonetaryAmount', value: '0', currency: 'USD' },
           shippingDestination: { '@type': 'DefinedRegion', addressCountry: ['GB', 'US'] },
+          // Digital download: instant delivery, no handling or transit time.
+          deliveryTime: {
+            '@type': 'ShippingDeliveryTime',
+            handlingTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
+            transitTime: { '@type': 'QuantitativeValue', minValue: 0, maxValue: 0, unitCode: 'DAY' },
+          },
         },
         hasMerchantReturnPolicy: {
           '@type': 'MerchantReturnPolicy',
