@@ -160,7 +160,7 @@ Run `npm run build`, start `npm run serve`, then:
 
 ## 11. Notes
 
-- Legal pages: **Terms of Sale** and **Terms & Conditions** are approved (no draft banner). **Privacy Policy, Cookie Policy, and Disclaimer** still carry the "pending legal review" banner. Operating entity: **VBCJ Solutions Ltd** (trading as Tavren), registered in England & Wales, **Company No. 07598797**, registered office 5 Martinshaw Close, Leicester, LE3 9SQ — shown in the footer statutory line and legal pages, never in branding.
+- Legal pages: **Terms of Sale** and **Terms & Conditions** are approved (no draft banner). **Privacy Policy, Cookie Policy, and Disclaimer** still carry the "pending legal review" banner. Operating entity: **VBCJ Solutions Ltd** (trading as Tavren), registered in England & Wales, **Company No. 07598797** — shown in the footer statutory line and legal pages, never in branding. (Registered-office address is intentionally omitted from the site.)
 - Catalogue: **24 buy buttons** (20 packs @ $779 + 4 series bundles @ $3,099) plus the free starter kit, all sourced from `products.json`. Integrity is verifiable with `node build/verify-catalogue.mjs`.
 - `puppeteer-core` and `lighthouse` are dev‑only dependencies for QA; they drive the system Chrome and ship nothing to the site.
 - Fonts/favicons/OG are committed; only regenerate them (`npm run fonts` / `npm run images`) if the source logos or font files change.
