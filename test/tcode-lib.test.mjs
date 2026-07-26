@@ -4,8 +4,8 @@ import { loadDataset, assertValidTcode } from '../build/tcode-lib.mjs';
 
 test('loadDataset reads the vendored dataset', async () => {
   const data = await loadDataset(new URL('../data/s4hana-tcode-dataset.json', import.meta.url));
-  assert.equal(data.records.length, 828);
-  assert.equal(data.version, '1.1.1');
+  assert.equal(data.records.length, 838);
+  assert.equal(data.version, '1.2.2');
   assert.ok(data.records.every((r) => typeof r.tcode === 'string' && r.tcode.length > 0));
 });
 

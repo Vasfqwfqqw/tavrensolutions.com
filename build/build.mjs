@@ -81,6 +81,45 @@ export function collectionPageLd(d, url) {
     url,
   })}</script>`;
 }
+// WebPage node carrying an honest dateModified — set from the dataset's own
+// `generated` date, so freshness only moves when the underlying data was
+// actually re-validated against a new SAP Simplification List edition.
+export function webPageLd({ name, description, url, dateModified }) {
+  return `<script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'WebPage',
+    name,
+    description,
+    url,
+    dateModified,
+    publisher: { '@type': 'Organization', name: 'Tavren', url: BASE },
+  })}</script>`;
+}
+// schema.org/Dataset for the t-code hub — lists the derived dataset in Google
+// Dataset Search (a corpus Gemini draws on) and declares Tavren the source.
+export function datasetLd({ name, description, url, version, dateModified, sourceEdition, dataDownloadUrl, repoUrl }) {
+  return `<script type="application/ld+json">${JSON.stringify({
+    '@context': 'https://schema.org',
+    '@type': 'Dataset',
+    name,
+    description,
+    url,
+    sameAs: repoUrl,
+    version,
+    dateModified,
+    isAccessibleForFree: true,
+    license: 'https://creativecommons.org/licenses/by/4.0/',
+    keywords: ['SAP', 'S/4HANA', 'ECC', 'transaction codes', 'SAP Simplification List', 'ERP migration'],
+    creator: { '@type': 'Organization', name: 'Tavren', url: BASE },
+    publisher: { '@type': 'Organization', name: 'Tavren', url: BASE },
+    citation: sourceEdition,
+    distribution: [
+      { '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: dataDownloadUrl },
+      { '@type': 'DataDownload', encodingFormat: 'text/html', contentUrl: url },
+      { '@type': 'DataDownload', encodingFormat: 'application/json', contentUrl: repoUrl },
+    ],
+  })}</script>`;
+}
 function articleLd(d, url) {
   return `<script type="application/ld+json">${JSON.stringify({
     '@context': 'https://schema.org',

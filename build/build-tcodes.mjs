@@ -4,7 +4,7 @@ import {
   loadDataset, assertValidTcode, moduleLabel, buildH1, successorText,
   shortStatusLabel, buildFirstParagraph, buildBodySection, buildSiblingLinks,
 } from './tcode-lib.mjs';
-import { renderDocument, writeOut, breadcrumbLd, faqPageLd, collectionPageLd, escHtml, BASE } from './build.mjs';
+import { renderDocument, writeOut, breadcrumbLd, faqPageLd, collectionPageLd, webPageLd, datasetLd, escHtml, BASE } from './build.mjs';
 
 const ROOT = fileURLToPath(new URL('..', import.meta.url));
 const DATASET_PATH = join(ROOT, 'data/s4hana-tcode-dataset.json');
@@ -32,7 +32,7 @@ function freeKitCtaHtml() {
     </div>`;
 }
 
-function renderCodePage(record, allRecords, version) {
+function renderCodePage(record, allRecords, version, generated) {
   const h1 = buildH1(record);
   const paragraph = buildFirstParagraph(record);
   const body = buildBodySection(record);
@@ -97,7 +97,8 @@ function renderCodePage(record, allRecords, version) {
   };
   const extraHead =
     breadcrumbLd([{ name: 'Home', path: '/' }, { name: 'T-code reference', path: '/tcodes' }, { name: record.tcode, path: canonicalPath }]) +
-    faqPageLd([{ q: h1, a: paragraph }]);
+    faqPageLd([{ q: h1, a: paragraph }]) +
+    webPageLd({ name: data.title, description: data.description, url: `${BASE}${canonicalPath}`, dateModified: generated });
 
   return renderDocument({ content, data, canonicalPath, extraHead });
 }
@@ -129,7 +130,7 @@ function renderModuleOptions(records) {
   return modules.map((m) => `<option value="${escHtml(m)}">${escHtml(moduleLabel(m))}</option>`).join('\n');
 }
 
-function renderHubPage(records, reviewedCount, version) {
+function renderHubPage(records, reviewedCount, version, generated, datasetName, sourceEdition) {
   const content = `
 <section class="container-tavren py-14 sm:py-20">
   <div class="max-w-3xl reveal">
@@ -188,7 +189,18 @@ function renderHubPage(records, reviewedCount, version) {
   };
   const extraHead =
     breadcrumbLd([{ name: 'Home', path: '/' }, { name: 'T-code reference', path: '/tcodes' }]) +
-    collectionPageLd(data, `${BASE}/tcodes`);
+    collectionPageLd(data, `${BASE}/tcodes`) +
+    datasetLd({
+      name: datasetName,
+      description: `Structured fate of ${records.length} SAP ECC transaction codes in S/4HANA — deleted, replaced, changed, or still available — derived from the SAP Simplification List with a plain-English 'what changes for you' note per code.`,
+      url: `${BASE}/tcodes`,
+      version,
+      dateModified: generated,
+      sourceEdition,
+      dataDownloadUrl: `${BASE}/tcodes/data.json`,
+      repoUrl: REPO_URL,
+    }) +
+    webPageLd({ name: data.title, description: data.description, url: `${BASE}/tcodes`, dateModified: generated });
 
   return renderDocument({ content, data, canonicalPath: '/tcodes', extraHead });
 }
@@ -207,17 +219,17 @@ function buildDataJson(records) {
 }
 
 export async function buildTcodes() {
-  const { records, version } = await loadDataset(DATASET_PATH);
+  const { records, version, generated, dataset: datasetName, sourceEdition } = await loadDataset(DATASET_PATH);
   for (const r of records) assertValidTcode(r.tcode);
 
   const urls = [];
   for (const record of records) {
-    const html = renderCodePage(record, records, version);
+    const html = renderCodePage(record, records, version, generated);
     await writeOut(`tcodes/${record.tcode}/index.html`, html);
     urls.push({ loc: `/tcodes/${record.tcode}`, priority: '0.4' });
   }
 
-  const hubHtml = renderHubPage(records, records.filter((r) => r.review_status === 'reviewed').length, version);
+  const hubHtml = renderHubPage(records, records.filter((r) => r.review_status === 'reviewed').length, version, generated, datasetName, sourceEdition);
   await writeOut('tcodes/index.html', hubHtml);
   urls.push({ loc: '/tcodes', priority: '0.6' });
 

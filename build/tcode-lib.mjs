@@ -9,6 +9,8 @@ export async function loadDataset(path) {
     dataset: json.dataset,
     version: json.version,
     generated: json.generated,
+    sourceEdition: json.source_edition,
+    recordCount: json.record_count,
     copyrightNote: json.copyright_note,
     records: json.records,
   };
