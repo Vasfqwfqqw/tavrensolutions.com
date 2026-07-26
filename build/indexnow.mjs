@@ -31,9 +31,17 @@ const res = await fetch('https://api.indexnow.org/indexnow', {
   body: JSON.stringify({ host: HOST, key: KEY, keyLocation: KEY_LOCATION, urlList }),
 });
 
-// IndexNow returns 200 or 202 on success; 403 = key not found/served yet.
+// IndexNow returns 200 or 202 on success.
 console.log(`IndexNow: submitted ${urlList.length} URLs → HTTP ${res.status} ${res.statusText}`);
 if (res.status === 403) {
-  console.error('403 — the key file is not reachable yet. Confirm the site is deployed and ' +
-    `${KEY_LOCATION} returns the key, then retry.`);
+  // 403 = IndexNow could not validate the key. If the key file resolves in your
+  // browser, this is almost always CDN propagation: IndexNow's crawler hit a
+  // GitHub Pages edge that doesn't have the file yet. It clears on its own —
+  // wait ~30-60 min and rerun. Only a genuine key mismatch/absence is fatal.
+  console.error(
+    `403 — IndexNow could not validate the key.\n` +
+    `  First check the key file resolves:  curl -sS ${KEY_LOCATION}\n` +
+    `  • If it returns the key: this is CDN propagation on IndexNow's side — wait ~30-60 min and rerun this script.\n` +
+    `  • If it 404s or returns something else: the file isn't deployed or the key doesn't match — redeploy, then retry.`
+  );
 }
