@@ -90,7 +90,7 @@ function renderCodePage(record, allRecords, version, generated) {
   ${datasetCreditHtml(version)}
 </section>`;
 
-  const canonicalPath = `/tcodes/${record.tcode}`;
+  const canonicalPath = `/tcodes/${record.tcode}/`;
   const data = {
     title: `${record.tcode} in S/4HANA — ${record.status === 'replaced' ? 'what replaces it' : 'what happens to it'} | Tavren`,
     description: truncate(paragraph, 155),
@@ -226,7 +226,7 @@ export async function buildTcodes() {
   for (const record of records) {
     const html = renderCodePage(record, records, version, generated);
     await writeOut(`tcodes/${record.tcode}/index.html`, html);
-    urls.push({ loc: `/tcodes/${record.tcode}`, priority: '0.4' });
+    urls.push({ loc: `/tcodes/${record.tcode}/`, priority: '0.4' });
   }
 
   const hubHtml = renderHubPage(records, records.filter((r) => r.review_status === 'reviewed').length, version, generated, datasetName, sourceEdition);
