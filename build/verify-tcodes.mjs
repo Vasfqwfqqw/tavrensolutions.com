@@ -54,10 +54,16 @@ check('FBL1N does not mention Gemini or other AI tools', !/gemini/i.test(fbl1n))
 check('FBL1N does not say "post-migration"', !/post-migration/i.test(fbl1n));
 check('FBL1N does not say "hard-blocked"', !/hard-blocked/i.test(fbl1n));
 
-// --- pending sample: BD_GEN_GRCP (replaced, pending, no named successor) ---
-const pending = await readFile(r('tcodes/BD_GEN_GRCP/index.html'), 'utf8');
-check('BD_GEN_GRCP shows the machine-parsed/under-review note', /Machine-parsed from the SAP Simplification List/.test(pending));
-check('BD_GEN_GRCP does not fabricate a successor', /not yet.*confirmed/i.test(pending));
+// --- pending sample: chosen dynamically (a still-pending record with no named
+// successor). Robust to review_status flips as codes get resolved over time. ---
+const pendingRec = dataset.records.find((x) => x.review_status !== 'reviewed');
+if (!pendingRec) {
+  check('a pending sample record exists to verify the hedge', false);
+} else {
+  const pending = await readFile(r(`tcodes/${pendingRec.tcode}/index.html`), 'utf8');
+  check(`${pendingRec.tcode} (pending) shows the machine-parsed/under-review note`, /Machine-parsed from the SAP Simplification List/.test(pending));
+  check(`${pendingRec.tcode} (pending) does not fabricate a successor`, /not yet.*confirmed/i.test(pending));
+}
 
 // --- deleted+reviewed sample: COMP ---
 const deleted = await readFile(r('tcodes/COMP/index.html'), 'utf8');

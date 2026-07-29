@@ -52,6 +52,9 @@ test('successorText combines replacement text and Fiori app id', () => {
   assert.equal(successorText({ replacement: '', fiori_app_id: 'F1077' }), 'Fiori app F1077');
   assert.equal(successorText({ replacement: 'UKM_BP (SAP Credit Management)', fiori_app_id: '' }), 'UKM_BP (SAP Credit Management)');
   assert.equal(successorText({ replacement: '', fiori_app_id: '' }), '—');
+  // placeholder replacements are treated as "no successor", not a real t-code
+  assert.equal(successorText({ replacement: 'No Replacement available', fiori_app_id: '' }), '—');
+  assert.equal(successorText({ replacement: 'n/a', fiori_app_id: '' }), '—');
 });
 
 test('shortStatusLabel maps all four dataset statuses', () => {
@@ -71,6 +74,39 @@ test('buildFirstParagraph returns the delta_note verbatim for reviewed records',
     sap_reference: '', source_item: null,
   };
   assert.equal(buildFirstParagraph(fbl1n), fbl1n.delta_note);
+});
+
+test('buildFirstParagraph: reviewed record with empty delta_note falls back to the bare factual sentence, no hedge', () => {
+  const deletedReviewed = {
+    tcode: 'FD01', status: 'deleted', review_status: 'reviewed',
+    replacement: '', fiori_app_id: '', delta_note: '',
+    sap_reference: 'S4TWL - Business Partner', source_item: '6.1.1',
+  };
+  const del = buildFirstParagraph(deletedReviewed);
+  assert.equal(del, 'FD01 is removed in S/4HANA — it does not exist after conversion.');
+  assert.doesNotMatch(del, /machine-parsed/i);
+  assert.doesNotMatch(del, /awaiting human review|under (?:human )?review|provisional/i);
+
+  const replacedReviewed = {
+    tcode: 'FD32', status: 'replaced', review_status: 'reviewed',
+    replacement: 'UKM_BP (SAP Credit Management)', fiori_app_id: '', delta_note: '   ',
+    sap_reference: 'S4TWL - Credit Management', source_item: '6.3.1',
+  };
+  const rep = buildFirstParagraph(replacedReviewed);
+  assert.equal(rep, 'FD32 is replaced in S/4HANA by UKM_BP (SAP Credit Management).');
+  assert.doesNotMatch(rep, /machine-parsed/i);
+  assert.doesNotMatch(rep, /awaiting human review|provisional/i);
+});
+
+test('buildFirstParagraph: placeholder replacement is treated as no-successor, never "replaced by No Replacement available"', () => {
+  const placeholderReviewed = {
+    tcode: 'O4KC', status: 'replaced', review_status: 'reviewed',
+    replacement: 'No Replacement available', fiori_app_id: '', delta_note: '',
+    sap_reference: 'S4TWL - Oil & Gas', source_item: '20.1.1',
+  };
+  const p = buildFirstParagraph(placeholderReviewed);
+  assert.match(p, /marked as replaced in S\/4HANA, but the specific successor has not yet been confirmed/);
+  assert.doesNotMatch(p, /No Replacement available/);
 });
 
 test('buildFirstParagraph handles pending+replaced with a named replacement', () => {

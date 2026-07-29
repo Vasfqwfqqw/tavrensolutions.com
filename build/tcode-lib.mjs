@@ -70,9 +70,22 @@ export function buildH1(record) {
     : `What happens to ${record.tcode} in SAP S/4HANA?`;
 }
 
+// Some Simplification-List rows carry a placeholder in the replacement field
+// ("No Replacement available", "n/a", "none", …) that means "no successor",
+// not an actual t-code. Treat those as empty everywhere so a page never reads
+// "replaced by No Replacement available".
+const PLACEHOLDER_REPLACEMENTS = new Set([
+  '', 'n/a', 'na', 'none', 'no replacement', 'no replacement available',
+  'no successor', 'tbd', 'tba', '-', '—',
+]);
+export function hasRealReplacement(record) {
+  const r = (record.replacement || '').trim().toLowerCase();
+  return r !== '' && !PLACEHOLDER_REPLACEMENTS.has(r);
+}
+
 export function successorText(record) {
   const parts = [];
-  if (record.replacement) parts.push(record.replacement);
+  if (hasRealReplacement(record)) parts.push(record.replacement);
   if (record.fiori_app_id) parts.push(`Fiori app ${record.fiori_app_id}`);
   return parts.length ? parts.join(' — ') : '—';
 }
@@ -82,32 +95,58 @@ export function shortStatusLabel(status) {
   return SHORT_STATUS_LABELS[status] || status;
 }
 
-export function buildFirstParagraph(record) {
-  if (record.review_status === 'reviewed') {
-    // Human-verified, already 2-3 sentences, already answers the H1 directly.
-    return record.delta_note;
-  }
-
-  // Pending: dataset-verified to always be status 'deleted' or 'replaced',
-  // and to always carry a sap_reference. No delta_note is used here even
-  // if a stray one exists on the record (spec: pending never shows one).
+// The bare factual answer sentence for a record, derived from status /
+// replacement. No hedge clause. Used both for reviewed records that lack a
+// hand-written delta_note and as the base of the pending paragraph.
+export function buildFactualSentence(record) {
   if (record.status === 'deleted') {
-    return `${record.tcode} is removed in S/4HANA — it does not exist after conversion. This entry is machine-parsed from the SAP Simplification List and is awaiting human review, so treat the detail as provisional until it has been checked against the source.`;
+    return `${record.tcode} is removed in S/4HANA — it does not exist after conversion.`;
   }
 
   if (record.status === 'replaced') {
-    if (record.replacement) {
+    if (hasRealReplacement(record)) {
       const fioriPart = record.fiori_app_id ? ` (Fiori app ${record.fiori_app_id})` : '';
-      return `${record.tcode} is replaced in S/4HANA by ${record.replacement}${fioriPart}. This mapping is machine-parsed from the SAP Simplification List and is awaiting human review, so treat the successor as provisional until it has been checked against the source.`;
+      return `${record.tcode} is replaced in S/4HANA by ${record.replacement}${fioriPart}.`;
     }
-    return `${record.tcode} is marked as replaced in S/4HANA, but the specific successor has not yet been confirmed in this dataset. This entry is machine-parsed from the SAP Simplification List and is awaiting human review — check the cited source for the named replacement.`;
+    return `${record.tcode} is marked as replaced in S/4HANA, but the specific successor has not yet been confirmed in this dataset.`;
   }
 
   // Defensive fallback — not hit by the current dataset (verified: pending
-  // records are only ever 'deleted' or 'replaced'), kept so a future
-  // dataset release with a pending 'changed'/'available' record still
-  // renders something honest instead of crashing the build.
-  return `${record.tcode} is marked "${record.status}" in S/4HANA. This entry is machine-parsed from the SAP Simplification List and is awaiting human review.`;
+  // records are only ever 'deleted' or 'replaced'), kept so a future dataset
+  // release with a 'changed'/'available' record still renders something honest.
+  return `${record.tcode} is marked "${record.status}" in S/4HANA.`;
+}
+
+// The "machine-parsed / awaiting review" clause. Appended ONLY to records that
+// are not yet reviewed. Leading space so it concatenates onto the factual
+// sentence; wording kept status-specific to match the prior copy byte-for-byte.
+function buildHedgeClause(record) {
+  if (record.status === 'deleted') {
+    return ' This entry is machine-parsed from the SAP Simplification List and is awaiting human review, so treat the detail as provisional until it has been checked against the source.';
+  }
+  if (record.status === 'replaced') {
+    if (hasRealReplacement(record)) {
+      return ' This mapping is machine-parsed from the SAP Simplification List and is awaiting human review, so treat the successor as provisional until it has been checked against the source.';
+    }
+    return ' This entry is machine-parsed from the SAP Simplification List and is awaiting human review — check the cited source for the named replacement.';
+  }
+  return ' This entry is machine-parsed from the SAP Simplification List and is awaiting human review.';
+}
+
+export function buildFirstParagraph(record) {
+  const reviewed = record.review_status === 'reviewed';
+
+  // Human-verified prose wins whenever it actually exists.
+  if (reviewed && (record.delta_note || '').trim()) {
+    return record.delta_note;
+  }
+
+  // Otherwise render the generated factual sentence. Append the machine-parsed
+  // hedge ONLY while the record is still awaiting review — a reviewed record
+  // with an empty delta_note falls back to the bare factual sentence (hedge
+  // stripped, no blank paragraph).
+  const factual = buildFactualSentence(record);
+  return reviewed ? factual : `${factual}${buildHedgeClause(record)}`;
 }
 
 function buildCitation(record) {

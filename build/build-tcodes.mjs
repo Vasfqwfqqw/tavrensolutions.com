@@ -136,7 +136,7 @@ function renderHubPage(records, reviewedCount, version, generated, datasetName, 
   <div class="max-w-3xl reveal">
     <span class="eyebrow">T-code reference</span>
     <h1 class="mt-3 text-4xl font-bold leading-tight sm:text-5xl">What happens to your ECC transaction codes in S/4HANA?</h1>
-    <p class="mt-5 text-lg text-navy/80">This reference checks ${records.length} ECC transaction codes against the SAP Simplification List for S/4HANA — which ones are deleted at conversion, which are replaced, which still run unchanged after go-live, and which strategic Fiori app SAP points you to next. ${reviewedCount} entries are human-reviewed with full detail; the rest are machine-parsed from the Simplification List and flagged for review. Search or filter below, or browse by module.</p>
+    <p class="mt-5 text-lg text-navy/80">This reference checks ${records.length} ECC transaction codes against the SAP Simplification List for S/4HANA — which ones are deleted at conversion, which are replaced, which still run unchanged after go-live, and which strategic Fiori app SAP points you to next. ${reviewedCount} entries are human-reviewed; the rest are machine-parsed from the Simplification List and flagged for review. Search or filter below, or browse by module.</p>
   </div>
 </section>
 
