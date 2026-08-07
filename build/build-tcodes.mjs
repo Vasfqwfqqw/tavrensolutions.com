@@ -32,6 +32,15 @@ function freeKitCtaHtml() {
     </div>`;
 }
 
+function gemCtaHtml() {
+  return `
+    <aside class="max-w-3xl rounded-2xl border border-azure/30 bg-white p-8 reveal">
+      <span class="callout-label text-azure">Ask our S/4HANA Gem — free</span>
+      <p class="mt-2 text-navy/80">Not sure what happens to a specific transaction in S/4HANA? Ask the free finance end-user Gem — it answers at desk level from our verified t-code dataset.</p>
+      <a class="btn btn-secondary mt-5" href="https://gemini.google.com/gem/1SwS90yNM0E2Mj6IkNlr6iJ3oEGfjmCd3" target="_blank" rel="noopener">Ask the S/4HANA Gem</a>
+    </aside>`;
+}
+
 function renderCodePage(record, allRecords, version, generated) {
   const h1 = buildH1(record);
   const paragraph = buildFirstParagraph(record);
@@ -171,6 +180,7 @@ function renderHubPage(records, reviewedCount, version, generated, datasetName, 
       </table>
     </div>
   </div>
+  ${gemCtaHtml()}
 </section>
 
 <section class="container-tavren pb-16">
