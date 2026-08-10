@@ -1,6 +1,6 @@
 ---
 title: "Do our business teams still need to prepare if we already use SAP Signavio?"
-description: "SAP Signavio is a capable enterprise process platform — but it lives with your transformation team, not on the desk of your finance or supply-chain manager. Here's the personal prep your business users still owe the programme, and how it shrinks the workshop bill."
+description: "Already use SAP Signavio? It's a capable, complementary platform — but your finance and supply-chain teams still owe the programme personal prep. Here's what."
 date: "2026-06-23"
 category: "Cost & consultancy"
 readingTime: "6 min read"
